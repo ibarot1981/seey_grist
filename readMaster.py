@@ -1,10 +1,10 @@
 import pandas as pd
 
 # Change this to your actual Excel file path
-excel_file_path = 'employee_data_month.xlsx'
+excel_file_path = 'monthly.xlsx'
 
 # Name of the master sheet
-master_sheet_name = 'Employee Master'  # Adjust if different
+master_sheet_name = 'MasterSalarySheet'  # Adjust if different
 
 # Output CSV file path
 output_csv_path = 'employee_master_output.csv'
