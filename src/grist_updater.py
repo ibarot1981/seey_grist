@@ -3,9 +3,14 @@ import requests
 import pandas as pd
 from dotenv import load_dotenv
 from datetime import datetime
+import logging
 
 # Load environment variables
 load_dotenv()
+
+# Configure logging
+LOGGING_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO').upper()
+logging.basicConfig(level=LOGGING_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class GristUpdater:
     def __init__(self,
@@ -32,7 +37,7 @@ class GristUpdater:
         grist_url = base_url or os.getenv('GRIST_BASE_URL', 'https://docs.getgrist.com')
         self.base_url = f"{grist_url}/api/docs/{self.doc_id}"
 
-        print(f"Using Grist API at: {self.base_url}")
+        logging.info(f"Using Grist API at: {self.base_url}")
 
         # Column mappings from Excel to Grist
         self.excel_to_grist_mapping = {
@@ -117,7 +122,7 @@ class GristUpdater:
             # Construct the API endpoint for fetching records
             url = f"{self.base_url}/tables/{table}/records"
 
-            print(f"Fetching records from: {url}")
+            logging.info(f"Fetching records from: {url}")
 
             # Make the GET request
             response = requests.get(url, headers=self.headers)
@@ -128,7 +133,7 @@ class GristUpdater:
             # Extract records
             records_data = response.json().get('records', [])
 
-            print(f"Fetched {len(records_data)} records from {table}")
+            logging.info(f"Fetched {len(records_data)} records from {table}")
 
             # If no records, return empty DataFrame but try to get columns
             if not records_data:
@@ -161,9 +166,9 @@ class GristUpdater:
             return records_df
 
         except requests.RequestException as e:
-            print(f"Error fetching existing records from {table}: {e}")
+            logging.error(f"Error fetching existing records from {table}: {e}")
             if hasattr(e.response, 'text'):
-                print(f"Response: {e.response.text}")
+                logging.error(f"Response: {e.response.text}")
             return pd.DataFrame()
 
     def add_rate_log_entry(self, emp_no, new_rate, is_initial=False):
@@ -178,13 +183,13 @@ class GristUpdater:
             # Get the structure of the rate log table first to understand its columns
             try:
                 rate_log_records = self.get_existing_records(self.rate_log_table_name)
-                print(f"Rate log table columns: {rate_log_records.columns.tolist() if not rate_log_records.empty else 'No records found'}")
+                logging.debug(f"Rate log table columns: {rate_log_records.columns.tolist() if not rate_log_records.empty else 'No records found'}")
             except Exception as e:
-                print(f"Warning: Could not fetch rate log table structure: {e}")
+                logging.warning(f"Warning: Could not fetch rate log table structure: {e}")
 
             # Skip if rate is NaN
             if pd.isna(new_rate):
-                print(f"Skipping rate log entry for employee {emp_no} due to missing/invalid rate")
+                logging.warning(f"Skipping rate log entry for employee {emp_no} due to missing/invalid rate")
                 return
 
             # Basic record with required fields
@@ -204,7 +209,7 @@ class GristUpdater:
             add_url = f"{self.base_url}/tables/{self.rate_log_table_name}/records"
 
             # Print the payload for debugging
-            print(f"Rate log payload: {add_record}")
+            logging.debug(f"Rate log payload: {add_record}")
 
             add_response = requests.post(
                 add_url,
@@ -214,22 +219,22 @@ class GristUpdater:
 
             # If request fails, print more detailed error info
             if not add_response.ok:
-                print(f"Rate log add failed with status {add_response.status_code}")
-                print(f"Response: {add_response.text}")
+                logging.error(f"Rate log add failed with status {add_response.status_code}")
+                logging.error(f"Response: {add_response.text}")
 
             add_response.raise_for_status()
-            print(f"Added rate log entry for employee {emp_no} {'(initial rate)' if is_initial else '(rate change)'}")
+            logging.info(f"Added rate log entry for employee {emp_no} {'(initial rate)' if is_initial else '(rate change)'}")
             self._rate_log_count += 1 # Increment rate log counter here
 
         except requests.RequestException as e:
-            print(f"Error adding rate log entry: {e}")
-            print("Please check that:")
-            print("1. The Emp_RateLog table exists in your Grist document")
-            print("2. It has the columns: SFNo, NewPerDayRate, and Remarks")
-            print("3. The API key has write permissions to this table")
+            logging.error(f"Error adding rate log entry: {e}")
+            logging.error("Please check that:")
+            logging.error("1. The Emp_RateLog table exists in your Grist document")
+            logging.error("2. It has the columns: SFNo, NewPerDayRate, and Remarks")
+            logging.error("3. The API key has write permissions to this table")
         except ValueError as e:
-            print(f"Error processing rate value for employee {emp_no}: {e}")
-            print("Skipping rate log entry for this employee")
+            logging.error(f"Error processing rate value for employee {emp_no}: {e}")
+            logging.warning("Skipping rate log entry for this employee")
 
     def compare_and_update(self, excel_data):
         """
@@ -242,7 +247,7 @@ class GristUpdater:
             existing_records = self.get_existing_records()
 
             if existing_records.empty and not excel_data.empty:
-                print("No existing records found in Grist table. All records will be added as new.")
+                logging.info("No existing records found in Grist table. All records will be added as new.")
 
             # Make a copy of the data to avoid modifying the original
             excel_data = excel_data.copy()
@@ -251,13 +256,13 @@ class GristUpdater:
             if 'Emp No.' in excel_data.columns:
                 null_emp_nos = excel_data['Emp No.'].isna()
                 if null_emp_nos.any():
-                    print(f"Warning: Found {null_emp_nos.sum()} rows with empty employee numbers. These will be skipped.")
+                    logging.warning(f"Warning: Found {null_emp_nos.sum()} rows with empty employee numbers. These will be skipped.")
                     excel_data = excel_data.dropna(subset=['Emp No.'])
 
                 # Also remove rows where 'Emp No.' is 'nan' as a string
                 nan_emp_nos = excel_data['Emp No.'] == 'nan'
                 if nan_emp_nos.any():
-                    print(f"Warning: Found {nan_emp_nos.sum()} rows with 'nan' as employee number. These will be skipped.")
+                    logging.warning(f"Warning: Found {nan_emp_nos.sum()} rows with 'nan' as employee number. These will be skipped.")
                     excel_data = excel_data[~nan_emp_nos]
 
                 # Ensure 'Emp No.' is treated as string
@@ -272,8 +277,8 @@ class GristUpdater:
                 duplicates = excel_data['Emp No.'].duplicated()
                 if duplicates.any():
                     duplicate_emp_nos = excel_data.loc[duplicates, 'Emp No.'].tolist()
-                    print(f"Warning: Duplicate employee numbers found in Excel: {duplicate_emp_nos}")
-                    print("Only the last occurrence of each duplicate will be processed.")
+                    logging.warning(f"Warning: Duplicate employee numbers found in Excel: {duplicate_emp_nos}")
+                    logging.warning("Only the last occurrence of each duplicate will be processed.")
                     # Keep only the last occurrence of each duplicate
                     excel_data = excel_data.drop_duplicates(subset=['Emp No.'], keep='last')
 
@@ -282,15 +287,15 @@ class GristUpdater:
             rate_log_entries_to_process = [] # Stores dicts: {'emp_no': ..., 'new_rate': ..., 'is_initial': ...}
 
             # Debug info
-            print(f"Processing {len(excel_data)} rows from Excel")
+            logging.info(f"Processing {len(excel_data)} rows from Excel")
 
             # First, check if the rate log table exists and is accessible
             # This check is informational; actual rate log operations depend on main table success for new emps
             try:
                 rate_log_schema_check = self.get_existing_records(self.rate_log_table_name) # Use a different var name
-                print(f"Rate log table is accessible with {len(rate_log_schema_check)} existing entries (schema check)")
+                logging.debug(f"Rate log table is accessible with {len(rate_log_schema_check)} existing entries (schema check)")
             except Exception as e:
-                print(f"Warning: Could not access rate log table for initial check: {e}")
+                logging.warning(f"Warning: Could not access rate log table for initial check: {e}")
                 # Continue, as individual operations will handle errors.
 
             # Process each row from Excel
@@ -330,7 +335,7 @@ class GristUpdater:
                     grist_main_fields['MiddleName'] = middle_name # Will be None if not found by _split_name
                     grist_main_fields['LastName'] = last_name  # Will be None if not found by _split_name
                 else:
-                    print(f"No 'Name' found for Emp No: {emp_no}. Name fields will be null.")  # Changed message
+                    logging.warning(f"No 'Name' found for Emp No: {emp_no}. Name fields will be null.")  # Changed message
 
                 # Find if employee exists in Grist main table
                 matched_records = pd.DataFrame()
@@ -342,7 +347,7 @@ class GristUpdater:
 
                 if matched_records.empty:
                     # Scenario: New employee
-                    print(f"Attempting to add new employee {emp_no} to main table.")
+                    logging.info(f"Attempting to add new employee {emp_no} to main table.")
                     add_payload = {'fields': grist_main_fields}
                     add_url = f"{self.base_url}/tables/{self.main_table_name}/records"
 
@@ -350,7 +355,7 @@ class GristUpdater:
                         response = requests.post(add_url, headers=self.headers, json={'records': [add_payload]})
                         response.raise_for_status() # Will raise HTTPError for bad responses (4xx or 5xx)
 
-                        print(f"Successfully added new employee {emp_no} to main table.")
+                        logging.info(f"Successfully added new employee {emp_no} to main table.")
                         self._new_emp_count += 1
                         if pd.notna(new_excel_rate):
                             rate_log_entries_to_process.append({
@@ -359,13 +364,13 @@ class GristUpdater:
                                 'is_initial': True
                             })
                         else:
-                            print(f"New employee {emp_no} has no salary rate in Excel; skipping initial rate log entry.")
+                            logging.warning(f"New employee {emp_no} has no salary rate in Excel; skipping initial rate log entry.")
 
                     except requests.RequestException as e:
-                        print(f"Failed to add new employee {emp_no} to main table. Error: {e}")
+                        logging.error(f"Failed to add new employee {emp_no} to main table. Error: {e}")
                         if hasattr(e.response, 'text'):
-                            print(f"Response: {e.response.text}")
-                        print(f"Skipping rate log entry for new employee {emp_no} due to main table add failure.")
+                            logging.error(f"Response: {e.response.text}")
+                        logging.warning(f"Skipping rate log entry for new employee {emp_no} due to main table add failure.")
                         # Do not add to rate_log_entries_to_process if main table add fails
 
                 else:
@@ -376,7 +381,7 @@ class GristUpdater:
                     if 'Salary_PerDay' in matched_records.columns:
                         current_grist_rate = matched_records['Salary_PerDay'].iloc[0]
                     else:
-                        print(f"Warning: 'Salary_PerDay' column not found in existing Grist records for employee {emp_no}.")
+                        logging.warning(f"Warning: 'Salary_PerDay' column not found in existing Grist records for employee {emp_no}.")
 
                     # Prepare for rate comparison
                     grist_rate_float = None
@@ -387,13 +392,13 @@ class GristUpdater:
                         try:
                             grist_rate_float = float(current_grist_rate)
                         except (ValueError, TypeError):
-                            print(f"Warning: Could not convert current Grist salary rate '{current_grist_rate}' to float for employee {emp_no}.")
+                            logging.warning(f"Warning: Could not convert current Grist salary rate '{current_grist_rate}' to float for employee {emp_no}.")
 
                     if pd.notna(new_excel_rate):
                         try:
                             excel_rate_float = float(new_excel_rate)
                         except (ValueError, TypeError):
-                            print(f"Warning: Could not convert new Excel salary rate '{new_excel_rate}' to float for employee {emp_no}.")
+                            logging.warning(f"Warning: Could not convert new Excel salary rate '{new_excel_rate}' to float for employee {emp_no}.")
 
                     # Compare rates if both are valid numbers
                     if grist_rate_float is not None and excel_rate_float is not None:
@@ -402,15 +407,15 @@ class GristUpdater:
                     elif grist_rate_float is None and excel_rate_float is not None:
                         # Grist rate is null/invalid, Excel rate is valid -> consider it a change to log the new rate
                         rates_are_different = True
-                        print(f"Employee {emp_no}: Current Grist rate is missing/invalid, new Excel rate is {excel_rate_float}. Logging change.")
+                        logging.info(f"Employee {emp_no}: Current Grist rate is missing/invalid, new Excel rate is {excel_rate_float}. Logging change.")
                     elif grist_rate_float is not None and excel_rate_float is None:
                         # Grist rate is valid, Excel rate is null/invalid -> typically means no change or data issue in Excel
                         # Not logging this as a "rate change" to null unless explicitly required.
-                        print(
+                        logging.info(
                             f"Employee {emp_no}: Current Grist rate is {grist_rate_float}, new Excel rate is missing/invalid. Not logging as rate change.")
                     # If both are None/invalid, they are not "different" in a way that requires logging.
 
-                    print(f"Employee {emp_no}: Grist rate (float) = {grist_rate_float}, Excel rate (float) = {excel_rate_float}, Different = {rates_are_different}")
+                    logging.debug(f"Employee {emp_no}: Grist rate (float) = {grist_rate_float}, Excel rate (float) = {excel_rate_float}, Different = {rates_are_different}")
 
                     if rates_are_different and pd.notna(new_excel_rate):  # Ensure new_excel_rate is valid before logging
                         rate_log_entries_to_process.append({
@@ -418,7 +423,7 @@ class GristUpdater:
                             'new_rate': new_excel_rate,  # Log the original Excel value
                             'is_initial': False
                         })
-                        print(f"Rate change detected for employee {emp_no}. Queued for rate log.")
+                        logging.info(f"Rate change detected for employee {emp_no}. Queued for rate log.")
 
                     # --- Start of comparison logic for updates ---
                     needs_update = False
@@ -458,7 +463,7 @@ class GristUpdater:
 
                                 if excel_date != grist_date:
                                     needs_update = True
-                                    print(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: {excel_date}, Grist: {grist_date})")
+                                    logging.debug(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: {excel_date}, Grist: {grist_date})")
                                     # No break here, continue checking other fields for more detailed logging
                             else:
                                 # Compare other field types, handling None/NaN
@@ -472,7 +477,7 @@ class GristUpdater:
 
                                     if excel_str != grist_str:
                                         needs_update = True
-                                        print(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: '{excel_str}', Grist: '{grist_str}')")
+                                        logging.debug(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: '{excel_str}', Grist: '{grist_str}')")
                                         # No break here, continue checking other fields for more detailed logging
 
 
@@ -493,17 +498,17 @@ class GristUpdater:
                             'id': int(record_id),
                             'fields': update_payload_fields # Use the new dictionary
                         })
-                        print(f"Employee {emp_no} queued for update in main table.")
+                        logging.info(f"Employee {emp_no} queued for update in main table.")
                     else:
-                        print(f"Employee {emp_no}: No update needed for main table fields.")
+                        logging.info(f"Employee {emp_no}: No update needed for main table fields.")
 
 
             # Perform bulk updates to the main table if any
             if updates_to_main_table:
                 update_url = f"{self.base_url}/tables/{self.main_table_name}/records"
-                print(f"Updating {len(updates_to_main_table)} existing employee records in main table.")
+                logging.info(f"Updating {len(updates_to_main_table)} existing employee records in main table.")
                 if updates_to_main_table:  # Debug sample
-                    print(f"Sample update record for main table: {updates_to_main_table[0]}")
+                    logging.debug(f"Sample update record for main table: {updates_to_main_table[0]}")
 
                 try:
                     update_response = requests.patch(
@@ -512,16 +517,16 @@ class GristUpdater:
                         json={'records': updates_to_main_table}
                     )
                     update_response.raise_for_status()
-                    print(f"Successfully updated {len(updates_to_main_table)} existing employee records in main table.")
+                    logging.info(f"Successfully updated {len(updates_to_main_table)} existing employee records in main table.")
                     self._updated_emp_count += len(updates_to_main_table) # Increment updated count
                 except requests.RequestException as e:
-                    print(f"Error updating records in main table: {e}")
+                    logging.error(f"Error updating records in main table: {e}")
                     if hasattr(e.response, 'text'):
-                        print(f"Response: {e.response.text}")
+                        logging.error(f"Response: {e.response.text}")
 
             # Process all queued rate log entries
             if rate_log_entries_to_process:
-                print(f"Processing {len(rate_log_entries_to_process)} rate log entries.")
+                logging.info(f"Processing {len(rate_log_entries_to_process)} rate log entries.")
                 for entry_data in rate_log_entries_to_process:
                     # self.add_rate_log_entry handles its own try-except for the API call
                     self.add_rate_log_entry(
@@ -530,20 +535,20 @@ class GristUpdater:
                         entry_data['is_initial']
                     )
             else:
-                print("No rate log entries to process.")
+                logging.info("No rate log entries to process.")
 
         except requests.RequestException as e:  # Catching general request exceptions earlier in the new logic
-            print(f"A Grist API request failed during the process: {e}")
+            logging.error(f"A Grist API request failed during the process: {e}")
             if hasattr(e, 'response') and e.response is not None:
-                print(f"Response: {e.response.text}")
+                logging.error(f"Response: {e.response.text}")
         except Exception as e:
             import traceback
-            print(f"Unexpected error: {e}")
-            print(traceback.format_exc())
+            logging.error(f"Unexpected error: {e}")
+            logging.error(traceback.format_exc())
 
         # Print summary of actions
-        print("\n--- Update Summary ---")
-        print(f"New employees added to {self.main_table_name}: {self._new_emp_count}")
-        print(f"Existing employees updated in {self.main_table_name}: {self._updated_emp_count}")
-        print(f"Rate log entries added to {self.rate_log_table_name}: {self._rate_log_count}")
-        print("----------------------\n")
+        logging.info("\n--- Update Summary ---")
+        logging.info(f"New employees added to {self.main_table_name}: {self._new_emp_count}")
+        logging.info(f"Existing employees updated in {self.main_table_name}: {self._updated_emp_count}")
+        logging.info(f"Rate log entries added to {self.rate_log_table_name}: {self._rate_log_count}")
+        logging.info("----------------------\n")
