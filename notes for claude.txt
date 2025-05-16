@@ -1,8 +1,0 @@
-Last value in Actual Emp Master: SF2796
-========================================
-
-the logic of grist_updater script is supposed to be as follows :
-1. Check if emp no from excel file already exists in emp_master table in grist.
-2. If exist, check salary rate per day. If salary rate is different, enter new rate in grist table emprate_log. If salary rate is same, do nothing.
-3. If empNo from excel does not exist in emp_master, create new entry in emp_master and create new record for salary_rate in emprate_log table in grist.
-can you confirm the following logic is adhered to or not. also, there are certain insances where even if emp_no already exists in grist table emp_master, the name entries are updated from excel file. this should not happen.

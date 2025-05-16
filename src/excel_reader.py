@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 from dotenv import load_dotenv
+import re
+from datetime import datetime
 
 # Load environment variables
 load_dotenv()
@@ -13,10 +15,48 @@ class ExcelReader:
         """
         self.file_path = file_path or os.getenv('EXCEL_FILE_PATH')
         self.sheet_name = sheet_name or os.getenv('MASTER_SHEET_NAME', 'MasterSalarySheet')
+        self.month_year = self._extract_month_year_from_filename()
+
+    def _extract_month_year_from_filename(self):
+        """
+        Extracts month and year in MMM-YY format from the filename.
+        Assumes filename contains a date in MM-DD-YYYY or YYYY-MM-DD format.
+        """
+        if not self.file_path:
+            return None
+
+        filename = os.path.basename(self.file_path)
+        # Regex to find dates in MM-DD-YYYY or YYYY-MM-DD format
+        date_match = re.search(r'(\d{1,2}-\d{1,2}-\d{4})|(\d{4}-\d{1,2}-\d{1,2})', filename)
+
+        if date_match:
+            date_str = date_match.group(0)
+            try:
+                # Attempt to parse with MM-DD-YYYY first
+                date_obj = datetime.strptime(date_str, '%m-%d-%Y')
+            except ValueError:
+                try:
+                    # If that fails, attempt to parse with YYYY-MM-DD
+                    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
+                except ValueError:
+                    print(f"Warning: Could not parse date from filename: {filename}")
+                    return None
+
+            return date_obj.strftime('%b-%y')
+        else:
+            print(f"Warning: No date found in filename: {filename}")
+            return None
+
+    def get_month_year(self):
+        """
+        Returns the extracted month-year string (MMM-YY).
+        """
+        return self.month_year
 
     def read_sheet(self, sheet_name=None):
         """
         Read a specific sheet from the Excel file
+
         
         :param sheet_name: Optional sheet name to override default
         :return: pandas DataFrame of the sheet

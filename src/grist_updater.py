@@ -18,7 +18,8 @@ class GristUpdater:
                  doc_id=None,
                  main_table_name=None,
                  rate_log_table_name=None,
-                 base_url=None):
+                 base_url=None,
+                 month_year=None):
         """
         Initialize Grist Updater
 
@@ -27,6 +28,7 @@ class GristUpdater:
         :param main_table_name: Name of the main employee table to update
         :param rate_log_table_name: Name of the table for logging salary rate changes
         :param base_url: Optional base URL for custom Grist installations
+        :param month_year: Month and year in MMM-YY format from the Excel file
         """
         self.api_key = api_key or os.getenv('GRIST_API_KEY')
         self.doc_id = doc_id or os.getenv('GRIST_DOC_ID')
@@ -36,6 +38,8 @@ class GristUpdater:
         # Support for custom Grist installations
         grist_url = base_url or os.getenv('GRIST_BASE_URL', 'https://docs.getgrist.com')
         self.base_url = f"{grist_url}/api/docs/{self.doc_id}"
+
+        self.month_year = month_year
 
         logging.info(f"Using Grist API at: {self.base_url}")
 
@@ -108,6 +112,18 @@ class GristUpdater:
 
             return first_name, middle_name, last_name
 
+    def _generate_record_history_entry(self, action, field_name=None):
+        """
+        Generates a formatted RecordHistory entry.
+        """
+        current_datetime_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        entry = f"{current_datetime_str} {self.month_year}: "
+        if action == "Inserted New Record":
+            entry += action
+        elif action == "Updated":
+            entry += f"Updated {field_name} value"
+        return entry
+
     def get_existing_records(self, table_name=None):
         """
         Fetch existing records from Grist table
@@ -158,8 +174,7 @@ class GristUpdater:
             date_fields = ['DOJ', 'Created_at', 'Last_updated_at']
             for field in date_fields:
                 if field in records_df.columns:
-                    # Convert Unix timestamps (float) to datetime objects, coercing errors
-                    # Then format to string, handling NaT by filling with empty string
+                    # Convert from Unix timestamp, handling potential errors
                     records_df.loc[:, field] = pd.to_datetime(records_df[field], unit='s', errors='coerce').dt.strftime('%Y-%m-%d %H:%M:%S').fillna('')
             # --- End of date conversion ---
 
@@ -198,6 +213,13 @@ class GristUpdater:
                 'NewPerDayRate': float(new_rate),
                 'Remarks': 'Initial Rate' if is_initial else 'Rate Change - AutoCode'
             }
+
+            # Add month-year to rate log entry if column exists
+            if 'RecordHistory' in (rate_log_records.columns.tolist() if not rate_log_records.empty else []):
+                 fields['RecordHistory'] = self.month_year
+            else:
+                 logging.warning(f"Column 'RecordHistory' not found in {self.rate_log_table_name}. Skipping adding month-year to rate log.")
+
 
             # Only add the LogDate field if we know it's needed/supported
             # Uncomment this if the table has a LogDate column
@@ -268,7 +290,7 @@ class GristUpdater:
                 # Ensure 'Emp No.' is treated as string
                 excel_data['Emp No.'] = excel_data['Emp No.'].astype(str)
 
-            # If SFNo exists in existing_records, make sure it's a string for comparison
+            # If SFno exists in existing_records, make sure it's a string for comparison
             if not existing_records.empty and 'SFNo' in existing_records.columns:
                 existing_records['SFNo'] = existing_records['SFNo'].astype(str)
 
@@ -349,6 +371,14 @@ class GristUpdater:
                     # Scenario: New employee
                     logging.info(f"Attempting to add new employee {emp_no} to main table.")
                     add_payload = {'fields': grist_main_fields}
+
+                    # Add RecordHistory for new record
+                    if self.month_year:
+                        add_payload['fields']['RecordHistory'] = self._generate_record_history_entry("Inserted New Record")
+                    else:
+                        logging.warning("Month-year not available. Skipping RecordHistory entry for new record.")
+
+
                     add_url = f"{self.base_url}/tables/{self.main_table_name}/records"
 
                     try:
@@ -427,6 +457,7 @@ class GristUpdater:
 
                     # --- Start of comparison logic for updates ---
                     needs_update = False
+                    updated_fields = [] # To track which fields were updated for RecordHistory
                     current_grist_record = matched_records.iloc[0] # Get the single row for this employee
 
                     # Fields to compare for updates (excluding SFNo, Designation, and Name-related)
@@ -463,6 +494,7 @@ class GristUpdater:
 
                                 if excel_date != grist_date:
                                     needs_update = True
+                                    updated_fields.append(grist_col)
                                     logging.debug(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: {excel_date}, Grist: {grist_date})")
                                     # No break here, continue checking other fields for more detailed logging
                             else:
@@ -477,8 +509,13 @@ class GristUpdater:
 
                                     if excel_str != grist_str:
                                         needs_update = True
+                                        updated_fields.append(grist_col)
                                         logging.debug(f"DEBUG: Update needed for {emp_no}: {grist_col} differs (Excel: '{excel_str}', Grist: '{grist_str}')")
                                         # No break here, continue checking other fields for more detailed logging
+
+                    # Check for rate change as well, even though it's logged separately
+                    if rates_are_different and 'Salary_PerDay' not in updated_fields:
+                         updated_fields.append('Salary_PerDay')
 
 
                     # --- End of comparison logic for updates ---
@@ -492,6 +529,20 @@ class GristUpdater:
 
                         # Remove Designation field for existing employees to prevent updates
                         update_payload_fields.pop('Designation', None)
+
+                        # Generate and prepend RecordHistory entry
+                        if self.month_year and updated_fields:
+                            field_names_str = ", ".join(updated_fields)
+                            new_history_entry = self._generate_record_history_entry("Updated", field_names_str)
+                            existing_history = current_grist_record.get('RecordHistory', '')
+                            # Prepend new entry, add newline if existing history is not empty
+                            update_payload_fields['RecordHistory'] = f"{new_history_entry}\n{existing_history}" if existing_history else new_history_entry
+                        elif self.month_year and not updated_fields:
+                             # This case should ideally not happen if needs_update is True, but as a safeguard
+                             logging.warning(f"Needs update is True for {emp_no} but no fields identified as updated. Skipping RecordHistory update.")
+                        else:
+                             logging.warning(f"Month-year not available. Skipping RecordHistory update for {emp_no}.")
+
 
                         # Add to main table update list (updates other fields, Salary_PerDay is formula)
                         updates_to_main_table.append({
