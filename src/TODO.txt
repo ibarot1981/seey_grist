@@ -1,4 +1,2 @@
-Processing file: ../data/EmpClockingFormat - 12-4-2025.xlsx
-Extracted month-year from filename: Dec-25
 
 the actual value should be entered in Recordhistory field.

@@ -112,7 +112,7 @@ class GristUpdater:
 
             return first_name, middle_name, last_name
 
-    def _generate_record_history_entry(self, action, field_name=None):
+    def _generate_record_history_entry(self, action, field_name=None, new_value=None):
         """
         Generates a formatted RecordHistory entry.
         """
@@ -121,7 +121,7 @@ class GristUpdater:
         if action == "Inserted New Record":
             entry += action
         elif action == "Updated":
-            entry += f"Updated {field_name} value"
+            entry += f"Updated {field_name} to {new_value}"
         return entry
 
     def get_existing_records(self, table_name=None):
@@ -530,13 +530,20 @@ class GristUpdater:
                         # Remove Designation field for existing employees to prevent updates
                         update_payload_fields.pop('Designation', None)
 
-                        # Generate and prepend RecordHistory entry
+                        # Generate and prepend RecordHistory entry for each updated field
                         if self.month_year and updated_fields:
-                            field_names_str = ", ".join(updated_fields)
-                            new_history_entry = self._generate_record_history_entry("Updated", field_names_str)
+                            history_entries = []
+                            for field in updated_fields:
+                                new_value = grist_main_fields.get(field, 'N/A') # Get new value, default to 'N/A' if not found
+                                history_entry = self._generate_record_history_entry("Updated", field_name=field, new_value=new_value)
+                                history_entries.append(history_entry)
+
+                            new_history_content = "\n".join(history_entries)
                             existing_history = current_grist_record.get('RecordHistory', '')
-                            # Prepend new entry, add newline if existing history is not empty
-                            update_payload_fields['RecordHistory'] = f"{new_history_entry}\n{existing_history}" if existing_history else new_history_entry
+
+                            # Prepend new entries, add newline if existing history is not empty
+                            update_payload_fields['RecordHistory'] = f"{new_history_content}\n{existing_history}" if existing_history else new_history_content
+
                         elif self.month_year and not updated_fields:
                              # This case should ideally not happen if needs_update is True, but as a safeguard
                              logging.warning(f"Needs update is True for {emp_no} but no fields identified as updated. Skipping RecordHistory update.")
