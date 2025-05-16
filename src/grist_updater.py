@@ -313,16 +313,18 @@ class GristUpdater:
                     first_name, middle_name, last_name = self._split_name(excel_full_name)
                     grist_main_fields['FirstName'] = first_name # Will be None if not found by _split_name
                     grist_main_fields['MiddleName'] = middle_name # Will be None if not found by _split_name
-                    grist_main_fields['LastName'] = last_name # Will be None if not found by _split_name
+                    grist_main_fields['LastName'] = last_name  # Will be None if not found by _split_name
                 else:
-                    print(f"No 'Name' found for Emp No: {emp_no}. Name fields will be null.") # Changed message
+                    print(f"No 'Name' found for Emp No: {emp_no}. Name fields will be null.")  # Changed message
 
-                
                 # Find if employee exists in Grist main table
                 matched_records = pd.DataFrame()
                 if not existing_records.empty and 'SFNo' in existing_records.columns:
                     matched_records = existing_records[existing_records['SFNo'] == emp_no]
                 
+                if not existing_records.empty and 'SFNo' in existing_records.columns:
+                    matched_records = existing_records[existing_records['SFNo'] == emp_no]
+
                 if matched_records.empty:
                     # Scenario: New employee
                     print(f"Attempting to add new employee {emp_no} to main table.")
@@ -354,7 +356,7 @@ class GristUpdater:
                     # Scenario: Existing employee
                     record_id = matched_records['id'].iloc[0]
                     current_grist_rate = None
-                    
+
                     if 'Salary_PerDay' in matched_records.columns:
                         current_grist_rate = matched_records['Salary_PerDay'].iloc[0]
                     else:
@@ -370,55 +372,65 @@ class GristUpdater:
                             grist_rate_float = float(current_grist_rate)
                         except (ValueError, TypeError):
                             print(f"Warning: Could not convert current Grist salary rate '{current_grist_rate}' to float for employee {emp_no}.")
-                    
+
                     if pd.notna(new_excel_rate):
                         try:
                             excel_rate_float = float(new_excel_rate)
                         except (ValueError, TypeError):
                             print(f"Warning: Could not convert new Excel salary rate '{new_excel_rate}' to float for employee {emp_no}.")
-                    
+
                     # Compare rates if both are valid numbers
                     if grist_rate_float is not None and excel_rate_float is not None:
                         if grist_rate_float != excel_rate_float:
                             rates_are_different = True
-                    elif grist_rate_float is None and excel_rate_float is not None: 
+                    elif grist_rate_float is None and excel_rate_float is not None:
                         # Grist rate is null/invalid, Excel rate is valid -> consider it a change to log the new rate
                         rates_are_different = True
                         print(f"Employee {emp_no}: Current Grist rate is missing/invalid, new Excel rate is {excel_rate_float}. Logging change.")
                     elif grist_rate_float is not None and excel_rate_float is None:
                         # Grist rate is valid, Excel rate is null/invalid -> typically means no change or data issue in Excel
                         # Not logging this as a "rate change" to null unless explicitly required.
-                        print(f"Employee {emp_no}: Current Grist rate is {grist_rate_float}, new Excel rate is missing/invalid. Not logging as rate change.")
+                        print(
+                            f"Employee {emp_no}: Current Grist rate is {grist_rate_float}, new Excel rate is missing/invalid. Not logging as rate change.")
                     # If both are None/invalid, they are not "different" in a way that requires logging.
 
                     print(f"Employee {emp_no}: Grist rate (float) = {grist_rate_float}, Excel rate (float) = {excel_rate_float}, Different = {rates_are_different}")
 
-                    if rates_are_different and pd.notna(new_excel_rate): # Ensure new_excel_rate is valid before logging
+                    if rates_are_different and pd.notna(new_excel_rate):  # Ensure new_excel_rate is valid before logging
                         rate_log_entries_to_process.append({
                             'emp_no': emp_no,
-                            'new_rate': new_excel_rate, # Log the original Excel value
+                            'new_rate': new_excel_rate,  # Log the original Excel value
                             'is_initial': False
                         })
                         print(f"Rate change detected for employee {emp_no}. Queued for rate log.")
+
+                    # Create update payload excluding name fields for existing employees
+                    update_payload_fields = grist_main_fields.copy()
+                    update_payload_fields.pop('FirstName', None)
+                    update_payload_fields.pop('MiddleName', None)
+                    update_payload_fields.pop('LastName', None)
                     
+                    # Remove Designation field for existing employees to prevent updates
+                    update_payload_fields.pop('Designation', None)
+
                     # Add to main table update list (updates other fields, Salary_PerDay is formula)
                     updates_to_main_table.append({
-                        'id': record_id,
-                        'fields': grist_main_fields
+                        'id': int(record_id),
+                        'fields': update_payload_fields # Use the new dictionary
                     })
                     print(f"Employee {emp_no} queued for update in main table.")
-            
+
             # Perform bulk updates to the main table if any
             if updates_to_main_table:
                 update_url = f"{self.base_url}/tables/{self.main_table_name}/records"
                 print(f"Updating {len(updates_to_main_table)} existing employee records in main table.")
-                if updates_to_main_table: # Debug sample
+                if updates_to_main_table:  # Debug sample
                     print(f"Sample update record for main table: {updates_to_main_table[0]}")
-                
+
                 try:
                     update_response = requests.patch(
-                        update_url, 
-                        headers=self.headers, 
+                        update_url,
+                        headers=self.headers,
                         json={'records': updates_to_main_table}
                     )
                     update_response.raise_for_status()
@@ -427,7 +439,7 @@ class GristUpdater:
                     print(f"Error updating records in main table: {e}")
                     if hasattr(e.response, 'text'):
                         print(f"Response: {e.response.text}")
-            
+
             # Process all queued rate log entries
             if rate_log_entries_to_process:
                 print(f"Processing {len(rate_log_entries_to_process)} rate log entries.")
@@ -440,8 +452,8 @@ class GristUpdater:
                     )
             else:
                 print("No rate log entries to process.")
-        
-        except requests.RequestException as e: # Catching general request exceptions earlier in the new logic
+
+        except requests.RequestException as e:  # Catching general request exceptions earlier in the new logic
             print(f"A Grist API request failed during the process: {e}")
             if hasattr(e, 'response') and e.response is not None:
                 print(f"Response: {e.response.text}")

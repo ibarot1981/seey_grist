@@ -1,26 +1,8 @@
 Last value in Actual Emp Master: SF2796
 ========================================
 
-from the excel file - MasterSalarySheet, take the following columns :
-- Emp No.
-- Salary Rate (Per Day)
-- Emp Type : Temp / Perm
-- Salary Calculation on Fixed / Hourly
-- Date of Joining
-
-Use these columns to compare grist table. grist table columns are as below (entered in the same order of excel columns.) :
-- SFNo
-- Salary_PerDay
-- Perm_Temp
-- Fixed_Hourly
-- DOJ
-
-Following scenarios to consider :
-1. Emp No. does not exist in grist. In this case, enter new record by mapping excel columns to grist table.
-2. Emp No. found, compare "Salary Rate (Per Day)". If rate not equal, then need to create entry in a different grist table as below :
-    - Grist table name : Emp_RateLog
-    - Enter the following fields in Emp_RateLog table :
-        1. Emp No. which was found in "SFNo" in grist table.
-        2. Salary rate from excel sheet in "NewPerDayRate" in grist table.
-        3. "Remarks" in grist table to be "AutoCode"
-3. Emp No. found, salary rate matched, do nothing.
+the logic of grist_updater script is supposed to be as follows :
+1. Check if emp no from excel file already exists in emp_master table in grist.
+2. If exist, check salary rate per day. If salary rate is different, enter new rate in grist table emprate_log. If salary rate is same, do nothing.
+3. If empNo from excel does not exist in emp_master, create new entry in emp_master and create new record for salary_rate in emprate_log table in grist.
+can you confirm the following logic is adhered to or not. also, there are certain insances where even if emp_no already exists in grist table emp_master, the name entries are updated from excel file. this should not happen.
