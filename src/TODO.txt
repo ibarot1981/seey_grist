@@ -1,10 +1,4 @@
-While extracting data from excel file, the excel_reader.py script should also extract month-year from filename.
-The filename will contain a date in its name. it should extract month and year in format (MMM-YY). e.g. May-25
+Processing file: ../data/EmpClockingFormat - 12-4-2025.xlsx
+Extracted month-year from filename: Dec-25
 
-grist_updater should use the month-year to enter in RecordHisotry column in EmpMaster and emp_ratelog column.
-
-Any updates in emp_master will require grist field recordhistory to be updated.
-    - RecordHistory column should contain any previous history if any, and new entry should be on top.
-    - Format should be :
-            - <datetime><from excel file month-year>: Inserted New Record or 
-            - <datetime><from excel file month-year>: Updated <FieldName> value
+the actual value should be entered in Recordhistory field.

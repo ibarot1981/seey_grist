@@ -116,8 +116,8 @@ class GristUpdater:
         """
         Generates a formatted RecordHistory entry.
         """
-        current_datetime_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        entry = f"{current_datetime_str} {self.month_year}: "
+        current_date_str = datetime.now().strftime('%d-%m-%Y')
+        entry = f"{current_date_str} {self.month_year}: "
         if action == "Inserted New Record":
             entry += action
         elif action == "Updated":

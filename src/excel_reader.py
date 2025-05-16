@@ -32,15 +32,11 @@ class ExcelReader:
         if date_match:
             date_str = date_match.group(0)
             try:
-                # Attempt to parse with MM-DD-YYYY first
-                date_obj = datetime.strptime(date_str, '%m-%d-%Y')
+                # Attempt to parse with DD-MM-YYYY
+                date_obj = datetime.strptime(date_str, '%d-%m-%Y')
             except ValueError:
-                try:
-                    # If that fails, attempt to parse with YYYY-MM-DD
-                    date_obj = datetime.strptime(date_str, '%Y-%m-%d')
-                except ValueError:
-                    print(f"Warning: Could not parse date from filename: {filename}")
-                    return None
+                print(f"Warning: Could not parse date from filename using DD-MM-YYYY format: {filename}")
+                return None # Return None if DD-MM-YYYY parsing fails
 
             return date_obj.strftime('%b-%y')
         else:
