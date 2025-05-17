@@ -41,6 +41,10 @@ class GristUpdater:
 
         self.month_year = month_year
 
+        # Read MarkAsLeft setting from environment
+        self.mark_as_left = os.getenv('MarkAsLeft', 'No').upper()
+        logging.info(f"MarkAsLeft setting: {self.mark_as_left}")
+
         logging.info(f"Using Grist API at: {self.base_url}")
 
         # Column mappings from Excel to Grist
@@ -620,6 +624,66 @@ class GristUpdater:
                     )
             else:
                 logging.info("No rate log entries to process.")
+
+            # --- Mark employees as left if not in Excel and MarkAsLeft is "YES" ---
+            if self.mark_as_left == "YES" and not existing_records.empty and not excel_data.empty:
+                logging.info("MarkAsLeft is YES. Checking for employees in Grist but not in Excel.")
+                # Get SFNo from Excel data
+                excel_emp_nos = excel_data['Emp No.'].tolist()
+
+                # Identify employees in Grist but not in Excel
+                grist_only_employees = existing_records[~existing_records['SFNo'].isin(excel_emp_nos)]
+
+                if not grist_only_employees.empty:
+                    logging.info(f"Found {len(grist_only_employees)} employees in Grist not present in Excel.")
+                    left_updates = []
+                    for _, emp_row in grist_only_employees.iterrows():
+                        record_id = emp_row['id']
+                        current_left_status = emp_row.get('Left', False) # Get current 'Left' status, default to False
+
+                        # Only update if the 'Left' field is not already True
+                        if not current_left_status:
+                            logging.info(f"Marking employee {emp_row['SFNo']} as Left.")
+                            update_payload = {
+                                'id': int(record_id),
+                                'fields': {
+                                    'Left': True
+                                }
+                            }
+                            # Add RecordHistory entry for marking as Left
+                            if self.month_year:
+                                history_entry = self._generate_record_history_entry("Updated", field_name="Left", new_value=True)
+                                existing_history = emp_row.get('RecordHistory', '')
+                                update_payload['fields']['RecordHistory'] = f"{history_entry}\n{existing_history}" if existing_history else history_entry
+                            else:
+                                logging.warning(f"Month-year not available. Skipping RecordHistory entry for marking {emp_row['SFNo']} as Left.")
+
+                            left_updates.append(update_payload)
+                        else:
+                            logging.info(f"Employee {emp_row['SFNo']} is already marked as Left. Skipping update.")
+
+
+                    if left_updates:
+                        update_url = f"{self.base_url}/tables/{self.main_table_name}/records"
+                        logging.info(f"Updating 'Left' status for {len(left_updates)} employees in main table.")
+                        try:
+                            update_response = requests.patch(
+                                update_url,
+                                headers=self.headers,
+                                json={'records': left_updates}
+                            )
+                            update_response.raise_for_status()
+                            logging.info(f"Successfully updated 'Left' status for {len(left_updates)} employees.")
+                        except requests.RequestException as e:
+                            logging.error(f"Error updating 'Left' status for employees: {e}")
+                            if hasattr(e.response, 'text'):
+                                logging.error(f"Response: {e.response.text}")
+                else:
+                    logging.info("No employees found in Grist that are not present in Excel.")
+            elif self.mark_as_left != "YES":
+                logging.info("MarkAsLeft is not YES. Skipping marking employees as left.")
+            # --- End of MarkAsLeft logic ---
+
 
         except requests.RequestException as e:  # Catching general request exceptions earlier in the new logic
             logging.error(f"A Grist API request failed during the process: {e}")
