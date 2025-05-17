@@ -84,13 +84,22 @@ class GristUpdater:
 
         if len(parts) == 1:
             # Only one part, assume it's FirstName
-            return parts[0], None, None
+            first_name = parts[0]
+            middle_name = None
+            last_name = None
+            logging.debug(f"1 part - Before sentence case: FirstName='{first_name}', MiddleName='{middle_name}', LastName='{last_name}'")
         elif len(parts) == 2:
             # Two parts, assume FirstName and LastName
-            return parts[0], None, parts[1]
+            first_name = parts[0]
+            middle_name = None
+            last_name = parts[1]
+            logging.debug(f"2 parts - Before sentence case: FirstName='{first_name}', MiddleName='{middle_name}', LastName='{last_name}'")
         elif len(parts) == 3:
             # Three parts, standard FirstName, MiddleName, LastName
-            return parts[0], parts[1], parts[2]
+            first_name = parts[0]
+            middle_name = parts[1]
+            last_name = parts[2]
+            logging.debug(f"3 parts - Before sentence case: FirstName='{first_name}', MiddleName='{middle_name}', LastName='{last_name}'")
         else: # More than 3 parts, apply the specific logic
             # Example: "Md ghulam Abdul sattar Mustafa" (5 parts)
             # LastName is the last part
@@ -109,8 +118,25 @@ class GristUpdater:
                 # MiddleName is everything between FirstName and LastName
                 middle_name_parts = parts[1:-1]
                 middle_name = " ".join(middle_name_parts) if middle_name_parts else None
+            logging.debug(f">3 parts - Before sentence case: FirstName='{first_name}', MiddleName='{middle_name}', LastName='{last_name}'")
 
-            return first_name, middle_name, last_name
+
+        # Apply Sentence case formatting
+        first_name = self._to_sentence_case(first_name) if first_name else None
+        middle_name = self._to_sentence_case(middle_name) if middle_name else None
+        last_name = self._to_sentence_case(last_name) if last_name else None
+
+        logging.debug(f"After sentence case: FirstName='{first_name}', MiddleName='{middle_name}', LastName='{last_name}'")
+
+        return first_name, middle_name, last_name
+
+    def _to_sentence_case(self, name_part):
+        """
+        Converts a string to Sentence case (first letter of each word capitalized).
+        """
+        if not name_part:
+            return None
+        return " ".join(word.capitalize() for word in str(name_part).split())
 
     def _generate_record_history_entry(self, action, field_name=None, new_value=None):
         """
