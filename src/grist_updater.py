@@ -61,6 +61,7 @@ class GristUpdater:
         self._new_emp_count = 0
         self._updated_emp_count = 0
         self._rate_log_count = 0
+        self._marked_as_left_count = 0
 
         # Removed 'Salary Rate (Per Day)': 'Salary_PerDay' from mapping as it's a formula field
         # 'Emp Name' from Excel is processed into FirstName, MiddleName, LastName in Grist.
@@ -659,6 +660,7 @@ class GristUpdater:
                                 logging.warning(f"Month-year not available. Skipping RecordHistory entry for marking {emp_row['SFNo']} as Left.")
 
                             left_updates.append(update_payload)
+                            self._marked_as_left_count += 1 # Increment the counter
                         else:
                             logging.info(f"Employee {emp_row['SFNo']} is already marked as Left. Skipping update.")
 
@@ -699,4 +701,5 @@ class GristUpdater:
         logging.info(f"New employees added to {self.main_table_name}: {self._new_emp_count}")
         logging.info(f"Existing employees updated in {self.main_table_name}: {self._updated_emp_count}")
         logging.info(f"Rate log entries added to {self.rate_log_table_name}: {self._rate_log_count}")
+        logging.info(f"Employees marked as left in {self.main_table_name}: {self._marked_as_left_count}")
         logging.info("----------------------\n")
