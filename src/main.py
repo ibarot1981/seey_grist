@@ -8,6 +8,8 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Import modules (assuming they're in a src directory)
 from src.excel_reader import ExcelReader
 from src.grist_updater import GristUpdater
+from src.hourclock_excel_reader import HourClockExcelReader
+from src.hourclock_grist_updater import HourClockGristUpdater
 
 def main():
     # Load environment variables
@@ -100,9 +102,32 @@ def main():
                 print("Starting Grist update process for this file...")
                 grist_updater.compare_and_update(master_sheet_df)
 
-                print(f"Finished processing file: {excel_file}")
+                print(f"Finished processing master sheet for file: {excel_file}")
+
+            # --- Process HourClock Sheet ---
+            print("\nProcessing HourClock sheet...")
+            hourclock_excel_reader = HourClockExcelReader(file_path=file_path)
+
+            # Read the hour clock sheet
+            hourclock_sheet_df = hourclock_excel_reader.read_sheet()
+
+            if hourclock_sheet_df is not None:
+                print(f"Successfully read {len(hourclock_sheet_df)} rows from HourClock sheet in {excel_file}")
+
+                # Initialize HourClock Grist Updater, passing the extracted month-year
+                print("\nInitializing HourClock Grist Updater...")
+                hourclock_grist_updater = HourClockGristUpdater(month_year=month_year)
+
+                # Compare and update Grist HC_Detail table
+                print("Starting HourClock Grist update process for this file...")
+                hourclock_grist_updater.compare_and_update(hourclock_sheet_df)
+
+                print(f"Finished processing HourClock sheet for file: {excel_file}")
             else:
-                print(f"Failed to read Excel file {excel_file}. Skipping.")
+                print(f"Failed to read HourClock sheet from {excel_file}. Skipping HourClock processing for this file.")
+            # --- End of HourClock Sheet Processing ---
+
+        print("\nAll Excel files processed.")
 
         print("\nAll Excel files processed.")
     

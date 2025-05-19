@@ -1,13 +1,13 @@
 import pandas as pd
 
 # Change this to your actual Excel file path
-excel_file_path = 'monthly.xlsx'
+excel_file_path = '../data/EmpClockingFormat - 12-5-2025.xlsx'
 
 # Name of the master sheet
-master_sheet_name = 'MasterSalarySheet'  # Adjust if different
+master_sheet_name = 'HourClock'  # Adjust if different
 
 # Output CSV file path
-output_csv_path = 'employee_master_output.csv'
+output_csv_path = 'employee_hourclock_output.csv'
 
 def read_and_save_master_sheet(excel_path, sheet_name, csv_output_path):
     try:
