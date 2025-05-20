@@ -273,9 +273,9 @@ class HourClockGristUpdater:
                     'SFNo': emp_no,
                 }
 
-                # Add SrNo if the column exists in Grist
-                if 'SrNo' in self.table_columns:
-                    grist_hourclock_fields['SrNo'] = sr_no if pd.notna(sr_no) else None
+                # Add Sr_No if the column exists in Grist
+                if 'Sr_No' in self.table_columns:
+                    grist_hourclock_fields['Sr_No'] = sr_no if pd.notna(sr_no) else None
 
                 # Find all P and OT columns in the Excel data with both hyphen and underscore formats
                 p_cols = [col for col in excel_row.index if col.startswith('P-') or col.startswith('P_')]
@@ -396,8 +396,8 @@ class HourClockGristUpdater:
 
                     # Compare all fields in grist_hourclock_fields (P and OT with correct format)
                     for field_name, new_value in grist_hourclock_fields.items():
-                        # Skip Month_Year and SFno since they're our match criteria and SrNo which was already checked
-                        if field_name in ['Month_Year', 'SFno', 'SrNo']:
+                        # Skip Month_Year and SFno since they're our match criteria and Sr_No which was already checked
+                        if field_name in ['Month_Year', 'SFno', 'Sr_No']:
                             continue
 
                         if field_name in current_grist_record:

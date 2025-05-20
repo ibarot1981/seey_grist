@@ -1,318 +1,318 @@
-2025-05-20 16:41:25,859 - __main__ - INFO - Starting salary update process...
-2025-05-20 16:41:25,860 - __main__ - INFO - Found 2 Excel files to process in ../data/
-2025-05-20 16:41:25,860 - __main__ - INFO - 
+2025-05-20 16:49:08,399 - __main__ - INFO - Starting salary update process...
+2025-05-20 16:49:08,399 - __main__ - INFO - Found 1 Excel files to process in ../data/
+2025-05-20 16:49:08,399 - __main__ - INFO - 
 Processing file: ../data/EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:25,861 - __main__ - INFO - Extracted month-year from filename: May-25
-2025-05-20 16:41:25,862 - __main__ - INFO - Reading master salary sheet...
-2025-05-20 16:41:26,334 - __main__ - INFO - Successfully read 280 rows from EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:26,335 - __main__ - INFO - 
+2025-05-20 16:49:08,399 - __main__ - INFO - Extracted month-year from filename: May-25
+2025-05-20 16:49:08,399 - __main__ - INFO - Reading master salary sheet...
+2025-05-20 16:49:08,826 - __main__ - INFO - Successfully read 280 rows from EmpClockingFormat - 12-5-2025.xlsx
+2025-05-20 16:49:08,826 - __main__ - INFO - 
 Initializing Grist Updater...
-2025-05-20 16:41:26,335 - src.grist_updater - INFO - MarkAsLeft setting: NO
-2025-05-20 16:41:26,335 - src.grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
-2025-05-20 16:41:26,336 - __main__ - INFO - Starting Grist update process for this file...
-2025-05-20 16:41:26,336 - src.grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_Master/records
-2025-05-20 16:41:27,270 - src.grist_updater - INFO - Fetched 449 records from Emp_Master
-2025-05-20 16:41:27,285 - src.grist_updater - WARNING - Warning: Found 1 rows with 'nan' as employee number. These will be skipped.
-2025-05-20 16:41:27,287 - src.grist_updater - INFO - Processing 279 rows from Excel
-2025-05-20 16:41:27,288 - src.grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_RateLog/records
-2025-05-20 16:41:27,473 - src.grist_updater - INFO - Fetched 280 records from Emp_RateLog
-2025-05-20 16:41:27,485 - src.grist_updater - INFO - Employee SF007: No update needed for main table fields.
-2025-05-20 16:41:27,488 - src.grist_updater - INFO - Employee SF009: No update needed for main table fields.
-2025-05-20 16:41:27,491 - src.grist_updater - INFO - Employee SF010: No update needed for main table fields.
-2025-05-20 16:41:27,495 - src.grist_updater - INFO - Employee SF014: No update needed for main table fields.
-2025-05-20 16:41:27,498 - src.grist_updater - INFO - Employee SF020: No update needed for main table fields.
-2025-05-20 16:41:27,500 - src.grist_updater - INFO - Employee SF022: No update needed for main table fields.
-2025-05-20 16:41:27,504 - src.grist_updater - INFO - Employee SF026: No update needed for main table fields.
-2025-05-20 16:41:27,507 - src.grist_updater - INFO - Employee SF032: No update needed for main table fields.
-2025-05-20 16:41:27,510 - src.grist_updater - INFO - Employee SF057: No update needed for main table fields.
-2025-05-20 16:41:27,513 - src.grist_updater - INFO - Employee SF067: No update needed for main table fields.
-2025-05-20 16:41:27,515 - src.grist_updater - INFO - Employee SF071: No update needed for main table fields.
-2025-05-20 16:41:27,518 - src.grist_updater - INFO - Employee SF086: No update needed for main table fields.
-2025-05-20 16:41:27,521 - src.grist_updater - INFO - Employee SF089: No update needed for main table fields.
-2025-05-20 16:41:27,524 - src.grist_updater - INFO - Employee SF094: No update needed for main table fields.
-2025-05-20 16:41:27,527 - src.grist_updater - INFO - Employee SF097: No update needed for main table fields.
-2025-05-20 16:41:27,531 - src.grist_updater - INFO - Employee SF098: No update needed for main table fields.
-2025-05-20 16:41:27,533 - src.grist_updater - INFO - Employee SF106: No update needed for main table fields.
-2025-05-20 16:41:27,538 - src.grist_updater - INFO - Employee SF110: No update needed for main table fields.
-2025-05-20 16:41:27,540 - src.grist_updater - INFO - Employee SF115: No update needed for main table fields.
-2025-05-20 16:41:27,542 - src.grist_updater - INFO - Employee SF121: No update needed for main table fields.
-2025-05-20 16:41:27,544 - src.grist_updater - INFO - Employee SF124: No update needed for main table fields.
-2025-05-20 16:41:27,548 - src.grist_updater - INFO - Employee SF129: No update needed for main table fields.
-2025-05-20 16:41:27,550 - src.grist_updater - INFO - Employee SF153: No update needed for main table fields.
-2025-05-20 16:41:27,553 - src.grist_updater - INFO - Employee SF229: No update needed for main table fields.
-2025-05-20 16:41:27,556 - src.grist_updater - INFO - Employee SF415: No update needed for main table fields.
-2025-05-20 16:41:27,560 - src.grist_updater - INFO - Employee SF429: No update needed for main table fields.
-2025-05-20 16:41:27,563 - src.grist_updater - INFO - Employee SF454: No update needed for main table fields.
-2025-05-20 16:41:27,566 - src.grist_updater - INFO - Employee SF478: No update needed for main table fields.
-2025-05-20 16:41:27,570 - src.grist_updater - INFO - Employee SF535: No update needed for main table fields.
-2025-05-20 16:41:27,573 - src.grist_updater - INFO - Employee SF547: No update needed for main table fields.
-2025-05-20 16:41:27,576 - src.grist_updater - INFO - Employee SF566: No update needed for main table fields.
-2025-05-20 16:41:27,579 - src.grist_updater - INFO - Employee SF576: No update needed for main table fields.
-2025-05-20 16:41:27,583 - src.grist_updater - INFO - Employee SF578: No update needed for main table fields.
-2025-05-20 16:41:27,586 - src.grist_updater - INFO - Employee SF591: No update needed for main table fields.
-2025-05-20 16:41:27,589 - src.grist_updater - INFO - Employee SF604: No update needed for main table fields.
-2025-05-20 16:41:27,593 - src.grist_updater - INFO - Employee SF620: No update needed for main table fields.
-2025-05-20 16:41:27,595 - src.grist_updater - INFO - Employee SF663: No update needed for main table fields.
-2025-05-20 16:41:27,598 - src.grist_updater - INFO - Employee SF715: No update needed for main table fields.
-2025-05-20 16:41:27,601 - src.grist_updater - INFO - Employee SF726: No update needed for main table fields.
-2025-05-20 16:41:27,603 - src.grist_updater - INFO - Employee SF769: No update needed for main table fields.
-2025-05-20 16:41:27,606 - src.grist_updater - INFO - Employee SF801: No update needed for main table fields.
-2025-05-20 16:41:27,609 - src.grist_updater - INFO - Employee SF820: No update needed for main table fields.
-2025-05-20 16:41:27,611 - src.grist_updater - INFO - Employee SF862: No update needed for main table fields.
-2025-05-20 16:41:27,613 - src.grist_updater - INFO - Employee SF894: No update needed for main table fields.
-2025-05-20 16:41:27,615 - src.grist_updater - INFO - Employee SF908: No update needed for main table fields.
-2025-05-20 16:41:27,617 - src.grist_updater - INFO - Employee SF910: No update needed for main table fields.
-2025-05-20 16:41:27,619 - src.grist_updater - INFO - Employee SF942: No update needed for main table fields.
-2025-05-20 16:41:27,621 - src.grist_updater - INFO - Employee SF985: No update needed for main table fields.
-2025-05-20 16:41:27,624 - src.grist_updater - INFO - Employee SF1002: No update needed for main table fields.
-2025-05-20 16:41:27,627 - src.grist_updater - INFO - Employee SF1050: No update needed for main table fields.
-2025-05-20 16:41:27,630 - src.grist_updater - INFO - Employee SF1103: No update needed for main table fields.
-2025-05-20 16:41:27,632 - src.grist_updater - INFO - Employee SF1152: No update needed for main table fields.
-2025-05-20 16:41:27,634 - src.grist_updater - INFO - Employee SF1210: No update needed for main table fields.
-2025-05-20 16:41:27,637 - src.grist_updater - INFO - Employee SF1256: No update needed for main table fields.
-2025-05-20 16:41:27,640 - src.grist_updater - INFO - Employee SF1260: No update needed for main table fields.
-2025-05-20 16:41:27,643 - src.grist_updater - INFO - Employee SF1275: No update needed for main table fields.
-2025-05-20 16:41:27,645 - src.grist_updater - INFO - Employee SF1303: No update needed for main table fields.
-2025-05-20 16:41:27,647 - src.grist_updater - INFO - Employee SF1334: No update needed for main table fields.
-2025-05-20 16:41:27,649 - src.grist_updater - INFO - Employee SF1337: No update needed for main table fields.
-2025-05-20 16:41:27,652 - src.grist_updater - INFO - Employee SF1353: No update needed for main table fields.
-2025-05-20 16:41:27,655 - src.grist_updater - INFO - Employee SF1378: No update needed for main table fields.
-2025-05-20 16:41:27,657 - src.grist_updater - INFO - Employee SF1389: No update needed for main table fields.
-2025-05-20 16:41:27,659 - src.grist_updater - INFO - Employee SF1391: No update needed for main table fields.
-2025-05-20 16:41:27,662 - src.grist_updater - INFO - Employee SF1394: No update needed for main table fields.
-2025-05-20 16:41:27,664 - src.grist_updater - INFO - Employee SF1439: No update needed for main table fields.
-2025-05-20 16:41:27,667 - src.grist_updater - INFO - Employee SF1459: No update needed for main table fields.
-2025-05-20 16:41:27,670 - src.grist_updater - INFO - Employee SF1469: No update needed for main table fields.
-2025-05-20 16:41:27,673 - src.grist_updater - INFO - Employee SF1477: No update needed for main table fields.
-2025-05-20 16:41:27,675 - src.grist_updater - INFO - Employee SF1512: No update needed for main table fields.
-2025-05-20 16:41:27,677 - src.grist_updater - INFO - Employee SF1570: No update needed for main table fields.
-2025-05-20 16:41:27,680 - src.grist_updater - INFO - Employee SF1614: No update needed for main table fields.
-2025-05-20 16:41:27,682 - src.grist_updater - INFO - Employee SF1617: No update needed for main table fields.
-2025-05-20 16:41:27,684 - src.grist_updater - INFO - Employee SF1641: No update needed for main table fields.
-2025-05-20 16:41:27,686 - src.grist_updater - INFO - Employee SF1653: No update needed for main table fields.
-2025-05-20 16:41:27,688 - src.grist_updater - INFO - Employee SF1683: No update needed for main table fields.
-2025-05-20 16:41:27,691 - src.grist_updater - INFO - Employee SF1686: No update needed for main table fields.
-2025-05-20 16:41:27,693 - src.grist_updater - INFO - Employee SF1690: No update needed for main table fields.
-2025-05-20 16:41:27,695 - src.grist_updater - INFO - Employee SF1713: No update needed for main table fields.
-2025-05-20 16:41:27,697 - src.grist_updater - INFO - Employee SF1715: No update needed for main table fields.
-2025-05-20 16:41:27,700 - src.grist_updater - INFO - Employee SF1809: No update needed for main table fields.
-2025-05-20 16:41:27,703 - src.grist_updater - INFO - Employee SF1829: No update needed for main table fields.
-2025-05-20 16:41:27,705 - src.grist_updater - INFO - Employee SF1830: No update needed for main table fields.
-2025-05-20 16:41:27,707 - src.grist_updater - INFO - Employee SF1839: No update needed for main table fields.
-2025-05-20 16:41:27,709 - src.grist_updater - INFO - Employee SF1843: No update needed for main table fields.
-2025-05-20 16:41:27,711 - src.grist_updater - INFO - Employee SF1845: No update needed for main table fields.
-2025-05-20 16:41:27,713 - src.grist_updater - INFO - Employee SF1853: No update needed for main table fields.
-2025-05-20 16:41:27,716 - src.grist_updater - INFO - Employee SF1855: No update needed for main table fields.
-2025-05-20 16:41:27,718 - src.grist_updater - INFO - Employee SF1889: No update needed for main table fields.
-2025-05-20 16:41:27,720 - src.grist_updater - INFO - Employee SF1893: No update needed for main table fields.
-2025-05-20 16:41:27,722 - src.grist_updater - INFO - Employee SF1961: No update needed for main table fields.
-2025-05-20 16:41:27,724 - src.grist_updater - INFO - Employee SF1978: No update needed for main table fields.
-2025-05-20 16:41:27,726 - src.grist_updater - INFO - Employee SF2020: No update needed for main table fields.
-2025-05-20 16:41:27,728 - src.grist_updater - INFO - Employee SF2067: No update needed for main table fields.
-2025-05-20 16:41:27,731 - src.grist_updater - INFO - Employee SF2077: No update needed for main table fields.
-2025-05-20 16:41:27,733 - src.grist_updater - INFO - Employee SF2080: No update needed for main table fields.
-2025-05-20 16:41:27,735 - src.grist_updater - INFO - Employee SF2120: No update needed for main table fields.
-2025-05-20 16:41:27,738 - src.grist_updater - INFO - Employee SF2126: No update needed for main table fields.
-2025-05-20 16:41:27,740 - src.grist_updater - INFO - Employee SF2164: No update needed for main table fields.
-2025-05-20 16:41:27,742 - src.grist_updater - INFO - Employee SF2183: No update needed for main table fields.
-2025-05-20 16:41:27,744 - src.grist_updater - INFO - Employee SF2185: No update needed for main table fields.
-2025-05-20 16:41:27,746 - src.grist_updater - INFO - Employee SF2187: No update needed for main table fields.
-2025-05-20 16:41:27,748 - src.grist_updater - INFO - Employee SF2214: No update needed for main table fields.
-2025-05-20 16:41:27,750 - src.grist_updater - INFO - Employee SF2217: No update needed for main table fields.
-2025-05-20 16:41:27,753 - src.grist_updater - INFO - Employee SF2228: No update needed for main table fields.
-2025-05-20 16:41:27,754 - src.grist_updater - INFO - Employee SF2239: No update needed for main table fields.
-2025-05-20 16:41:27,756 - src.grist_updater - INFO - Employee SF2241: No update needed for main table fields.
-2025-05-20 16:41:27,758 - src.grist_updater - INFO - Employee SF2242: No update needed for main table fields.
-2025-05-20 16:41:27,761 - src.grist_updater - INFO - Employee SF2245: No update needed for main table fields.
-2025-05-20 16:41:27,764 - src.grist_updater - INFO - Employee SF2269: No update needed for main table fields.
-2025-05-20 16:41:27,766 - src.grist_updater - INFO - Employee SF2282: No update needed for main table fields.
-2025-05-20 16:41:27,768 - src.grist_updater - INFO - Employee SF2295: No update needed for main table fields.
-2025-05-20 16:41:27,770 - src.grist_updater - INFO - Employee SF2298: No update needed for main table fields.
-2025-05-20 16:41:27,772 - src.grist_updater - INFO - Employee SF2299: No update needed for main table fields.
-2025-05-20 16:41:27,774 - src.grist_updater - INFO - Employee SF2304: No update needed for main table fields.
-2025-05-20 16:41:27,777 - src.grist_updater - INFO - Employee SF2314: No update needed for main table fields.
-2025-05-20 16:41:27,778 - src.grist_updater - INFO - Employee SF2317: No update needed for main table fields.
-2025-05-20 16:41:27,780 - src.grist_updater - INFO - Employee SF2322: No update needed for main table fields.
-2025-05-20 16:41:27,783 - src.grist_updater - INFO - Employee SF2336: No update needed for main table fields.
-2025-05-20 16:41:27,784 - src.grist_updater - INFO - Employee SF2337: No update needed for main table fields.
-2025-05-20 16:41:27,787 - src.grist_updater - INFO - Employee SF2345: No update needed for main table fields.
-2025-05-20 16:41:27,789 - src.grist_updater - INFO - Employee SF2346: No update needed for main table fields.
-2025-05-20 16:41:27,791 - src.grist_updater - INFO - Employee SF2358: No update needed for main table fields.
-2025-05-20 16:41:27,793 - src.grist_updater - INFO - Employee SF2359: No update needed for main table fields.
-2025-05-20 16:41:27,796 - src.grist_updater - INFO - Employee SF2368: No update needed for main table fields.
-2025-05-20 16:41:27,798 - src.grist_updater - INFO - Employee SF2370: No update needed for main table fields.
-2025-05-20 16:41:27,800 - src.grist_updater - INFO - Employee SF2371: No update needed for main table fields.
-2025-05-20 16:41:27,802 - src.grist_updater - INFO - Employee SF2372: No update needed for main table fields.
-2025-05-20 16:41:27,804 - src.grist_updater - INFO - Employee SF2400: No update needed for main table fields.
-2025-05-20 16:41:27,806 - src.grist_updater - INFO - Employee SF2408: No update needed for main table fields.
-2025-05-20 16:41:27,808 - src.grist_updater - INFO - Employee SF2417: No update needed for main table fields.
-2025-05-20 16:41:27,810 - src.grist_updater - INFO - Employee SF2421: No update needed for main table fields.
-2025-05-20 16:41:27,813 - src.grist_updater - INFO - Employee SF2423: No update needed for main table fields.
-2025-05-20 16:41:27,816 - src.grist_updater - INFO - Employee SF2431: No update needed for main table fields.
-2025-05-20 16:41:27,818 - src.grist_updater - INFO - Employee SF2435: No update needed for main table fields.
-2025-05-20 16:41:27,820 - src.grist_updater - INFO - Employee SF2455: No update needed for main table fields.
-2025-05-20 16:41:27,822 - src.grist_updater - INFO - Employee SF2458: No update needed for main table fields.
-2025-05-20 16:41:27,825 - src.grist_updater - INFO - Employee SF2461: No update needed for main table fields.
-2025-05-20 16:41:27,827 - src.grist_updater - INFO - Employee SF2468: No update needed for main table fields.
-2025-05-20 16:41:27,828 - src.grist_updater - INFO - Employee SF2477: No update needed for main table fields.
-2025-05-20 16:41:27,831 - src.grist_updater - INFO - Employee SF2481: No update needed for main table fields.
-2025-05-20 16:41:27,833 - src.grist_updater - INFO - Employee SF2486: No update needed for main table fields.
-2025-05-20 16:41:27,835 - src.grist_updater - INFO - Employee SF2487: No update needed for main table fields.
-2025-05-20 16:41:27,837 - src.grist_updater - INFO - Employee SF2489: No update needed for main table fields.
-2025-05-20 16:41:27,839 - src.grist_updater - INFO - Employee SF2501: No update needed for main table fields.
-2025-05-20 16:41:27,841 - src.grist_updater - INFO - Employee SF2504: No update needed for main table fields.
-2025-05-20 16:41:27,843 - src.grist_updater - INFO - Employee SF2506: No update needed for main table fields.
-2025-05-20 16:41:27,845 - src.grist_updater - INFO - Employee SF2507: No update needed for main table fields.
-2025-05-20 16:41:27,847 - src.grist_updater - INFO - Employee SF2508: No update needed for main table fields.
-2025-05-20 16:41:27,849 - src.grist_updater - INFO - Employee SF2514: No update needed for main table fields.
-2025-05-20 16:41:27,852 - src.grist_updater - INFO - Employee SF2515: No update needed for main table fields.
-2025-05-20 16:41:27,854 - src.grist_updater - INFO - Employee SF2519: No update needed for main table fields.
-2025-05-20 16:41:27,855 - src.grist_updater - INFO - Employee SF2526: No update needed for main table fields.
-2025-05-20 16:41:27,858 - src.grist_updater - INFO - Employee SF2528: No update needed for main table fields.
-2025-05-20 16:41:27,860 - src.grist_updater - INFO - Employee SF2530: No update needed for main table fields.
-2025-05-20 16:41:27,863 - src.grist_updater - INFO - Employee SF2532: No update needed for main table fields.
-2025-05-20 16:41:27,865 - src.grist_updater - INFO - Employee SF2534: No update needed for main table fields.
-2025-05-20 16:41:27,867 - src.grist_updater - INFO - Employee SF2536: No update needed for main table fields.
-2025-05-20 16:41:27,869 - src.grist_updater - INFO - Employee SF2540: No update needed for main table fields.
-2025-05-20 16:41:27,871 - src.grist_updater - INFO - Employee SF2541: No update needed for main table fields.
-2025-05-20 16:41:27,873 - src.grist_updater - INFO - Employee SF2545: No update needed for main table fields.
-2025-05-20 16:41:27,874 - src.grist_updater - INFO - Employee SF2557: No update needed for main table fields.
-2025-05-20 16:41:27,878 - src.grist_updater - INFO - Employee SF2558: No update needed for main table fields.
-2025-05-20 16:41:27,880 - src.grist_updater - INFO - Employee SF2560: No update needed for main table fields.
-2025-05-20 16:41:27,882 - src.grist_updater - INFO - Employee SF2566: No update needed for main table fields.
-2025-05-20 16:41:27,884 - src.grist_updater - INFO - Employee SF2582: No update needed for main table fields.
-2025-05-20 16:41:27,886 - src.grist_updater - INFO - Employee SF2584: No update needed for main table fields.
-2025-05-20 16:41:27,888 - src.grist_updater - INFO - Employee SF2588: No update needed for main table fields.
-2025-05-20 16:41:27,890 - src.grist_updater - INFO - Employee SF2591: No update needed for main table fields.
-2025-05-20 16:41:27,894 - src.grist_updater - INFO - Employee SF2598: No update needed for main table fields.
-2025-05-20 16:41:27,896 - src.grist_updater - INFO - Employee SF2601: No update needed for main table fields.
-2025-05-20 16:41:27,897 - src.grist_updater - INFO - Employee SF2612: No update needed for main table fields.
-2025-05-20 16:41:27,899 - src.grist_updater - INFO - Employee SF2614: No update needed for main table fields.
-2025-05-20 16:41:27,901 - src.grist_updater - INFO - Employee SF2615: No update needed for main table fields.
-2025-05-20 16:41:27,903 - src.grist_updater - INFO - Employee SF2616: No update needed for main table fields.
-2025-05-20 16:41:27,905 - src.grist_updater - INFO - Employee SF2624: No update needed for main table fields.
-2025-05-20 16:41:27,908 - src.grist_updater - INFO - Employee SF2625: No update needed for main table fields.
-2025-05-20 16:41:27,910 - src.grist_updater - INFO - Employee SF2635: No update needed for main table fields.
-2025-05-20 16:41:27,912 - src.grist_updater - INFO - Employee SF2641: No update needed for main table fields.
-2025-05-20 16:41:27,914 - src.grist_updater - INFO - Employee SF2642: No update needed for main table fields.
-2025-05-20 16:41:27,916 - src.grist_updater - INFO - Employee SF2643: No update needed for main table fields.
-2025-05-20 16:41:27,917 - src.grist_updater - INFO - Employee SF2644: No update needed for main table fields.
-2025-05-20 16:41:27,921 - src.grist_updater - INFO - Employee SF2645: No update needed for main table fields.
-2025-05-20 16:41:27,923 - src.grist_updater - INFO - Employee SF2646: No update needed for main table fields.
-2025-05-20 16:41:27,925 - src.grist_updater - INFO - Employee SF2647: No update needed for main table fields.
-2025-05-20 16:41:27,927 - src.grist_updater - INFO - Employee SF2656: No update needed for main table fields.
-2025-05-20 16:41:27,929 - src.grist_updater - INFO - Employee SF2659: No update needed for main table fields.
-2025-05-20 16:41:27,932 - src.grist_updater - INFO - Employee SF2665: No update needed for main table fields.
-2025-05-20 16:41:27,933 - src.grist_updater - INFO - Employee SF2674: No update needed for main table fields.
-2025-05-20 16:41:27,935 - src.grist_updater - INFO - Employee SF2685: No update needed for main table fields.
-2025-05-20 16:41:27,938 - src.grist_updater - INFO - Employee SF2686: No update needed for main table fields.
-2025-05-20 16:41:27,940 - src.grist_updater - INFO - Employee SF2688: No update needed for main table fields.
-2025-05-20 16:41:27,942 - src.grist_updater - INFO - Employee SF2698: No update needed for main table fields.
-2025-05-20 16:41:27,944 - src.grist_updater - INFO - Employee SF2699: No update needed for main table fields.
-2025-05-20 16:41:27,946 - src.grist_updater - INFO - Employee SF2700: No update needed for main table fields.
-2025-05-20 16:41:27,948 - src.grist_updater - INFO - Employee SF2703: No update needed for main table fields.
-2025-05-20 16:41:27,950 - src.grist_updater - INFO - Employee SF2705: No update needed for main table fields.
-2025-05-20 16:41:27,953 - src.grist_updater - INFO - Employee SF2706: No update needed for main table fields.
-2025-05-20 16:41:27,955 - src.grist_updater - INFO - Employee SF2708: No update needed for main table fields.
-2025-05-20 16:41:27,957 - src.grist_updater - INFO - Employee SF2714: No update needed for main table fields.
-2025-05-20 16:41:27,960 - src.grist_updater - INFO - Employee SF2715: No update needed for main table fields.
-2025-05-20 16:41:27,962 - src.grist_updater - INFO - Employee SF2725: No update needed for main table fields.
-2025-05-20 16:41:27,963 - src.grist_updater - INFO - Employee SF2726: No update needed for main table fields.
-2025-05-20 16:41:27,966 - src.grist_updater - INFO - Employee SF2727: No update needed for main table fields.
-2025-05-20 16:41:27,968 - src.grist_updater - INFO - Employee SF2729: No update needed for main table fields.
-2025-05-20 16:41:27,971 - src.grist_updater - INFO - Employee SF2730: No update needed for main table fields.
-2025-05-20 16:41:27,973 - src.grist_updater - INFO - Employee SF2734: No update needed for main table fields.
-2025-05-20 16:41:27,974 - src.grist_updater - INFO - Employee SF2735: No update needed for main table fields.
-2025-05-20 16:41:27,977 - src.grist_updater - INFO - Employee SF2737: No update needed for main table fields.
-2025-05-20 16:41:27,979 - src.grist_updater - INFO - Employee SF2740: No update needed for main table fields.
-2025-05-20 16:41:27,982 - src.grist_updater - INFO - Employee SF2742: No update needed for main table fields.
-2025-05-20 16:41:27,985 - src.grist_updater - INFO - Employee SF2743: No update needed for main table fields.
-2025-05-20 16:41:27,987 - src.grist_updater - INFO - Employee SF2744: No update needed for main table fields.
-2025-05-20 16:41:27,989 - src.grist_updater - INFO - Employee SF2746: No update needed for main table fields.
-2025-05-20 16:41:27,991 - src.grist_updater - INFO - Employee SF2747: No update needed for main table fields.
-2025-05-20 16:41:27,994 - src.grist_updater - INFO - Employee SF2748: No update needed for main table fields.
-2025-05-20 16:41:27,996 - src.grist_updater - INFO - Employee SF2754: No update needed for main table fields.
-2025-05-20 16:41:27,999 - src.grist_updater - INFO - Employee SF2755: No update needed for main table fields.
-2025-05-20 16:41:28,003 - src.grist_updater - INFO - Employee SF2758: No update needed for main table fields.
-2025-05-20 16:41:28,006 - src.grist_updater - INFO - Employee SF2759: No update needed for main table fields.
-2025-05-20 16:41:28,007 - src.grist_updater - INFO - Employee SF2760: No update needed for main table fields.
-2025-05-20 16:41:28,009 - src.grist_updater - INFO - Employee SF2761: No update needed for main table fields.
-2025-05-20 16:41:28,011 - src.grist_updater - INFO - Employee SF2766: No update needed for main table fields.
-2025-05-20 16:41:28,014 - src.grist_updater - INFO - Employee SF2768: No update needed for main table fields.
-2025-05-20 16:41:28,016 - src.grist_updater - INFO - Employee SF2770: No update needed for main table fields.
-2025-05-20 16:41:28,018 - src.grist_updater - INFO - Employee SF2771: No update needed for main table fields.
-2025-05-20 16:41:28,021 - src.grist_updater - INFO - Employee SF2772: No update needed for main table fields.
-2025-05-20 16:41:28,023 - src.grist_updater - INFO - Employee SF2773: No update needed for main table fields.
-2025-05-20 16:41:28,025 - src.grist_updater - INFO - Employee SF2774: No update needed for main table fields.
-2025-05-20 16:41:28,027 - src.grist_updater - INFO - Employee SF2775: No update needed for main table fields.
-2025-05-20 16:41:28,030 - src.grist_updater - INFO - Employee SF2776: No update needed for main table fields.
-2025-05-20 16:41:28,032 - src.grist_updater - INFO - Employee SF2777: No update needed for main table fields.
-2025-05-20 16:41:28,034 - src.grist_updater - INFO - Employee SF2778: No update needed for main table fields.
-2025-05-20 16:41:28,036 - src.grist_updater - INFO - Employee SF2779: No update needed for main table fields.
-2025-05-20 16:41:28,038 - src.grist_updater - INFO - Employee SF2783: No update needed for main table fields.
-2025-05-20 16:41:28,040 - src.grist_updater - INFO - Employee SF2784: No update needed for main table fields.
-2025-05-20 16:41:28,042 - src.grist_updater - INFO - Employee SF2785: No update needed for main table fields.
-2025-05-20 16:41:28,044 - src.grist_updater - INFO - Employee SF2787: No update needed for main table fields.
-2025-05-20 16:41:28,047 - src.grist_updater - INFO - Employee SF2788: No update needed for main table fields.
-2025-05-20 16:41:28,049 - src.grist_updater - INFO - Employee SF2789: No update needed for main table fields.
-2025-05-20 16:41:28,051 - src.grist_updater - INFO - Employee SF2791: No update needed for main table fields.
-2025-05-20 16:41:28,053 - src.grist_updater - INFO - Employee SF2792: No update needed for main table fields.
-2025-05-20 16:41:28,055 - src.grist_updater - INFO - Employee SF2793: No update needed for main table fields.
-2025-05-20 16:41:28,057 - src.grist_updater - INFO - Employee SF2794: No update needed for main table fields.
-2025-05-20 16:41:28,059 - src.grist_updater - INFO - Employee SF2797: No update needed for main table fields.
-2025-05-20 16:41:28,063 - src.grist_updater - INFO - Employee SF2798: No update needed for main table fields.
-2025-05-20 16:41:28,064 - src.grist_updater - INFO - Employee SF2799: No update needed for main table fields.
-2025-05-20 16:41:28,066 - src.grist_updater - INFO - Employee SF2801: No update needed for main table fields.
-2025-05-20 16:41:28,069 - src.grist_updater - INFO - Employee SF2802: No update needed for main table fields.
-2025-05-20 16:41:28,071 - src.grist_updater - INFO - Employee SF2803: No update needed for main table fields.
-2025-05-20 16:41:28,073 - src.grist_updater - INFO - Employee SF2804: No update needed for main table fields.
-2025-05-20 16:41:28,076 - src.grist_updater - INFO - Employee SF2805: No update needed for main table fields.
-2025-05-20 16:41:28,079 - src.grist_updater - INFO - Employee SF2806: No update needed for main table fields.
-2025-05-20 16:41:28,081 - src.grist_updater - INFO - Employee SF2807: No update needed for main table fields.
-2025-05-20 16:41:28,083 - src.grist_updater - INFO - Employee SF2808: No update needed for main table fields.
-2025-05-20 16:41:28,086 - src.grist_updater - INFO - Employee SF2809: No update needed for main table fields.
-2025-05-20 16:41:28,088 - src.grist_updater - INFO - Employee SF2810: No update needed for main table fields.
-2025-05-20 16:41:28,090 - src.grist_updater - INFO - Employee SF2811: No update needed for main table fields.
-2025-05-20 16:41:28,092 - src.grist_updater - INFO - Employee SF2812: No update needed for main table fields.
-2025-05-20 16:41:28,095 - src.grist_updater - INFO - Employee SF2813: No update needed for main table fields.
-2025-05-20 16:41:28,098 - src.grist_updater - INFO - Employee SF2814: No update needed for main table fields.
-2025-05-20 16:41:28,102 - src.grist_updater - INFO - Employee SF2815: No update needed for main table fields.
-2025-05-20 16:41:28,105 - src.grist_updater - INFO - Employee SF2816: No update needed for main table fields.
-2025-05-20 16:41:28,107 - src.grist_updater - INFO - Employee SF2817: No update needed for main table fields.
-2025-05-20 16:41:28,109 - src.grist_updater - INFO - Employee SF2818: No update needed for main table fields.
-2025-05-20 16:41:28,113 - src.grist_updater - INFO - Employee SF2819: No update needed for main table fields.
-2025-05-20 16:41:28,115 - src.grist_updater - INFO - Employee SF2820: No update needed for main table fields.
-2025-05-20 16:41:28,118 - src.grist_updater - INFO - Employee SF2821: No update needed for main table fields.
-2025-05-20 16:41:28,121 - src.grist_updater - INFO - Employee SF2822: No update needed for main table fields.
-2025-05-20 16:41:28,123 - src.grist_updater - INFO - Employee SF2823: No update needed for main table fields.
-2025-05-20 16:41:28,125 - src.grist_updater - INFO - Employee SF2824: No update needed for main table fields.
-2025-05-20 16:41:28,127 - src.grist_updater - INFO - Employee SF2825: No update needed for main table fields.
-2025-05-20 16:41:28,130 - src.grist_updater - INFO - Employee SF2826: No update needed for main table fields.
-2025-05-20 16:41:28,132 - src.grist_updater - INFO - Employee SF2827: No update needed for main table fields.
-2025-05-20 16:41:28,134 - src.grist_updater - INFO - Employee SF2828: No update needed for main table fields.
-2025-05-20 16:41:28,136 - src.grist_updater - INFO - Employee SF2829: No update needed for main table fields.
-2025-05-20 16:41:28,137 - src.grist_updater - INFO - Employee SF2830: No update needed for main table fields.
-2025-05-20 16:41:28,139 - src.grist_updater - INFO - Employee SF2832: No update needed for main table fields.
-2025-05-20 16:41:28,141 - src.grist_updater - INFO - Employee SF2833: No update needed for main table fields.
-2025-05-20 16:41:28,144 - src.grist_updater - INFO - Employee SF2834: No update needed for main table fields.
-2025-05-20 16:41:28,145 - src.grist_updater - INFO - No rate log entries to process.
-2025-05-20 16:41:28,145 - src.grist_updater - INFO - MarkAsLeft is not YES. Skipping marking employees as left.
-2025-05-20 16:41:28,145 - src.grist_updater - INFO - 
+2025-05-20 16:49:08,826 - src.grist_updater - INFO - MarkAsLeft setting: NO
+2025-05-20 16:49:08,826 - src.grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-20 16:49:08,826 - __main__ - INFO - Starting Grist update process for this file...
+2025-05-20 16:49:08,826 - src.grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_Master/records
+2025-05-20 16:49:08,950 - src.grist_updater - INFO - Fetched 449 records from Emp_Master
+2025-05-20 16:49:08,952 - src.grist_updater - WARNING - Warning: Found 1 rows with 'nan' as employee number. These will be skipped.
+2025-05-20 16:49:08,952 - src.grist_updater - INFO - Processing 279 rows from Excel
+2025-05-20 16:49:08,952 - src.grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_RateLog/records
+2025-05-20 16:49:09,015 - src.grist_updater - INFO - Fetched 280 records from Emp_RateLog
+2025-05-20 16:49:09,015 - src.grist_updater - INFO - Employee SF007: No update needed for main table fields.
+2025-05-20 16:49:09,015 - src.grist_updater - INFO - Employee SF009: No update needed for main table fields.
+2025-05-20 16:49:09,015 - src.grist_updater - INFO - Employee SF010: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF014: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF020: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF022: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF026: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF032: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF057: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF067: No update needed for main table fields.
+2025-05-20 16:49:09,031 - src.grist_updater - INFO - Employee SF071: No update needed for main table fields.
+2025-05-20 16:49:09,047 - src.grist_updater - INFO - Employee SF086: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF089: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF094: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF097: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF098: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF106: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF110: No update needed for main table fields.
+2025-05-20 16:49:09,050 - src.grist_updater - INFO - Employee SF115: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF121: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF124: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF129: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF153: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF229: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF415: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF429: No update needed for main table fields.
+2025-05-20 16:49:09,063 - src.grist_updater - INFO - Employee SF454: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF478: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF535: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF547: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF566: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF576: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF578: No update needed for main table fields.
+2025-05-20 16:49:09,079 - src.grist_updater - INFO - Employee SF591: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF604: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF620: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF663: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF715: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF726: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF769: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF801: No update needed for main table fields.
+2025-05-20 16:49:09,095 - src.grist_updater - INFO - Employee SF820: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF862: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF894: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF908: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF910: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF942: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF985: No update needed for main table fields.
+2025-05-20 16:49:09,111 - src.grist_updater - INFO - Employee SF1002: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1050: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1103: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1152: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1210: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1256: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1260: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1275: No update needed for main table fields.
+2025-05-20 16:49:09,127 - src.grist_updater - INFO - Employee SF1303: No update needed for main table fields.
+2025-05-20 16:49:09,142 - src.grist_updater - INFO - Employee SF1334: No update needed for main table fields.
+2025-05-20 16:49:09,142 - src.grist_updater - INFO - Employee SF1337: No update needed for main table fields.
+2025-05-20 16:49:09,142 - src.grist_updater - INFO - Employee SF1353: No update needed for main table fields.
+2025-05-20 16:49:09,150 - src.grist_updater - INFO - Employee SF1378: No update needed for main table fields.
+2025-05-20 16:49:09,150 - src.grist_updater - INFO - Employee SF1389: No update needed for main table fields.
+2025-05-20 16:49:09,150 - src.grist_updater - INFO - Employee SF1391: No update needed for main table fields.
+2025-05-20 16:49:09,150 - src.grist_updater - INFO - Employee SF1394: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1439: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1459: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1469: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1477: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1512: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1570: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1614: No update needed for main table fields.
+2025-05-20 16:49:09,159 - src.grist_updater - INFO - Employee SF1617: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1641: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1653: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1683: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1686: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1690: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1713: No update needed for main table fields.
+2025-05-20 16:49:09,174 - src.grist_updater - INFO - Employee SF1715: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1809: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1829: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1830: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1839: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1843: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1845: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1853: No update needed for main table fields.
+2025-05-20 16:49:09,190 - src.grist_updater - INFO - Employee SF1855: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF1889: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF1893: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF1961: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF1978: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF2020: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF2067: No update needed for main table fields.
+2025-05-20 16:49:09,206 - src.grist_updater - INFO - Employee SF2077: No update needed for main table fields.
+2025-05-20 16:49:09,222 - src.grist_updater - INFO - Employee SF2080: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2120: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2126: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2164: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2183: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2185: No update needed for main table fields.
+2025-05-20 16:49:09,224 - src.grist_updater - INFO - Employee SF2187: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2214: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2217: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2228: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2239: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2241: No update needed for main table fields.
+2025-05-20 16:49:09,238 - src.grist_updater - INFO - Employee SF2242: No update needed for main table fields.
+2025-05-20 16:49:09,251 - src.grist_updater - INFO - Employee SF2245: No update needed for main table fields.
+2025-05-20 16:49:09,254 - src.grist_updater - INFO - Employee SF2269: No update needed for main table fields.
+2025-05-20 16:49:09,254 - src.grist_updater - INFO - Employee SF2282: No update needed for main table fields.
+2025-05-20 16:49:09,254 - src.grist_updater - INFO - Employee SF2295: No update needed for main table fields.
+2025-05-20 16:49:09,259 - src.grist_updater - INFO - Employee SF2298: No update needed for main table fields.
+2025-05-20 16:49:09,261 - src.grist_updater - INFO - Employee SF2299: No update needed for main table fields.
+2025-05-20 16:49:09,263 - src.grist_updater - INFO - Employee SF2304: No update needed for main table fields.
+2025-05-20 16:49:09,265 - src.grist_updater - INFO - Employee SF2314: No update needed for main table fields.
+2025-05-20 16:49:09,267 - src.grist_updater - INFO - Employee SF2317: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2322: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2336: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2337: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2345: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2346: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2358: No update needed for main table fields.
+2025-05-20 16:49:09,270 - src.grist_updater - INFO - Employee SF2359: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2368: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2370: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2371: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2372: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2400: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2408: No update needed for main table fields.
+2025-05-20 16:49:09,286 - src.grist_updater - INFO - Employee SF2417: No update needed for main table fields.
+2025-05-20 16:49:09,300 - src.grist_updater - INFO - Employee SF2421: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2423: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2431: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2435: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2455: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2458: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2461: No update needed for main table fields.
+2025-05-20 16:49:09,302 - src.grist_updater - INFO - Employee SF2468: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2477: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2481: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2486: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2487: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2489: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2501: No update needed for main table fields.
+2025-05-20 16:49:09,317 - src.grist_updater - INFO - Employee SF2504: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2506: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2507: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2508: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2514: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2515: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2519: No update needed for main table fields.
+2025-05-20 16:49:09,333 - src.grist_updater - INFO - Employee SF2526: No update needed for main table fields.
+2025-05-20 16:49:09,349 - src.grist_updater - INFO - Employee SF2528: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2530: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2532: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2534: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2536: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2540: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2541: No update needed for main table fields.
+2025-05-20 16:49:09,351 - src.grist_updater - INFO - Employee SF2545: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2557: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2558: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2560: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2566: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2582: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2584: No update needed for main table fields.
+2025-05-20 16:49:09,365 - src.grist_updater - INFO - Employee SF2588: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2591: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2598: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2601: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2612: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2614: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2615: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2616: No update needed for main table fields.
+2025-05-20 16:49:09,381 - src.grist_updater - INFO - Employee SF2624: No update needed for main table fields.
+2025-05-20 16:49:09,397 - src.grist_updater - INFO - Employee SF2625: No update needed for main table fields.
+2025-05-20 16:49:09,397 - src.grist_updater - INFO - Employee SF2635: No update needed for main table fields.
+2025-05-20 16:49:09,397 - src.grist_updater - INFO - Employee SF2641: No update needed for main table fields.
+2025-05-20 16:49:09,397 - src.grist_updater - INFO - Employee SF2642: No update needed for main table fields.
+2025-05-20 16:49:09,408 - src.grist_updater - INFO - Employee SF2643: No update needed for main table fields.
+2025-05-20 16:49:09,408 - src.grist_updater - INFO - Employee SF2644: No update needed for main table fields.
+2025-05-20 16:49:09,410 - src.grist_updater - INFO - Employee SF2645: No update needed for main table fields.
+2025-05-20 16:49:09,412 - src.grist_updater - INFO - Employee SF2646: No update needed for main table fields.
+2025-05-20 16:49:09,414 - src.grist_updater - INFO - Employee SF2647: No update needed for main table fields.
+2025-05-20 16:49:09,417 - src.grist_updater - INFO - Employee SF2656: No update needed for main table fields.
+2025-05-20 16:49:09,419 - src.grist_updater - INFO - Employee SF2659: No update needed for main table fields.
+2025-05-20 16:49:09,421 - src.grist_updater - INFO - Employee SF2665: No update needed for main table fields.
+2025-05-20 16:49:09,423 - src.grist_updater - INFO - Employee SF2674: No update needed for main table fields.
+2025-05-20 16:49:09,423 - src.grist_updater - INFO - Employee SF2685: No update needed for main table fields.
+2025-05-20 16:49:09,428 - src.grist_updater - INFO - Employee SF2686: No update needed for main table fields.
+2025-05-20 16:49:09,428 - src.grist_updater - INFO - Employee SF2688: No update needed for main table fields.
+2025-05-20 16:49:09,431 - src.grist_updater - INFO - Employee SF2698: No update needed for main table fields.
+2025-05-20 16:49:09,433 - src.grist_updater - INFO - Employee SF2699: No update needed for main table fields.
+2025-05-20 16:49:09,435 - src.grist_updater - INFO - Employee SF2700: No update needed for main table fields.
+2025-05-20 16:49:09,437 - src.grist_updater - INFO - Employee SF2703: No update needed for main table fields.
+2025-05-20 16:49:09,439 - src.grist_updater - INFO - Employee SF2705: No update needed for main table fields.
+2025-05-20 16:49:09,441 - src.grist_updater - INFO - Employee SF2706: No update needed for main table fields.
+2025-05-20 16:49:09,444 - src.grist_updater - INFO - Employee SF2708: No update needed for main table fields.
+2025-05-20 16:49:09,448 - src.grist_updater - INFO - Employee SF2714: No update needed for main table fields.
+2025-05-20 16:49:09,451 - src.grist_updater - INFO - Employee SF2715: No update needed for main table fields.
+2025-05-20 16:49:09,453 - src.grist_updater - INFO - Employee SF2725: No update needed for main table fields.
+2025-05-20 16:49:09,453 - src.grist_updater - INFO - Employee SF2726: No update needed for main table fields.
+2025-05-20 16:49:09,453 - src.grist_updater - INFO - Employee SF2727: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2729: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2730: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2734: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2735: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2737: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2740: No update needed for main table fields.
+2025-05-20 16:49:09,460 - src.grist_updater - INFO - Employee SF2742: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2743: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2744: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2746: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2747: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2748: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2754: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2755: No update needed for main table fields.
+2025-05-20 16:49:09,475 - src.grist_updater - INFO - Employee SF2758: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2759: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2760: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2761: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2766: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2768: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2770: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2771: No update needed for main table fields.
+2025-05-20 16:49:09,492 - src.grist_updater - INFO - Employee SF2772: No update needed for main table fields.
+2025-05-20 16:49:09,508 - src.grist_updater - INFO - Employee SF2773: No update needed for main table fields.
+2025-05-20 16:49:09,508 - src.grist_updater - INFO - Employee SF2774: No update needed for main table fields.
+2025-05-20 16:49:09,512 - src.grist_updater - INFO - Employee SF2775: No update needed for main table fields.
+2025-05-20 16:49:09,514 - src.grist_updater - INFO - Employee SF2776: No update needed for main table fields.
+2025-05-20 16:49:09,517 - src.grist_updater - INFO - Employee SF2777: No update needed for main table fields.
+2025-05-20 16:49:09,519 - src.grist_updater - INFO - Employee SF2778: No update needed for main table fields.
+2025-05-20 16:49:09,521 - src.grist_updater - INFO - Employee SF2779: No update needed for main table fields.
+2025-05-20 16:49:09,523 - src.grist_updater - INFO - Employee SF2783: No update needed for main table fields.
+2025-05-20 16:49:09,523 - src.grist_updater - INFO - Employee SF2784: No update needed for main table fields.
+2025-05-20 16:49:09,527 - src.grist_updater - INFO - Employee SF2785: No update needed for main table fields.
+2025-05-20 16:49:09,530 - src.grist_updater - INFO - Employee SF2787: No update needed for main table fields.
+2025-05-20 16:49:09,532 - src.grist_updater - INFO - Employee SF2788: No update needed for main table fields.
+2025-05-20 16:49:09,534 - src.grist_updater - INFO - Employee SF2789: No update needed for main table fields.
+2025-05-20 16:49:09,534 - src.grist_updater - INFO - Employee SF2791: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2792: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2793: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2794: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2797: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2798: No update needed for main table fields.
+2025-05-20 16:49:09,538 - src.grist_updater - INFO - Employee SF2799: No update needed for main table fields.
+2025-05-20 16:49:09,551 - src.grist_updater - INFO - Employee SF2801: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2802: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2803: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2804: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2805: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2806: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2807: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2808: No update needed for main table fields.
+2025-05-20 16:49:09,554 - src.grist_updater - INFO - Employee SF2809: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2810: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2811: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2812: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2813: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2814: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2815: No update needed for main table fields.
+2025-05-20 16:49:09,569 - src.grist_updater - INFO - Employee SF2816: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2817: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2818: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2819: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2820: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2821: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2822: No update needed for main table fields.
+2025-05-20 16:49:09,585 - src.grist_updater - INFO - Employee SF2823: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2824: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2825: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2826: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2827: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2828: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2829: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2830: No update needed for main table fields.
+2025-05-20 16:49:09,601 - src.grist_updater - INFO - Employee SF2832: No update needed for main table fields.
+2025-05-20 16:49:09,619 - src.grist_updater - INFO - Employee SF2833: No update needed for main table fields.
+2025-05-20 16:49:09,619 - src.grist_updater - INFO - Employee SF2834: No update needed for main table fields.
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - No rate log entries to process.
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - MarkAsLeft is not YES. Skipping marking employees as left.
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - 
 --- Update Summary ---
-2025-05-20 16:41:28,146 - src.grist_updater - INFO - New employees added to Emp_Master: 0
-2025-05-20 16:41:28,146 - src.grist_updater - INFO - Existing employees updated in Emp_Master: 0
-2025-05-20 16:41:28,146 - src.grist_updater - INFO - Rate log entries added to Emp_RateLog: 0
-2025-05-20 16:41:28,148 - src.grist_updater - INFO - Employees marked as left in Emp_Master: 0
-2025-05-20 16:41:28,148 - src.grist_updater - INFO - ----------------------
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - New employees added to Emp_Master: 0
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - Existing employees updated in Emp_Master: 0
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - Rate log entries added to Emp_RateLog: 0
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - Employees marked as left in Emp_Master: 0
+2025-05-20 16:49:09,621 - src.grist_updater - INFO - ----------------------
 
-2025-05-20 16:41:28,149 - __main__ - INFO - Finished processing master sheet for file: EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:28,149 - __main__ - INFO - 
+2025-05-20 16:49:09,621 - __main__ - INFO - Finished processing master sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-20 16:49:09,621 - __main__ - INFO - 
 Processing HourClock sheet...
-2025-05-20 16:41:37,123 - src.hourclock_excel_reader - INFO - Total columns in Excel sheet: 74
-2025-05-20 16:41:37,183 - src.hourclock_excel_reader - INFO - Generated column names: 74
-2025-05-20 16:41:46,751 - src.hourclock_excel_reader - INFO - Before assigning columns: len(new_columns)=74, df.shape[1]=74
-2025-05-20 16:41:46,751 - src.hourclock_excel_reader - INFO - DataFrame immediately after reading Excel:
-2025-05-20 16:41:46,752 - src.hourclock_excel_reader - INFO - Index(['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3',
+2025-05-20 16:49:18,923 - src.hourclock_excel_reader - INFO - Total columns in Excel sheet: 74
+2025-05-20 16:49:18,986 - src.hourclock_excel_reader - INFO - Generated column names: 74
+2025-05-20 16:49:28,228 - src.hourclock_excel_reader - INFO - Before assigning columns: len(new_columns)=74, df.shape[1]=74
+2025-05-20 16:49:28,228 - src.hourclock_excel_reader - INFO - DataFrame immediately after reading Excel:
+2025-05-20 16:49:28,229 - src.hourclock_excel_reader - INFO - Index(['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3',
        'P-4', 'OT-4', 'P-5', 'OT-5', 'P-6', 'OT-6', 'P-7', 'OT-7', 'P-8',
        'OT-8', 'P-9', 'OT-9', 'P-10', 'OT-10', 'P-11', 'OT-11', 'P-12',
        'OT-12', 'P-13', 'OT-13', 'P-14', 'OT-14', 'P-15', 'OT-15', 'P-16',
@@ -322,32 +322,32 @@ Processing HourClock sheet...
        'OT-28', 'P-29', 'OT-29', 'P-30', 'OT-30', 'P-31', 'OT-31', 'P-32',
        'OT-32', 'P-33', 'OT-33', 'P-34', 'OT-34', 'P-35', 'OT-35', 'P-36'],
       dtype='object')
-2025-05-20 16:41:46,770 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
+2025-05-20 16:49:28,244 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
 0  1  SF007    ARJUNSINH  TAKHATSINH RAJ.   1    2   1    2   1    2   0    0   1    2   0    0   0    0   1    2   1    2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    1     2    1     2    0     5    0     0    0     0    0     0    1     2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 1  2  SF009   ASHOK PARSHOTAMBHAI  VASAVA   1    0   1    0   1    0   1    0   0    0   1    0   1    0   1    0   1    0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     4    1     0    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 2  3  SF010  ASHOKBHAI RANCHODBHAI VASAVA   1  5.5   1  5.5   1    2   0    0   1    0   1  0.5   1    2   0    0   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1     2    1   5.5    0     0    0     0    1     2    1     2    1   5.5    0     0    1   5.5    1     2    0     0    1   5.5    0     0    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 3  4  SF014    BHAILAL MAHIJIBHAI  VASAVA   1  5.5   1  5.5   1    2   0    0   1  5.5   1  0.5   1  5.5   1  1.5   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1   1.5    1   5.5    1     2    0     0    1     2    1     2    1   5.5    1     2    1     2    1   1.5    0     0    1   5.5    1     2    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 4  6  SF020    DAYABHAI RAMANBHAI  VASAVA   1  5.5   1  5.5   1  5.5   0    0   1  5.5   1  0.5   1    2   1    2   1  5.5    1     2    1     2    0     5    0     0    1     1    1   5.5    1   5.5    1   5.5    1     2    1     2    0     0    1   5.5    1     2    1   5.5    1   5.5    1     2    1     2    0     0    1     2    1   5.5    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
-2025-05-20 16:41:46,804 - src.hourclock_excel_reader - INFO - DataFrame before SFNo filtering:
-2025-05-20 16:41:46,818 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
+2025-05-20 16:49:28,275 - src.hourclock_excel_reader - INFO - DataFrame before SFNo filtering:
+2025-05-20 16:49:28,287 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
 0  1  SF007    ARJUNSINH  TAKHATSINH RAJ.   1    2   1    2   1    2   0    0   1    2   0    0   0    0   1    2   1    2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    1     2    1     2    0     5    0     0    0     0    0     0    1     2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 1  2  SF009   ASHOK PARSHOTAMBHAI  VASAVA   1    0   1    0   1    0   1    0   0    0   1    0   1    0   1    0   1    0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     4    1     0    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 2  3  SF010  ASHOKBHAI RANCHODBHAI VASAVA   1  5.5   1  5.5   1    2   0    0   1    0   1  0.5   1    2   0    0   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1     2    1   5.5    0     0    0     0    1     2    1     2    1   5.5    0     0    1   5.5    1     2    0     0    1   5.5    0     0    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 3  4  SF014    BHAILAL MAHIJIBHAI  VASAVA   1  5.5   1  5.5   1    2   0    0   1  5.5   1  0.5   1  5.5   1  1.5   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1   1.5    1   5.5    1     2    0     0    1     2    1     2    1   5.5    1     2    1     2    1   1.5    0     0    1   5.5    1     2    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 4  6  SF020    DAYABHAI RAMANBHAI  VASAVA   1  5.5   1  5.5   1  5.5   0    0   1  5.5   1  0.5   1    2   1    2   1  5.5    1     2    1     2    0     5    0     0    1     1    1   5.5    1   5.5    1   5.5    1     2    1     2    0     0    1   5.5    1     2    1   5.5    1   5.5    1     2    1     2    0     0    1     2    1   5.5    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
-2025-05-20 16:41:46,821 - src.hourclock_excel_reader - INFO - Filtered out 1 rows where SFNo did not start with 'SF'.
-2025-05-20 16:41:46,821 - __main__ - INFO - Successfully read 279 rows from HourClock sheet in EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:46,822 - __main__ - INFO - 
+2025-05-20 16:49:28,290 - src.hourclock_excel_reader - INFO - Filtered out 1 rows where SFNo did not start with 'SF'.
+2025-05-20 16:49:28,291 - __main__ - INFO - Successfully read 279 rows from HourClock sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-20 16:49:28,291 - __main__ - INFO - 
 Initializing HourClock Grist Updater...
-2025-05-20 16:41:46,822 - src.hourclock_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
-2025-05-20 16:41:46,823 - src.hourclock_grist_updater - INFO - Targeting HourClock table: HC_Detail
-2025-05-20 16:41:46,871 - src.hourclock_grist_updater - INFO - Fetched table columns from /columns endpoint: 70 columns
-2025-05-20 16:41:46,871 - src.hourclock_grist_updater - INFO - Available columns: Month, Month_Year, Name, No_, OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9, P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9, SFNo, Total_OT, Total_P, Year
-2025-05-20 16:41:46,872 - src.hourclock_grist_updater - INFO - Found 31 P_* columns: P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9
-2025-05-20 16:41:46,872 - src.hourclock_grist_updater - INFO - Found 31 OT_* columns: OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9
-2025-05-20 16:41:46,874 - __main__ - INFO - Starting HourClock Grist update process for this file...
-2025-05-20 16:41:46,874 - src.hourclock_grist_updater - INFO - Excel data columns received by compare_and_update:
-2025-05-20 16:41:46,876 - src.hourclock_grist_updater - INFO - Index(['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3',
+2025-05-20 16:49:28,291 - src.hourclock_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-20 16:49:28,292 - src.hourclock_grist_updater - INFO - Targeting HourClock table: HC_Detail
+2025-05-20 16:49:28,334 - src.hourclock_grist_updater - INFO - Fetched table columns from /columns endpoint: 70 columns
+2025-05-20 16:49:28,335 - src.hourclock_grist_updater - INFO - Available columns: Month, Month_Year, Name, OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9, P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9, SFNo, Sr_No, Total_OT, Total_P, Year
+2025-05-20 16:49:28,335 - src.hourclock_grist_updater - INFO - Found 31 P_* columns: P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9
+2025-05-20 16:49:28,335 - src.hourclock_grist_updater - INFO - Found 31 OT_* columns: OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9
+2025-05-20 16:49:28,336 - __main__ - INFO - Starting HourClock Grist update process for this file...
+2025-05-20 16:49:28,338 - src.hourclock_grist_updater - INFO - Excel data columns received by compare_and_update:
+2025-05-20 16:49:28,338 - src.hourclock_grist_updater - INFO - Index(['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3',
        'P-4', 'OT-4', 'P-5', 'OT-5', 'P-6', 'OT-6', 'P-7', 'OT-7', 'P-8',
        'OT-8', 'P-9', 'OT-9', 'P-10', 'OT-10', 'P-11', 'OT-11', 'P-12',
        'OT-12', 'P-13', 'OT-13', 'P-14', 'OT-14', 'P-15', 'OT-15', 'P-16',
@@ -357,317 +357,308 @@ Initializing HourClock Grist Updater...
        'OT-28', 'P-29', 'OT-29', 'P-30', 'OT-30', 'P-31', 'OT-31', 'P-32',
        'OT-32', 'P-33', 'OT-33', 'P-34', 'OT-34', 'P-35', 'OT-35', 'P-36'],
       dtype='object')
-2025-05-20 16:41:46,878 - src.hourclock_grist_updater - INFO - First 5 rows of excel_data received by compare_and_update:
-2025-05-20 16:41:46,891 - src.hourclock_grist_updater - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
+2025-05-20 16:49:28,339 - src.hourclock_grist_updater - INFO - First 5 rows of excel_data received by compare_and_update:
+2025-05-20 16:49:28,352 - src.hourclock_grist_updater - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
 0  1  SF007    ARJUNSINH  TAKHATSINH RAJ.   1    2   1    2   1    2   0    0   1    2   0    0   0    0   1    2   1    2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    1     2    1     2    0     5    0     0    0     0    0     0    1     2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 1  2  SF009   ASHOK PARSHOTAMBHAI  VASAVA   1    0   1    0   1    0   1    0   0    0   1    0   1    0   1    0   1    0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     4    1     0    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 2  3  SF010  ASHOKBHAI RANCHODBHAI VASAVA   1  5.5   1  5.5   1    2   0    0   1    0   1  0.5   1    2   0    0   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1     2    1   5.5    0     0    0     0    1     2    1     2    1   5.5    0     0    1   5.5    1     2    0     0    1   5.5    0     0    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 3  4  SF014    BHAILAL MAHIJIBHAI  VASAVA   1  5.5   1  5.5   1    2   0    0   1  5.5   1  0.5   1  5.5   1  1.5   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1   1.5    1   5.5    1     2    0     0    1     2    1     2    1   5.5    1     2    1     2    1   1.5    0     0    1   5.5    1     2    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
 4  6  SF020    DAYABHAI RAMANBHAI  VASAVA   1  5.5   1  5.5   1  5.5   0    0   1  5.5   1  0.5   1    2   1    2   1  5.5    1     2    1     2    0     5    0     0    1     1    1   5.5    1   5.5    1   5.5    1     2    1     2    0     0    1   5.5    1     2    1   5.5    1   5.5    1     2    1     2    0     0    1     2    1   5.5    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
-2025-05-20 16:41:46,892 - src.hourclock_grist_updater - INFO - P columns in Excel: P-1, P-10, P-11, P-12, P-13, P-14, P-15, P-16, P-17, P-18, P-19, P-2, P-20, P-21, P-22, P-23, P-24, P-25, P-26, P-27, P-28, P-29, P-3, P-30, P-31, P-32, P-33, P-34, P-35, P-36, P-4, P-5, P-6, P-7, P-8, P-9
-2025-05-20 16:41:46,893 - src.hourclock_grist_updater - INFO - OT columns in Excel: OT-1, OT-10, OT-11, OT-12, OT-13, OT-14, OT-15, OT-16, OT-17, OT-18, OT-19, OT-2, OT-20, OT-21, OT-22, OT-23, OT-24, OT-25, OT-26, OT-27, OT-28, OT-29, OT-3, OT-30, OT-31, OT-32, OT-33, OT-34, OT-35, OT-4, OT-5, OT-6, OT-7, OT-8, OT-9
-2025-05-20 16:41:46,893 - src.hourclock_grist_updater - INFO - Fetching existing records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/HC_Detail/records with filter Month_Year = May-25
-2025-05-20 16:41:46,919 - src.hourclock_grist_updater - INFO - Fetched 0 existing records for May-25 from HC_Detail
-2025-05-20 16:41:46,922 - src.hourclock_grist_updater - INFO - No existing records found in Grist table HC_Detail for May-25. All records will be added as new.
-2025-05-20 16:41:46,924 - src.hourclock_grist_updater - INFO - Processing 279 valid rows from HourClock Excel sheet
-2025-05-20 16:41:46,925 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF007 (May-25).
-2025-05-20 16:41:46,926 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF009 (May-25).
-2025-05-20 16:41:46,929 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF010 (May-25).
-2025-05-20 16:41:46,930 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF014 (May-25).
-2025-05-20 16:41:46,931 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF020 (May-25).
-2025-05-20 16:41:46,932 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF022 (May-25).
-2025-05-20 16:41:46,933 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF026 (May-25).
-2025-05-20 16:41:46,934 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF032 (May-25).
-2025-05-20 16:41:46,936 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF057 (May-25).
-2025-05-20 16:41:46,937 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF067 (May-25).
-2025-05-20 16:41:46,938 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF071 (May-25).
-2025-05-20 16:41:46,939 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF086 (May-25).
-2025-05-20 16:41:46,940 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF089 (May-25).
-2025-05-20 16:41:46,941 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF094 (May-25).
-2025-05-20 16:41:46,943 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF097 (May-25).
-2025-05-20 16:41:46,944 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF098 (May-25).
-2025-05-20 16:41:46,944 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF106 (May-25).
-2025-05-20 16:41:46,947 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF110 (May-25).
-2025-05-20 16:41:46,948 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF115 (May-25).
-2025-05-20 16:41:46,950 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF121 (May-25).
-2025-05-20 16:41:46,951 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF124 (May-25).
-2025-05-20 16:41:46,952 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF129 (May-25).
-2025-05-20 16:41:46,953 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF153 (May-25).
-2025-05-20 16:41:46,954 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF229 (May-25).
-2025-05-20 16:41:46,955 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF415 (May-25).
-2025-05-20 16:41:46,956 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF429 (May-25).
-2025-05-20 16:41:46,957 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF454 (May-25).
-2025-05-20 16:41:46,959 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF478 (May-25).
-2025-05-20 16:41:46,960 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF535 (May-25).
-2025-05-20 16:41:46,961 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF547 (May-25).
-2025-05-20 16:41:46,962 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF566 (May-25).
-2025-05-20 16:41:46,964 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF576 (May-25).
-2025-05-20 16:41:46,965 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF578 (May-25).
-2025-05-20 16:41:46,967 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF591 (May-25).
-2025-05-20 16:41:46,969 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF604 (May-25).
-2025-05-20 16:41:46,970 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF620 (May-25).
-2025-05-20 16:41:46,971 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF663 (May-25).
-2025-05-20 16:41:46,973 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF715 (May-25).
-2025-05-20 16:41:46,974 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF726 (May-25).
-2025-05-20 16:41:46,976 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF769 (May-25).
-2025-05-20 16:41:46,977 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF801 (May-25).
-2025-05-20 16:41:46,979 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF820 (May-25).
-2025-05-20 16:41:46,980 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF862 (May-25).
-2025-05-20 16:41:46,982 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF894 (May-25).
-2025-05-20 16:41:46,983 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF908 (May-25).
-2025-05-20 16:41:46,985 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF910 (May-25).
-2025-05-20 16:41:46,987 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF942 (May-25).
-2025-05-20 16:41:46,988 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF985 (May-25).
-2025-05-20 16:41:46,990 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1002 (May-25).
-2025-05-20 16:41:46,991 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1050 (May-25).
-2025-05-20 16:41:46,993 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1103 (May-25).
-2025-05-20 16:41:46,994 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1152 (May-25).
-2025-05-20 16:41:46,995 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1210 (May-25).
-2025-05-20 16:41:46,997 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1256 (May-25).
-2025-05-20 16:41:46,998 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1260 (May-25).
-2025-05-20 16:41:47,000 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1275 (May-25).
-2025-05-20 16:41:47,001 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1303 (May-25).
-2025-05-20 16:41:47,003 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1334 (May-25).
-2025-05-20 16:41:47,004 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1337 (May-25).
-2025-05-20 16:41:47,006 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1353 (May-25).
-2025-05-20 16:41:47,007 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1378 (May-25).
-2025-05-20 16:41:47,008 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1389 (May-25).
-2025-05-20 16:41:47,010 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1391 (May-25).
-2025-05-20 16:41:47,011 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1394 (May-25).
-2025-05-20 16:41:47,013 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1439 (May-25).
-2025-05-20 16:41:47,014 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1459 (May-25).
-2025-05-20 16:41:47,015 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1469 (May-25).
-2025-05-20 16:41:47,017 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1477 (May-25).
-2025-05-20 16:41:47,018 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1512 (May-25).
-2025-05-20 16:41:47,020 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1570 (May-25).
-2025-05-20 16:41:47,021 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1614 (May-25).
-2025-05-20 16:41:47,023 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1617 (May-25).
-2025-05-20 16:41:47,024 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1641 (May-25).
-2025-05-20 16:41:47,027 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1653 (May-25).
-2025-05-20 16:41:47,028 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1683 (May-25).
-2025-05-20 16:41:47,030 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1686 (May-25).
-2025-05-20 16:41:47,031 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1690 (May-25).
-2025-05-20 16:41:47,033 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1713 (May-25).
-2025-05-20 16:41:47,035 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1715 (May-25).
-2025-05-20 16:41:47,036 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1809 (May-25).
-2025-05-20 16:41:47,038 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1829 (May-25).
-2025-05-20 16:41:47,040 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1830 (May-25).
-2025-05-20 16:41:47,042 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1839 (May-25).
-2025-05-20 16:41:47,044 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1843 (May-25).
-2025-05-20 16:41:47,045 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1845 (May-25).
-2025-05-20 16:41:47,047 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1853 (May-25).
-2025-05-20 16:41:47,049 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1855 (May-25).
-2025-05-20 16:41:47,050 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1889 (May-25).
-2025-05-20 16:41:47,052 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1893 (May-25).
-2025-05-20 16:41:47,054 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1961 (May-25).
-2025-05-20 16:41:47,055 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1978 (May-25).
-2025-05-20 16:41:47,057 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2020 (May-25).
-2025-05-20 16:41:47,060 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2067 (May-25).
-2025-05-20 16:41:47,061 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2077 (May-25).
-2025-05-20 16:41:47,063 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2080 (May-25).
-2025-05-20 16:41:47,065 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2120 (May-25).
-2025-05-20 16:41:47,067 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2126 (May-25).
-2025-05-20 16:41:47,068 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2164 (May-25).
-2025-05-20 16:41:47,070 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2183 (May-25).
-2025-05-20 16:41:47,071 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2185 (May-25).
-2025-05-20 16:41:47,073 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2187 (May-25).
-2025-05-20 16:41:47,075 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2214 (May-25).
-2025-05-20 16:41:47,076 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2217 (May-25).
-2025-05-20 16:41:47,079 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2228 (May-25).
-2025-05-20 16:41:47,080 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2239 (May-25).
-2025-05-20 16:41:47,082 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2241 (May-25).
-2025-05-20 16:41:47,084 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2242 (May-25).
-2025-05-20 16:41:47,086 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2245 (May-25).
-2025-05-20 16:41:47,087 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2269 (May-25).
-2025-05-20 16:41:47,089 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2282 (May-25).
-2025-05-20 16:41:47,092 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2295 (May-25).
-2025-05-20 16:41:47,094 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2298 (May-25).
-2025-05-20 16:41:47,095 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2299 (May-25).
-2025-05-20 16:41:47,097 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2304 (May-25).
-2025-05-20 16:41:47,098 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2314 (May-25).
-2025-05-20 16:41:47,100 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2317 (May-25).
-2025-05-20 16:41:47,102 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2322 (May-25).
-2025-05-20 16:41:47,103 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2336 (May-25).
-2025-05-20 16:41:47,106 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2337 (May-25).
-2025-05-20 16:41:47,107 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2345 (May-25).
-2025-05-20 16:41:47,109 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2346 (May-25).
-2025-05-20 16:41:47,110 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2358 (May-25).
-2025-05-20 16:41:47,111 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2359 (May-25).
-2025-05-20 16:41:47,113 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2368 (May-25).
-2025-05-20 16:41:47,114 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2370 (May-25).
-2025-05-20 16:41:47,115 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2371 (May-25).
-2025-05-20 16:41:47,117 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2372 (May-25).
-2025-05-20 16:41:47,119 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2400 (May-25).
-2025-05-20 16:41:47,121 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2408 (May-25).
-2025-05-20 16:41:47,122 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2417 (May-25).
-2025-05-20 16:41:47,124 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2421 (May-25).
-2025-05-20 16:41:47,125 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2423 (May-25).
-2025-05-20 16:41:47,126 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2431 (May-25).
-2025-05-20 16:41:47,128 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2435 (May-25).
-2025-05-20 16:41:47,129 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2455 (May-25).
-2025-05-20 16:41:47,131 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2458 (May-25).
-2025-05-20 16:41:47,132 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2461 (May-25).
-2025-05-20 16:41:47,133 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2468 (May-25).
-2025-05-20 16:41:47,135 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2477 (May-25).
-2025-05-20 16:41:47,137 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2481 (May-25).
-2025-05-20 16:41:47,138 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2486 (May-25).
-2025-05-20 16:41:47,139 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2487 (May-25).
-2025-05-20 16:41:47,141 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2489 (May-25).
-2025-05-20 16:41:47,142 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2501 (May-25).
-2025-05-20 16:41:47,144 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2504 (May-25).
-2025-05-20 16:41:47,146 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2506 (May-25).
-2025-05-20 16:41:47,148 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2507 (May-25).
-2025-05-20 16:41:47,150 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2508 (May-25).
-2025-05-20 16:41:47,151 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2514 (May-25).
-2025-05-20 16:41:47,153 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2515 (May-25).
-2025-05-20 16:41:47,154 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2519 (May-25).
-2025-05-20 16:41:47,155 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2526 (May-25).
-2025-05-20 16:41:47,157 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2528 (May-25).
-2025-05-20 16:41:47,158 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2530 (May-25).
-2025-05-20 16:41:47,160 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2532 (May-25).
-2025-05-20 16:41:47,161 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2534 (May-25).
-2025-05-20 16:41:47,163 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2536 (May-25).
-2025-05-20 16:41:47,165 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2540 (May-25).
-2025-05-20 16:41:47,166 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2541 (May-25).
-2025-05-20 16:41:47,168 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2545 (May-25).
-2025-05-20 16:41:47,169 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2557 (May-25).
-2025-05-20 16:41:47,171 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2558 (May-25).
-2025-05-20 16:41:47,172 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2560 (May-25).
-2025-05-20 16:41:47,174 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2566 (May-25).
-2025-05-20 16:41:47,175 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2582 (May-25).
-2025-05-20 16:41:47,176 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2584 (May-25).
-2025-05-20 16:41:47,178 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2588 (May-25).
-2025-05-20 16:41:47,179 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2591 (May-25).
-2025-05-20 16:41:47,181 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2598 (May-25).
-2025-05-20 16:41:47,182 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2601 (May-25).
-2025-05-20 16:41:47,184 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2612 (May-25).
-2025-05-20 16:41:47,185 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2614 (May-25).
-2025-05-20 16:41:47,187 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2615 (May-25).
-2025-05-20 16:41:47,187 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2616 (May-25).
-2025-05-20 16:41:47,189 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2624 (May-25).
-2025-05-20 16:41:47,191 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2625 (May-25).
-2025-05-20 16:41:47,192 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2635 (May-25).
-2025-05-20 16:41:47,193 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2641 (May-25).
-2025-05-20 16:41:47,195 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2642 (May-25).
-2025-05-20 16:41:47,196 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2643 (May-25).
-2025-05-20 16:41:47,197 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2644 (May-25).
-2025-05-20 16:41:47,199 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2645 (May-25).
-2025-05-20 16:41:47,201 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2646 (May-25).
-2025-05-20 16:41:47,202 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2647 (May-25).
-2025-05-20 16:41:47,203 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2656 (May-25).
-2025-05-20 16:41:47,205 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2659 (May-25).
-2025-05-20 16:41:47,206 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2665 (May-25).
-2025-05-20 16:41:47,208 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2674 (May-25).
-2025-05-20 16:41:47,209 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2685 (May-25).
-2025-05-20 16:41:47,211 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2686 (May-25).
-2025-05-20 16:41:47,213 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2688 (May-25).
-2025-05-20 16:41:47,214 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2698 (May-25).
-2025-05-20 16:41:47,216 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2699 (May-25).
-2025-05-20 16:41:47,217 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2700 (May-25).
-2025-05-20 16:41:47,219 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2703 (May-25).
-2025-05-20 16:41:47,221 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2705 (May-25).
-2025-05-20 16:41:47,222 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2706 (May-25).
-2025-05-20 16:41:47,225 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2708 (May-25).
-2025-05-20 16:41:47,226 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2714 (May-25).
-2025-05-20 16:41:47,227 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2715 (May-25).
-2025-05-20 16:41:47,228 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2725 (May-25).
-2025-05-20 16:41:47,230 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2726 (May-25).
-2025-05-20 16:41:47,231 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2727 (May-25).
-2025-05-20 16:41:47,231 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2729 (May-25).
-2025-05-20 16:41:47,234 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2730 (May-25).
-2025-05-20 16:41:47,235 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2734 (May-25).
-2025-05-20 16:41:47,236 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2735 (May-25).
-2025-05-20 16:41:47,237 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2737 (May-25).
-2025-05-20 16:41:47,239 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2740 (May-25).
-2025-05-20 16:41:47,240 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2742 (May-25).
-2025-05-20 16:41:47,242 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2743 (May-25).
-2025-05-20 16:41:47,244 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2744 (May-25).
-2025-05-20 16:41:47,245 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2746 (May-25).
-2025-05-20 16:41:47,247 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2747 (May-25).
-2025-05-20 16:41:47,248 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2748 (May-25).
-2025-05-20 16:41:47,250 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2754 (May-25).
-2025-05-20 16:41:47,251 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2755 (May-25).
-2025-05-20 16:41:47,252 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2758 (May-25).
-2025-05-20 16:41:47,254 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2759 (May-25).
-2025-05-20 16:41:47,255 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2760 (May-25).
-2025-05-20 16:41:47,256 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2761 (May-25).
-2025-05-20 16:41:47,258 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2766 (May-25).
-2025-05-20 16:41:47,259 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2768 (May-25).
-2025-05-20 16:41:47,261 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2770 (May-25).
-2025-05-20 16:41:47,262 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2771 (May-25).
-2025-05-20 16:41:47,262 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2772 (May-25).
-2025-05-20 16:41:47,264 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2773 (May-25).
-2025-05-20 16:41:47,266 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2774 (May-25).
-2025-05-20 16:41:47,267 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2775 (May-25).
-2025-05-20 16:41:47,268 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2776 (May-25).
-2025-05-20 16:41:47,269 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2777 (May-25).
-2025-05-20 16:41:47,270 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2778 (May-25).
-2025-05-20 16:41:47,273 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2779 (May-25).
-2025-05-20 16:41:47,274 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2783 (May-25).
-2025-05-20 16:41:47,276 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2784 (May-25).
-2025-05-20 16:41:47,277 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2785 (May-25).
-2025-05-20 16:41:47,278 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2787 (May-25).
-2025-05-20 16:41:47,280 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2788 (May-25).
-2025-05-20 16:41:47,281 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2789 (May-25).
-2025-05-20 16:41:47,282 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2791 (May-25).
-2025-05-20 16:41:47,284 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2792 (May-25).
-2025-05-20 16:41:47,285 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2793 (May-25).
-2025-05-20 16:41:47,286 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2794 (May-25).
-2025-05-20 16:41:47,288 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2797 (May-25).
-2025-05-20 16:41:47,289 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2798 (May-25).
-2025-05-20 16:41:47,290 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2799 (May-25).
-2025-05-20 16:41:47,293 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2801 (May-25).
-2025-05-20 16:41:47,294 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2802 (May-25).
-2025-05-20 16:41:47,295 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2803 (May-25).
-2025-05-20 16:41:47,296 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2804 (May-25).
-2025-05-20 16:41:47,298 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2805 (May-25).
-2025-05-20 16:41:47,299 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2806 (May-25).
-2025-05-20 16:41:47,300 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2807 (May-25).
-2025-05-20 16:41:47,302 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2808 (May-25).
-2025-05-20 16:41:47,303 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2809 (May-25).
-2025-05-20 16:41:47,305 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2810 (May-25).
-2025-05-20 16:41:47,306 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2811 (May-25).
-2025-05-20 16:41:47,309 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2812 (May-25).
-2025-05-20 16:41:47,310 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2813 (May-25).
-2025-05-20 16:41:47,312 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2814 (May-25).
-2025-05-20 16:41:47,314 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2815 (May-25).
-2025-05-20 16:41:47,315 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2816 (May-25).
-2025-05-20 16:41:47,317 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2817 (May-25).
-2025-05-20 16:41:47,318 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2818 (May-25).
-2025-05-20 16:41:47,320 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2819 (May-25).
-2025-05-20 16:41:47,321 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2820 (May-25).
-2025-05-20 16:41:47,323 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2821 (May-25).
-2025-05-20 16:41:47,324 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2822 (May-25).
-2025-05-20 16:41:47,326 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2823 (May-25).
-2025-05-20 16:41:47,327 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2824 (May-25).
-2025-05-20 16:41:47,328 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2825 (May-25).
-2025-05-20 16:41:47,331 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2826 (May-25).
-2025-05-20 16:41:47,332 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2827 (May-25).
-2025-05-20 16:41:47,333 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2828 (May-25).
-2025-05-20 16:41:47,334 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2829 (May-25).
-2025-05-20 16:41:47,335 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2830 (May-25).
-2025-05-20 16:41:47,336 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2832 (May-25).
-2025-05-20 16:41:47,337 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2833 (May-25).
-2025-05-20 16:41:47,339 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2834 (May-25).
-2025-05-20 16:41:47,339 - src.hourclock_grist_updater - INFO - Adding 279 new HourClock records to HC_Detail.
-2025-05-20 16:41:47,863 - src.hourclock_grist_updater - INFO - Successfully added 279 new HourClock records.
-2025-05-20 16:41:47,863 - src.hourclock_grist_updater - INFO - 
+2025-05-20 16:49:28,352 - src.hourclock_grist_updater - INFO - P columns in Excel: P-1, P-10, P-11, P-12, P-13, P-14, P-15, P-16, P-17, P-18, P-19, P-2, P-20, P-21, P-22, P-23, P-24, P-25, P-26, P-27, P-28, P-29, P-3, P-30, P-31, P-32, P-33, P-34, P-35, P-36, P-4, P-5, P-6, P-7, P-8, P-9
+2025-05-20 16:49:28,353 - src.hourclock_grist_updater - INFO - OT columns in Excel: OT-1, OT-10, OT-11, OT-12, OT-13, OT-14, OT-15, OT-16, OT-17, OT-18, OT-19, OT-2, OT-20, OT-21, OT-22, OT-23, OT-24, OT-25, OT-26, OT-27, OT-28, OT-29, OT-3, OT-30, OT-31, OT-32, OT-33, OT-34, OT-35, OT-4, OT-5, OT-6, OT-7, OT-8, OT-9
+2025-05-20 16:49:28,353 - src.hourclock_grist_updater - INFO - Fetching existing records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/HC_Detail/records with filter Month_Year = May-25
+2025-05-20 16:49:28,378 - src.hourclock_grist_updater - INFO - Fetched 0 existing records for May-25 from HC_Detail
+2025-05-20 16:49:28,382 - src.hourclock_grist_updater - INFO - No existing records found in Grist table HC_Detail for May-25. All records will be added as new.
+2025-05-20 16:49:28,383 - src.hourclock_grist_updater - INFO - Processing 279 valid rows from HourClock Excel sheet
+2025-05-20 16:49:28,385 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF007 (May-25).
+2025-05-20 16:49:28,386 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF009 (May-25).
+2025-05-20 16:49:28,387 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF010 (May-25).
+2025-05-20 16:49:28,387 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF014 (May-25).
+2025-05-20 16:49:28,390 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF020 (May-25).
+2025-05-20 16:49:28,391 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF022 (May-25).
+2025-05-20 16:49:28,393 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF026 (May-25).
+2025-05-20 16:49:28,394 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF032 (May-25).
+2025-05-20 16:49:28,395 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF057 (May-25).
+2025-05-20 16:49:28,396 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF067 (May-25).
+2025-05-20 16:49:28,397 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF071 (May-25).
+2025-05-20 16:49:28,398 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF086 (May-25).
+2025-05-20 16:49:28,399 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF089 (May-25).
+2025-05-20 16:49:28,400 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF094 (May-25).
+2025-05-20 16:49:28,401 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF097 (May-25).
+2025-05-20 16:49:28,402 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF098 (May-25).
+2025-05-20 16:49:28,403 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF106 (May-25).
+2025-05-20 16:49:28,404 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF110 (May-25).
+2025-05-20 16:49:28,405 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF115 (May-25).
+2025-05-20 16:49:28,407 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF121 (May-25).
+2025-05-20 16:49:28,409 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF124 (May-25).
+2025-05-20 16:49:28,410 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF129 (May-25).
+2025-05-20 16:49:28,411 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF153 (May-25).
+2025-05-20 16:49:28,413 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF229 (May-25).
+2025-05-20 16:49:28,414 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF415 (May-25).
+2025-05-20 16:49:28,415 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF429 (May-25).
+2025-05-20 16:49:28,416 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF454 (May-25).
+2025-05-20 16:49:28,418 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF478 (May-25).
+2025-05-20 16:49:28,419 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF535 (May-25).
+2025-05-20 16:49:28,420 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF547 (May-25).
+2025-05-20 16:49:28,421 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF566 (May-25).
+2025-05-20 16:49:28,422 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF576 (May-25).
+2025-05-20 16:49:28,423 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF578 (May-25).
+2025-05-20 16:49:28,424 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF591 (May-25).
+2025-05-20 16:49:28,425 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF604 (May-25).
+2025-05-20 16:49:28,427 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF620 (May-25).
+2025-05-20 16:49:28,428 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF663 (May-25).
+2025-05-20 16:49:28,429 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF715 (May-25).
+2025-05-20 16:49:28,430 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF726 (May-25).
+2025-05-20 16:49:28,431 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF769 (May-25).
+2025-05-20 16:49:28,432 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF801 (May-25).
+2025-05-20 16:49:28,433 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF820 (May-25).
+2025-05-20 16:49:28,435 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF862 (May-25).
+2025-05-20 16:49:28,436 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF894 (May-25).
+2025-05-20 16:49:28,437 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF908 (May-25).
+2025-05-20 16:49:28,438 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF910 (May-25).
+2025-05-20 16:49:28,439 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF942 (May-25).
+2025-05-20 16:49:28,440 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF985 (May-25).
+2025-05-20 16:49:28,441 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1002 (May-25).
+2025-05-20 16:49:28,442 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1050 (May-25).
+2025-05-20 16:49:28,443 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1103 (May-25).
+2025-05-20 16:49:28,444 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1152 (May-25).
+2025-05-20 16:49:28,446 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1210 (May-25).
+2025-05-20 16:49:28,447 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1256 (May-25).
+2025-05-20 16:49:28,448 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1260 (May-25).
+2025-05-20 16:49:28,449 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1275 (May-25).
+2025-05-20 16:49:28,450 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1303 (May-25).
+2025-05-20 16:49:28,451 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1334 (May-25).
+2025-05-20 16:49:28,452 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1337 (May-25).
+2025-05-20 16:49:28,454 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1353 (May-25).
+2025-05-20 16:49:28,454 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1378 (May-25).
+2025-05-20 16:49:28,457 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1389 (May-25).
+2025-05-20 16:49:28,458 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1391 (May-25).
+2025-05-20 16:49:28,460 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1394 (May-25).
+2025-05-20 16:49:28,461 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1439 (May-25).
+2025-05-20 16:49:28,463 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1459 (May-25).
+2025-05-20 16:49:28,464 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1469 (May-25).
+2025-05-20 16:49:28,465 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1477 (May-25).
+2025-05-20 16:49:28,466 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1512 (May-25).
+2025-05-20 16:49:28,468 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1570 (May-25).
+2025-05-20 16:49:28,469 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1614 (May-25).
+2025-05-20 16:49:28,470 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1617 (May-25).
+2025-05-20 16:49:28,471 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1641 (May-25).
+2025-05-20 16:49:28,472 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1653 (May-25).
+2025-05-20 16:49:28,473 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1683 (May-25).
+2025-05-20 16:49:28,474 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1686 (May-25).
+2025-05-20 16:49:28,476 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1690 (May-25).
+2025-05-20 16:49:28,477 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1713 (May-25).
+2025-05-20 16:49:28,478 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1715 (May-25).
+2025-05-20 16:49:28,479 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1809 (May-25).
+2025-05-20 16:49:28,480 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1829 (May-25).
+2025-05-20 16:49:28,481 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1830 (May-25).
+2025-05-20 16:49:28,482 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1839 (May-25).
+2025-05-20 16:49:28,483 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1843 (May-25).
+2025-05-20 16:49:28,484 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1845 (May-25).
+2025-05-20 16:49:28,485 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1853 (May-25).
+2025-05-20 16:49:28,486 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1855 (May-25).
+2025-05-20 16:49:28,487 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1889 (May-25).
+2025-05-20 16:49:28,489 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1893 (May-25).
+2025-05-20 16:49:28,490 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1961 (May-25).
+2025-05-20 16:49:28,491 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF1978 (May-25).
+2025-05-20 16:49:28,492 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2020 (May-25).
+2025-05-20 16:49:28,493 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2067 (May-25).
+2025-05-20 16:49:28,495 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2077 (May-25).
+2025-05-20 16:49:28,496 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2080 (May-25).
+2025-05-20 16:49:28,497 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2120 (May-25).
+2025-05-20 16:49:28,498 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2126 (May-25).
+2025-05-20 16:49:28,499 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2164 (May-25).
+2025-05-20 16:49:28,501 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2183 (May-25).
+2025-05-20 16:49:28,502 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2185 (May-25).
+2025-05-20 16:49:28,503 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2187 (May-25).
+2025-05-20 16:49:28,504 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2214 (May-25).
+2025-05-20 16:49:28,505 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2217 (May-25).
+2025-05-20 16:49:28,507 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2228 (May-25).
+2025-05-20 16:49:28,508 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2239 (May-25).
+2025-05-20 16:49:28,509 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2241 (May-25).
+2025-05-20 16:49:28,510 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2242 (May-25).
+2025-05-20 16:49:28,511 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2245 (May-25).
+2025-05-20 16:49:28,512 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2269 (May-25).
+2025-05-20 16:49:28,513 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2282 (May-25).
+2025-05-20 16:49:28,515 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2295 (May-25).
+2025-05-20 16:49:28,516 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2298 (May-25).
+2025-05-20 16:49:28,517 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2299 (May-25).
+2025-05-20 16:49:28,518 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2304 (May-25).
+2025-05-20 16:49:28,519 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2314 (May-25).
+2025-05-20 16:49:28,520 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2317 (May-25).
+2025-05-20 16:49:28,522 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2322 (May-25).
+2025-05-20 16:49:28,523 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2336 (May-25).
+2025-05-20 16:49:28,524 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2337 (May-25).
+2025-05-20 16:49:28,525 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2345 (May-25).
+2025-05-20 16:49:28,526 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2346 (May-25).
+2025-05-20 16:49:28,527 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2358 (May-25).
+2025-05-20 16:49:28,528 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2359 (May-25).
+2025-05-20 16:49:28,529 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2368 (May-25).
+2025-05-20 16:49:28,531 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2370 (May-25).
+2025-05-20 16:49:28,532 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2371 (May-25).
+2025-05-20 16:49:28,533 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2372 (May-25).
+2025-05-20 16:49:28,534 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2400 (May-25).
+2025-05-20 16:49:28,535 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2408 (May-25).
+2025-05-20 16:49:28,536 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2417 (May-25).
+2025-05-20 16:49:28,537 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2421 (May-25).
+2025-05-20 16:49:28,538 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2423 (May-25).
+2025-05-20 16:49:28,539 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2431 (May-25).
+2025-05-20 16:49:28,541 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2435 (May-25).
+2025-05-20 16:49:28,542 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2455 (May-25).
+2025-05-20 16:49:28,543 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2458 (May-25).
+2025-05-20 16:49:28,544 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2461 (May-25).
+2025-05-20 16:49:28,545 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2468 (May-25).
+2025-05-20 16:49:28,546 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2477 (May-25).
+2025-05-20 16:49:28,548 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2481 (May-25).
+2025-05-20 16:49:28,550 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2486 (May-25).
+2025-05-20 16:49:28,551 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2487 (May-25).
+2025-05-20 16:49:28,552 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2489 (May-25).
+2025-05-20 16:49:28,553 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2501 (May-25).
+2025-05-20 16:49:28,554 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2504 (May-25).
+2025-05-20 16:49:28,555 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2506 (May-25).
+2025-05-20 16:49:28,557 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2507 (May-25).
+2025-05-20 16:49:28,558 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2508 (May-25).
+2025-05-20 16:49:28,559 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2514 (May-25).
+2025-05-20 16:49:28,560 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2515 (May-25).
+2025-05-20 16:49:28,561 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2519 (May-25).
+2025-05-20 16:49:28,563 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2526 (May-25).
+2025-05-20 16:49:28,564 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2528 (May-25).
+2025-05-20 16:49:28,565 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2530 (May-25).
+2025-05-20 16:49:28,566 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2532 (May-25).
+2025-05-20 16:49:28,567 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2534 (May-25).
+2025-05-20 16:49:28,568 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2536 (May-25).
+2025-05-20 16:49:28,569 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2540 (May-25).
+2025-05-20 16:49:28,570 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2541 (May-25).
+2025-05-20 16:49:28,572 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2545 (May-25).
+2025-05-20 16:49:28,573 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2557 (May-25).
+2025-05-20 16:49:28,574 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2558 (May-25).
+2025-05-20 16:49:28,575 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2560 (May-25).
+2025-05-20 16:49:28,576 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2566 (May-25).
+2025-05-20 16:49:28,577 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2582 (May-25).
+2025-05-20 16:49:28,580 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2584 (May-25).
+2025-05-20 16:49:28,581 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2588 (May-25).
+2025-05-20 16:49:28,582 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2591 (May-25).
+2025-05-20 16:49:28,583 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2598 (May-25).
+2025-05-20 16:49:28,584 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2601 (May-25).
+2025-05-20 16:49:28,585 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2612 (May-25).
+2025-05-20 16:49:28,586 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2614 (May-25).
+2025-05-20 16:49:28,587 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2615 (May-25).
+2025-05-20 16:49:28,588 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2616 (May-25).
+2025-05-20 16:49:28,589 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2624 (May-25).
+2025-05-20 16:49:28,590 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2625 (May-25).
+2025-05-20 16:49:28,591 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2635 (May-25).
+2025-05-20 16:49:28,592 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2641 (May-25).
+2025-05-20 16:49:28,593 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2642 (May-25).
+2025-05-20 16:49:28,594 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2643 (May-25).
+2025-05-20 16:49:28,595 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2644 (May-25).
+2025-05-20 16:49:28,596 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2645 (May-25).
+2025-05-20 16:49:28,598 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2646 (May-25).
+2025-05-20 16:49:28,599 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2647 (May-25).
+2025-05-20 16:49:28,601 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2656 (May-25).
+2025-05-20 16:49:28,602 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2659 (May-25).
+2025-05-20 16:49:28,603 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2665 (May-25).
+2025-05-20 16:49:28,604 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2674 (May-25).
+2025-05-20 16:49:28,605 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2685 (May-25).
+2025-05-20 16:49:28,606 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2686 (May-25).
+2025-05-20 16:49:28,607 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2688 (May-25).
+2025-05-20 16:49:28,608 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2698 (May-25).
+2025-05-20 16:49:28,610 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2699 (May-25).
+2025-05-20 16:49:28,611 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2700 (May-25).
+2025-05-20 16:49:28,612 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2703 (May-25).
+2025-05-20 16:49:28,613 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2705 (May-25).
+2025-05-20 16:49:28,614 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2706 (May-25).
+2025-05-20 16:49:28,615 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2708 (May-25).
+2025-05-20 16:49:28,617 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2714 (May-25).
+2025-05-20 16:49:28,618 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2715 (May-25).
+2025-05-20 16:49:28,619 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2725 (May-25).
+2025-05-20 16:49:28,620 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2726 (May-25).
+2025-05-20 16:49:28,621 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2727 (May-25).
+2025-05-20 16:49:28,622 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2729 (May-25).
+2025-05-20 16:49:28,623 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2730 (May-25).
+2025-05-20 16:49:28,625 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2734 (May-25).
+2025-05-20 16:49:28,626 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2735 (May-25).
+2025-05-20 16:49:28,627 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2737 (May-25).
+2025-05-20 16:49:28,628 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2740 (May-25).
+2025-05-20 16:49:28,630 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2742 (May-25).
+2025-05-20 16:49:28,631 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2743 (May-25).
+2025-05-20 16:49:28,632 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2744 (May-25).
+2025-05-20 16:49:28,633 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2746 (May-25).
+2025-05-20 16:49:28,634 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2747 (May-25).
+2025-05-20 16:49:28,635 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2748 (May-25).
+2025-05-20 16:49:28,637 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2754 (May-25).
+2025-05-20 16:49:28,638 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2755 (May-25).
+2025-05-20 16:49:28,639 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2758 (May-25).
+2025-05-20 16:49:28,641 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2759 (May-25).
+2025-05-20 16:49:28,642 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2760 (May-25).
+2025-05-20 16:49:28,643 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2761 (May-25).
+2025-05-20 16:49:28,644 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2766 (May-25).
+2025-05-20 16:49:28,645 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2768 (May-25).
+2025-05-20 16:49:28,645 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2770 (May-25).
+2025-05-20 16:49:28,648 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2771 (May-25).
+2025-05-20 16:49:28,649 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2772 (May-25).
+2025-05-20 16:49:28,650 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2773 (May-25).
+2025-05-20 16:49:28,651 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2774 (May-25).
+2025-05-20 16:49:28,652 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2775 (May-25).
+2025-05-20 16:49:28,654 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2776 (May-25).
+2025-05-20 16:49:28,655 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2777 (May-25).
+2025-05-20 16:49:28,656 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2778 (May-25).
+2025-05-20 16:49:28,658 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2779 (May-25).
+2025-05-20 16:49:28,659 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2783 (May-25).
+2025-05-20 16:49:28,660 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2784 (May-25).
+2025-05-20 16:49:28,661 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2785 (May-25).
+2025-05-20 16:49:28,663 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2787 (May-25).
+2025-05-20 16:49:28,664 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2788 (May-25).
+2025-05-20 16:49:28,665 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2789 (May-25).
+2025-05-20 16:49:28,666 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2791 (May-25).
+2025-05-20 16:49:28,667 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2792 (May-25).
+2025-05-20 16:49:28,668 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2793 (May-25).
+2025-05-20 16:49:28,669 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2794 (May-25).
+2025-05-20 16:49:28,670 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2797 (May-25).
+2025-05-20 16:49:28,671 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2798 (May-25).
+2025-05-20 16:49:28,672 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2799 (May-25).
+2025-05-20 16:49:28,674 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2801 (May-25).
+2025-05-20 16:49:28,675 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2802 (May-25).
+2025-05-20 16:49:28,676 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2803 (May-25).
+2025-05-20 16:49:28,677 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2804 (May-25).
+2025-05-20 16:49:28,678 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2805 (May-25).
+2025-05-20 16:49:28,679 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2806 (May-25).
+2025-05-20 16:49:28,681 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2807 (May-25).
+2025-05-20 16:49:28,682 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2808 (May-25).
+2025-05-20 16:49:28,683 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2809 (May-25).
+2025-05-20 16:49:28,684 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2810 (May-25).
+2025-05-20 16:49:28,685 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2811 (May-25).
+2025-05-20 16:49:28,686 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2812 (May-25).
+2025-05-20 16:49:28,688 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2813 (May-25).
+2025-05-20 16:49:28,689 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2814 (May-25).
+2025-05-20 16:49:28,690 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2815 (May-25).
+2025-05-20 16:49:28,692 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2816 (May-25).
+2025-05-20 16:49:28,693 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2817 (May-25).
+2025-05-20 16:49:28,695 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2818 (May-25).
+2025-05-20 16:49:28,696 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2819 (May-25).
+2025-05-20 16:49:28,698 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2820 (May-25).
+2025-05-20 16:49:28,699 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2821 (May-25).
+2025-05-20 16:49:28,700 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2822 (May-25).
+2025-05-20 16:49:28,702 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2823 (May-25).
+2025-05-20 16:49:28,703 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2824 (May-25).
+2025-05-20 16:49:28,704 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2825 (May-25).
+2025-05-20 16:49:28,706 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2826 (May-25).
+2025-05-20 16:49:28,707 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2827 (May-25).
+2025-05-20 16:49:28,708 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2828 (May-25).
+2025-05-20 16:49:28,709 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2829 (May-25).
+2025-05-20 16:49:28,710 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2830 (May-25).
+2025-05-20 16:49:28,711 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2832 (May-25).
+2025-05-20 16:49:28,712 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2833 (May-25).
+2025-05-20 16:49:28,713 - src.hourclock_grist_updater - INFO - Attempting to add new HourClock record for employee SF2834 (May-25).
+2025-05-20 16:49:28,713 - src.hourclock_grist_updater - INFO - Adding 279 new HourClock records to HC_Detail.
+2025-05-20 16:49:29,151 - src.hourclock_grist_updater - INFO - Successfully added 279 new HourClock records.
+2025-05-20 16:49:29,151 - src.hourclock_grist_updater - INFO - 
 --- HourClock Update Summary ---
-2025-05-20 16:41:47,864 - src.hourclock_grist_updater - INFO - New HourClock records added: 279
-2025-05-20 16:41:47,864 - src.hourclock_grist_updater - INFO - Existing HourClock records updated: 0
-2025-05-20 16:41:47,865 - src.hourclock_grist_updater - INFO - ------------------------------
+2025-05-20 16:49:29,153 - src.hourclock_grist_updater - INFO - New HourClock records added: 279
+2025-05-20 16:49:29,153 - src.hourclock_grist_updater - INFO - Existing HourClock records updated: 0
+2025-05-20 16:49:29,154 - src.hourclock_grist_updater - INFO - ------------------------------
 
-2025-05-20 16:41:47,868 - __main__ - INFO - Finished processing HourClock sheet for file: EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:47,868 - __main__ - INFO - 
-Processing file: ../data/~$EmpClockingFormat - 12-5-2025.xlsx
-2025-05-20 16:41:47,869 - __main__ - INFO - Extracted month-year from filename: May-25
-2025-05-20 16:41:47,869 - __main__ - INFO - Reading master salary sheet...
-2025-05-20 16:41:47,872 - src.excel_reader - ERROR - Error reading Excel file: [Errno 13] Permission denied: '../data/~$EmpClockingFormat - 12-5-2025.xlsx'
-2025-05-20 16:41:47,873 - __main__ - INFO - 
-Processing HourClock sheet...
-2025-05-20 16:41:47,875 - src.hourclock_excel_reader - ERROR - Error reading HourClock Excel sheet: [Errno 13] Permission denied: '../data/~$EmpClockingFormat - 12-5-2025.xlsx'
-2025-05-20 16:41:47,876 - __main__ - WARNING - Failed to read HourClock sheet from ~$EmpClockingFormat - 12-5-2025.xlsx. Skipping HourClock processing for this file.
-2025-05-20 16:41:47,876 - __main__ - INFO - 
+2025-05-20 16:49:29,156 - __main__ - INFO - Finished processing HourClock sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-20 16:49:29,157 - __main__ - INFO - 
 All Excel files processed.
-2025-05-20 16:41:47,877 - __main__ - INFO - 
+2025-05-20 16:49:29,157 - __main__ - INFO - 
 All Excel files processed.
