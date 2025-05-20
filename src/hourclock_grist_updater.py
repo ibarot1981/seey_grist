@@ -4,14 +4,10 @@ import pandas as pd
 from dotenv import load_dotenv
 from datetime import datetime
 import logging
-import json # Import the json library
+import json
 
-# Load environment variables
-load_dotenv()
-
-# Configure logging
-LOGGING_LEVEL = os.getenv('LOGGING_LEVEL', 'INFO').upper()
-logging.basicConfig(level=LOGGING_LEVEL, format='%(asctime)s - %(levelname)s - %(message)s')
+# Get logger for this module
+logger = logging.getLogger(__name__)
 
 class HourClockGristUpdater:
     def __init__(self,
@@ -39,16 +35,8 @@ class HourClockGristUpdater:
 
         self.month_year = month_year
 
-        logging.info(f"Using Grist API at: {self.base_url}")
-        logging.info(f"Targeting HourClock table: {self.hourclock_table_name}")
-
-        # Column mappings from Excel HourClock sheet to Grist HC_Detail table
-        self.excel_to_grist_mapping = {
-            'Sr.No': 'SrNo',
-            'EmpNo': 'SFNo',
-            # 'Name' is not directly mapped as per user requirement for HC_Detail
-            # P and OT columns are handled dynamically
-        }
+        logger.info(f"Using Grist API at: {self.base_url}")
+        logger.info(f"Targeting HourClock table: {self.hourclock_table_name}")
 
         # Initialize counters for summary
         self._new_records_count = 0
@@ -60,6 +48,75 @@ class HourClockGristUpdater:
             "Content-Type": "application/json"
         }
 
+        # Store table schema to validate field names
+        self.table_columns = []
+        self._fetch_table_schema()
+
+    def _fetch_table_schema(self):
+        """
+        Fetch the table schema to know which columns actually exist in Grist
+        """
+        try:
+            # Prioritize fetching column names from the /columns endpoint as suggested
+            columns_url = f"{self.base_url}/tables/{self.hourclock_table_name}/columns"
+            columns_response = requests.get(columns_url, headers=self.headers)
+            columns_response.raise_for_status()
+            columns_data = columns_response.json()
+
+            # Access the list of columns from the 'columns' key
+            column_list = columns_data.get('columns', [])
+
+            if isinstance(column_list, list):
+                self.table_columns = [col.get('id') for col in column_list if isinstance(col, dict) and 'id' in col]
+                logger.info(f"Fetched table columns from /columns endpoint: {len(self.table_columns)} columns")
+                logger.info(f"Available columns: {', '.join(sorted(self.table_columns))}")
+
+                # Check for P_* and OT_* columns specifically
+                p_columns = [col for col in self.table_columns if col.startswith('P_')]
+                ot_columns = [col for col in self.table_columns if col.startswith('OT_')]
+                logger.info(f"Found {len(p_columns)} P_* columns: {', '.join(sorted(p_columns))}")
+                logger.info(f"Found {len(ot_columns)} OT_* columns: {', '.join(sorted(ot_columns))}")
+
+                # Look for case sensitivity issues and common naming variations
+                lowercase_columns = [col.lower() for col in self.table_columns]
+                if 'ot_1' in lowercase_columns and 'OT_1' not in self.table_columns:
+                    logger.warning("Case sensitivity issue detected: 'ot_1' exists but 'OT_1' does not")
+
+                variations = {
+                    'OT_': ['OT_', 'ot_', 'OT-', 'ot-'],
+                    'P_': ['P_', 'p_', 'P-', 'p-']
+                }
+                for base_prefix, prefixes in variations.items():
+                    for day in range(1, 32):  # Days 1-31
+                        variations_found = []
+                        for prefix in prefixes:
+                            col_name = f"{prefix}{day}"
+                            if col_name in self.table_columns:
+                                variations_found.append(col_name)
+
+                        if variations_found and len(variations_found) > 1:
+                            logger.warning(f"Multiple variations found for day {day}: {variations_found}")
+                        elif not any(f"{prefix}{day}" in self.table_columns for prefix in prefixes):
+                            if day <= 28:  # Only warn for expected days
+                                logger.warning(f"No column variation found for {base_prefix}{day}")
+
+            else:
+                logger.warning("Unexpected response format from /columns endpoint.")
+                logger.warning(f"Raw response content: {columns_response.text}") # Log raw response
+                self.table_columns = [] # Ensure it's an empty list on unexpected format
+
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error fetching table columns from /columns endpoint: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                logger.error(f"Response: {e.response.text}")
+            self.table_columns = [] # Ensure it's an empty list on error
+
+        except Exception as e:
+            import traceback
+            logger.error(f"Unexpected error during table schema fetch: {e}")
+            logger.error(traceback.format_exc())
+            self.table_columns = [] # Ensure it's an empty list on unexpected error
+
     def get_existing_records(self):
         """
         Fetch existing records from Grist HourClock table for the specific month/year
@@ -69,7 +126,6 @@ class HourClockGristUpdater:
         try:
             # Construct the API endpoint for fetching records
             # Filter by Month_Year
-            # Serialize the filter dictionary to a JSON string
             filter_value_json = json.dumps({"Month_Year": [self.month_year]})
 
             filter_params = {
@@ -77,10 +133,9 @@ class HourClockGristUpdater:
             }
             url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
 
-            logging.info(f"Fetching existing records from: {url} with filter Month_Year = {self.month_year}")
+            logger.info(f"Fetching existing records from: {url} with filter Month_Year = {self.month_year}")
 
             # Make the GET request with filter
-            # requests should URL-encode the filter_value_json string
             response = requests.get(url, headers=self.headers, params=filter_params)
 
             # Check if request was successful
@@ -89,22 +144,26 @@ class HourClockGristUpdater:
             # Extract records
             records_data = response.json().get('records', [])
 
-            logging.info(f"Fetched {len(records_data)} existing records for {self.month_year} from {self.hourclock_table_name}")
+            logger.info(f"Fetched {len(records_data)} existing records for {self.month_year} from {self.hourclock_table_name}")
 
             # If no records, return empty DataFrame but try to get columns
             if not records_data:
-                 # Try to get table columns by fetching table schema
+                # Try to get table columns by fetching table schema
                 try:
                     schema_url = f"{self.base_url}/tables/{self.hourclock_table_name}"
                     schema_response = requests.get(schema_url, headers=self.headers)
                     schema_response.raise_for_status()
                     fields = schema_response.json().get('fields', {})
                     columns = list(fields.keys()) + ['id']  # Add id column
+
+                    # Update our table_columns if we haven't already
+                    if not self.table_columns:
+                        self.table_columns = list(fields.keys())
+
                     return pd.DataFrame(columns=columns)
                 except Exception as e:
-                    logging.warning(f"Could not fetch HourClock table schema: {e}")
+                    logger.warning(f"Could not fetch HourClock table schema: {e}")
                     return pd.DataFrame()
-
 
             # Convert to DataFrame
             records_df = pd.DataFrame([
@@ -113,53 +172,71 @@ class HourClockGristUpdater:
             ])
 
             # Ensure 'SFNo' is treated as string for comparison
-            if 'SFNo' in records_df.columns:
-                records_df['SFNo'] = records_df['SFNo'].astype(str)
+            if 'SFno' in records_df.columns:
+                records_df['SFno'] = records_df['sfno'].astype(str)
 
             return records_df
 
         except requests.RequestException as e:
-            logging.error(f"Error fetching existing records from {self.hourclock_table_name}: {e}")
-            if hasattr(e.response, 'text'):
-                logging.error(f"Response: {e.response.text}")
+            logger.error(f"Error fetching existing records from {self.hourclock_table_name}: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                logger.error(f"Response: {e.response.text}")
             return pd.DataFrame()
 
     def compare_and_update(self, excel_data):
         """
-        Compare Excel HourClock data with existing Grist records and update/add
+        Compares the provided Excel hour clock data with existing records in the Grist
+        HourClock detail table for the specified month and year. It identifies new
+        records to be added and existing records that need updating based on changes
+        in the Excel data. Finally, it performs bulk add and update operations
+        to synchronize the Grist table with the Excel data.
 
-        :param excel_data: DataFrame with Excel HourClock data
+        :param excel_data: A pandas DataFrame containing the hour clock data read
+                           from the Excel file. Expected columns include 'SFNo',
+                           'No', and columns for each day of the month prefixed
+                           with 'P-' or 'P_' (for presence) and 'OT-' or 'OT_'
+                           (for overtime hours).
         """
         if self.month_year is None:
-            logging.error("Month-year is not set. Cannot process HourClock data.")
+            logger.error("Month-year is not set. Cannot process HourClock data.")
             return
 
-        logging.info("Excel data columns received by compare_and_update:")
-        logging.info(excel_data.columns)
-        logging.info("First 5 rows of excel_data received by compare_and_update:")
-        logging.info(excel_data.head().to_string()) # Use to_string() to ensure full output
+        if not self.table_columns:
+            logger.error("Grist table schema not available. Cannot proceed with comparing and updating records.")
+            return
+
+        logger.info("Excel data columns received by compare_and_update:")
+        logger.info(excel_data.columns)
+        logger.info("First 5 rows of excel_data received by compare_and_update:")
+        logger.info(excel_data.head().to_string())
+
+        # Print P and OT column patterns from Excel data to help diagnose issues
+        p_cols = [col for col in excel_data.columns if 'P-' in col or 'P_' in col]
+        ot_cols = [col for col in excel_data.columns if 'OT-' in col or 'OT_' in col]
+        logger.info(f"P columns in Excel: {', '.join(sorted(p_cols))}")
+        logger.info(f"OT columns in Excel: {', '.join(sorted(ot_cols))}")
 
         try:
             # Fetch existing HourClock records for the specific month/year
             existing_records = self.get_existing_records()
 
             if existing_records.empty and not excel_data.empty:
-                logging.info(f"No existing records found in Grist table {self.hourclock_table_name} for {self.month_year}. All records will be added as new.")
+                logger.info(f"No existing records found in Grist table {self.hourclock_table_name} for {self.month_year}. All records will be added as new.")
 
             # Make a copy of the data to avoid modifying the original
             excel_data = excel_data.copy()
 
-            # Remove rows with NaN or null in the 'SFNo' column (using the new column name)
+            # Remove rows with NaN or null in the 'SFNo' column
             if 'SFNo' in excel_data.columns:
                 null_emp_nos = excel_data['SFNo'].isna()
                 if null_emp_nos.any():
-                    logging.warning(f"Warning: Found {null_emp_nos.sum()} rows with empty employee numbers in HourClock sheet. These will be skipped.")
+                    logger.warning(f"Warning: Found {null_emp_nos.sum()} rows with empty employee numbers in HourClock sheet. These will be skipped.")
                     excel_data = excel_data.dropna(subset=['SFNo'])
 
                 # Also remove rows where 'SFNo' is 'nan' as a string
                 nan_emp_nos = excel_data['SFNo'] == 'nan'
                 if nan_emp_nos.any():
-                    logging.warning(f"Warning: Found {nan_emp_nos.sum()} rows with 'nan' as employee number in HourClock sheet. These will be skipped.")
+                    logger.warning(f"Warning: Found {nan_emp_nos.sum()} rows with 'nan' as employee number in HourClock sheet. These will be skipped.")
                     excel_data = excel_data[~nan_emp_nos]
 
             # Ensure 'SFNo' is treated as string and strip whitespace
@@ -168,15 +245,15 @@ class HourClockGristUpdater:
 
             # If SFNo exists in existing_records, make sure it's a string for comparison
             if not existing_records.empty and 'SFNo' in existing_records.columns:
-                existing_records['SFNo'] = existing_records['SFNo'].astype(str)
+                existing_records['SFno'] = existing_records['SFno'].astype(str)
 
-            # Check for duplicate SFNo in Excel data (using the new column name)
+            # Check for duplicate SFNo in Excel data
             if 'SFNo' in excel_data.columns:
                 duplicates = excel_data['SFNo'].duplicated()
                 if duplicates.any():
                     duplicate_emp_nos = excel_data.loc[duplicates, 'SFNo'].tolist()
-                    logging.warning(f"Warning: Duplicate employee numbers found in HourClock Excel sheet: {duplicate_emp_nos}")
-                    logging.warning("Only the last occurrence of each duplicate will be processed.")
+                    logger.warning(f"Warning: Duplicate employee numbers found in HourClock Excel sheet: {duplicate_emp_nos}")
+                    logger.warning("Only the last occurrence of each duplicate will be processed.")
                     # Keep only the last occurrence of each duplicate
                     excel_data = excel_data.drop_duplicates(subset=['SFNo'], keep='last')
 
@@ -184,51 +261,102 @@ class HourClockGristUpdater:
             records_to_add = []
             updates_to_perform = []
 
-            logging.info(f"Processing {len(excel_data)} valid rows from HourClock Excel sheet")
+            logger.info(f"Processing {len(excel_data)} valid rows from HourClock Excel sheet")
 
             # Process each row from Excel
             for _, excel_row in excel_data.iterrows():
-                emp_no = str(excel_row['SFNo']) # Use SFNo here
-                sr_no = excel_row.get('Sr.No') # Use .get for safety, and 'Sr.No' as per Excel column name
+                emp_no = str(excel_row['SFNo'])
+                sr_no = excel_row.get('No')
 
                 # Prepare Grist fields for the HourClock table
                 grist_hourclock_fields = {
                     'Month_Year': self.month_year,
                     'SFNo': emp_no,
-                    'SrNo': sr_no if pd.notna(sr_no) else None # Map Sr.No to SrNo
                 }
 
-                # Dynamically add P and OT columns for each day
-                for day in range(1, 32):
-                    p_col_excel = f'P{day}'
-                    ot_col_excel = f'OT{day}'
-                    p_col_grist = f'P{day}'
-                    ot_col_grist = f'OT{day}'
+                # Add SrNo if the column exists in Grist
+                if 'SrNo' in self.table_columns:
+                    grist_hourclock_fields['SrNo'] = sr_no if pd.notna(sr_no) else None
 
-                    # Get values, handling potential missing columns or NaN
-                    p_value = excel_row.get(p_col_excel)
-                    ot_value = excel_row.get(ot_col_excel)
+                # Find all P and OT columns in the Excel data with both hyphen and underscore formats
+                p_cols = [col for col in excel_row.index if col.startswith('P-') or col.startswith('P_')]
+                ot_cols = [col for col in excel_row.index if col.startswith('OT-') or col.startswith('OT_')]
+
+                # Map P columns considering both formats (hyphen and underscore)
+                for p_col in p_cols:
+                    # Extract day number handling both P-1 and P_1 formats
+                    if '-' in p_col:
+                        day = p_col.split('-')[1]
+                    else:
+                        day = p_col.split('_')[1]
+
+                    # Try both formats for Grist columns
+                    p_col_grist_underscore = f'P_{day}'
+                    p_col_grist_hyphen = f'P-{day}'
+
+                    # Check which format exists in Grist, prioritize underscore format
+                    if p_col_grist_underscore in self.table_columns:
+                        p_col_grist = p_col_grist_underscore
+                    elif p_col_grist_hyphen in self.table_columns:
+                        p_col_grist = p_col_grist_hyphen
+                    else:
+                        # Neither format exists, log and skip
+                        logger.debug(f"Neither P_{day} nor P-{day} found in Grist table, skipping")
+                        continue
+
+                    p_value = excel_row[p_col]
 
                     # Convert P value to integer (0 or 1), handle NaN/errors
                     if pd.notna(p_value):
                         try:
                             grist_hourclock_fields[p_col_grist] = int(p_value)
                         except (ValueError, TypeError):
-                            logging.warning(f"Warning: Could not convert P value '{p_value}' to integer for EmpNo {emp_no}, Day {day}. Setting to None.")
+                            logger.warning(f"Warning: Could not convert P value '{p_value}' to integer for EmpNo {emp_no}, Day {day}. Setting to None.")
                             grist_hourclock_fields[p_col_grist] = None
                     else:
-                        grist_hourclock_fields[p_col_grist] = None # Set to None if NaN
+                        grist_hourclock_fields[p_col_grist] = None
+
+                # Map OT columns considering both formats (hyphen and underscore)
+                for ot_col in ot_cols:
+                    # Extract day number handling both OT-1 and OT_1 formats
+                    if '-' in ot_col:
+                        day = ot_col.split('-')[1]
+                    else:
+                        day = ot_col.split('_')[1]
+
+                    # Try both formats for Grist columns
+                    ot_col_grist_underscore = f'OT_{day}'
+                    ot_col_grist_hyphen = f'OT-{day}'
+
+                    # Check which format exists in Grist, prioritize underscore format
+                    if ot_col_grist_underscore in self.table_columns:
+                        ot_col_grist = ot_col_grist_underscore
+                    elif ot_col_grist_hyphen in self.table_columns:
+                        ot_col_grist = ot_col_grist_hyphen
+                    else:
+                        # Check for case-insensitive match as fallback
+                        lowercase_columns = [col.lower() for col in self.table_columns]
+                        if ot_col_grist_underscore.lower() in lowercase_columns:
+                            # Find the correct case
+                            correct_case = next(col for col in self.table_columns if col.lower() == ot_col_grist_underscore.lower())
+                            ot_col_grist = correct_case
+                            logger.warning(f"Case mismatch: Using '{correct_case}' instead of '{ot_col_grist_underscore}'")
+                        else:
+                            # Neither format exists, log and skip
+                            logger.debug(f"Neither OT_{day} nor OT-{day} found in Grist table columns: {self.table_columns}, skipping")
+                            continue
+
+                    ot_value = excel_row[ot_col]
 
                     # Convert OT value to float, handle NaN/errors
                     if pd.notna(ot_value):
                         try:
                             grist_hourclock_fields[ot_col_grist] = float(ot_value)
                         except (ValueError, TypeError):
-                            logging.warning(f"Warning: Could not convert OT value '{ot_value}' to float for EmpNo {emp_no}, Day {day}. Setting to None.")
+                            logger.warning(f"Warning: Could not convert OT value '{ot_value}' to float for EmpNo {emp_no}, Day {day}. Setting to None.")
                             grist_hourclock_fields[ot_col_grist] = None
                     else:
-                        grist_hourclock_fields[ot_col_grist] = None # Set to None if NaN
-
+                        grist_hourclock_fields[ot_col_grist] = None
 
                 # Find if record for this employee and month/year exists in Grist
                 matched_records = pd.DataFrame()
@@ -240,7 +368,7 @@ class HourClockGristUpdater:
 
                 if matched_records.empty:
                     # Scenario: New record for this employee and month/year
-                    logging.info(f"Attempting to add new HourClock record for employee {emp_no} ({self.month_year}).")
+                    logger.info(f"Attempting to add new HourClock record for employee {emp_no} ({self.month_year}).")
                     records_to_add.append({'fields': grist_hourclock_fields})
 
                 else:
@@ -252,70 +380,53 @@ class HourClockGristUpdater:
                     needs_update = False
                     update_payload_fields = {}
 
-                    # Compare mapped fields (No, SFNo, Month_Year - though Month_Year/SFNo are keys)
-                    for excel_col, grist_col in self.excel_to_grist_mapping.items():
-                         if excel_col in excel_row.index and grist_col in current_grist_record:
-                             excel_value = excel_row[excel_col]
-                             grist_value = current_grist_record[grist_col]
+                    # Compare SrNo field if it exists in both places
+                    if 'SrNo' in current_grist_record and 'SrNo' in grist_hourclock_fields:
+                        grist_value = current_grist_record['SrNo']
+                        excel_value = grist_hourclock_fields['SrNo']
 
-                             # Handle None/NaN comparison
-                             if not pd.isna(excel_value) or not pd.isna(grist_value):
-                                 excel_str = str(excel_value) if pd.notna(excel_value) else 'None'
-                                 grist_str = str(grist_value) if pd.notna(grist_value) else 'None'
+                        # Handle None/NaN comparison
+                        if not pd.isna(excel_value) or not pd.isna(grist_value):
+                            excel_str = str(excel_value) if pd.notna(excel_value) else 'None'
+                            grist_str = str(grist_value) if pd.notna(grist_value) else 'None'
 
-                                 if excel_str != grist_str:
-                                     needs_update = True
-                                     update_payload_fields[grist_col] = grist_hourclock_fields[grist_col] # Use the prepared value
-                                     logging.debug(f"DEBUG: Update needed for {emp_no} ({self.month_year}): {grist_col} differs (Excel: '{excel_str}', Grist: '{grist_str}')")
-
-
-                    # Compare P and OT columns
-                    for day in range(1, 32):
-                        p_col_grist = f'P-{day}'
-                        ot_col_grist = f'OT-{day}'
-
-                        if p_col_grist in current_grist_record:
-                            current_p_value = current_grist_record[p_col_grist]
-                            new_p_value = grist_hourclock_fields.get(p_col_grist) # Get the prepared new value
-
-                            # Compare P values (handle None/NaN and integer comparison)
-                            if (pd.isna(current_p_value) and pd.notna(new_p_value)) or \
-                               (pd.notna(current_p_value) and pd.isna(new_p_value)) or \
-                               (pd.notna(current_p_value) and pd.notna(new_p_value) and int(current_p_value) != new_p_value): # Ensure comparison as int
+                            if excel_str != grist_str:
                                 needs_update = True
-                                update_payload_fields[p_col_grist] = new_p_value
-                                logging.debug(f"DEBUG: Update needed for {emp_no} ({self.month_year}): {p_col_grist} differs (Excel: {new_p_value}, Grist: {current_p_value})")
+                                update_payload_fields['SrNo'] = excel_value
+                                logger.debug(f"Update needed for {emp_no} ({self.month_year}): SrNo differs (Excel: '{excel_str}', Grist: '{grist_str}')")
 
+                    # Compare all fields in grist_hourclock_fields (P and OT with correct format)
+                    for field_name, new_value in grist_hourclock_fields.items():
+                        # Skip Month_Year and SFno since they're our match criteria and SrNo which was already checked
+                        if field_name in ['Month_Year', 'SFno', 'SrNo']:
+                            continue
 
-                        if ot_col_grist in current_grist_record:
-                            current_ot_value = current_grist_record[ot_col_grist]
-                            new_ot_value = grist_hourclock_fields.get(ot_col_grist) # Get the prepared new value
+                        if field_name in current_grist_record:
+                            current_value = current_grist_record[field_name]
 
-                            # Compare OT values (handle None/NaN and float comparison)
-                            if (pd.isna(current_ot_value) and pd.notna(new_ot_value)) or \
-                               (pd.notna(current_ot_value) and pd.isna(new_ot_value)) or \
-                               (pd.notna(current_ot_value) and pd.notna(new_ot_value) and float(current_ot_value) != new_ot_value): # Ensure comparison as float
+                            # Compare values (handle None/NaN and type comparison)
+                            if (pd.isna(current_value) and pd.notna(new_value)) or \
+                               (pd.notna(current_value) and pd.isna(new_value)) or \
+                               (pd.notna(current_value) and pd.notna(new_value) and current_value != new_value):
                                 needs_update = True
-                                update_payload_fields[ot_col_grist] = new_ot_value
-                                logging.debug(f"DEBUG: Update needed for {emp_no} ({self.month_year}): {ot_col_grist} differs (Excel: {new_ot_value}, Grist: {current_ot_value})")
-
+                                update_payload_fields[field_name] = new_value
+                                logger.debug(f"Update needed for {emp_no} ({self.month_year}): {field_name} differs (Excel: {new_value}, Grist: {current_value})")
 
                     if needs_update:
                         updates_to_perform.append({
                             'id': int(record_id),
                             'fields': update_payload_fields
                         })
-                        logging.info(f"HourClock record for employee {emp_no} ({self.month_year}) queued for update.")
+                        logger.info(f"HourClock record for employee {emp_no} ({self.month_year}) queued for update.")
                     else:
-                        logging.info(f"HourClock record for employee {emp_no} ({self.month_year}): No update needed.")
-
+                        logger.info(f"HourClock record for employee {emp_no} ({self.month_year}): No update needed.")
 
             # Perform bulk add operations
             if records_to_add:
                 add_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
-                logging.info(f"Adding {len(records_to_add)} new HourClock records to {self.hourclock_table_name}.")
-                if records_to_add: # Debug sample
-                    logging.debug(f"Sample add record for HourClock table: {records_to_add[0]}")
+                logger.info(f"Adding {len(records_to_add)} new HourClock records to {self.hourclock_table_name}.")
+                if records_to_add:
+                    logger.debug(f"Sample add record for HourClock table: {records_to_add[0]}")
 
                 try:
                     add_response = requests.post(
@@ -324,19 +435,35 @@ class HourClockGristUpdater:
                         json={'records': records_to_add}
                     )
                     add_response.raise_for_status()
-                    logging.info(f"Successfully added {len(records_to_add)} new HourClock records.")
+                    logger.info(f"Successfully added {len(records_to_add)} new HourClock records.")
                     self._new_records_count += len(records_to_add)
                 except requests.RequestException as e:
-                    logging.error(f"Error adding new HourClock records: {e}")
-                    if hasattr(e.response, 'text'):
-                        logging.error(f"Response: {e.response.text}")
+                    logger.error(f"Error adding new HourClock records: {e}")
+                    if hasattr(e, 'response') and e.response is not None:
+                        logger.error(f"Response: {e.response.text}")
+                        # Get more details about which columns might be invalid
+                        response_text = e.response.text
+                        try:
+                            error_data = json.loads(response_text)
+                            error_message = error_data.get('error', '')
+                            if "Invalid column" in error_message:
+                                invalid_col = error_message.split('"')[1]
+                                logger.error(f"The column '{invalid_col}' doesn't exist in the Grist table.")
+                                logger.error(f"Available columns in Grist: {', '.join(self.table_columns)}")
+
+                                # For debugging: print a sample record to see what we're trying to send
+                                if records_to_add:
+                                    sample_record = records_to_add[0]['fields']
+                                    logger.error(f"Sample record fields: {list(sample_record.keys())}")
+                        except:
+                            pass
 
             # Perform bulk update operations
             if updates_to_perform:
                 update_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
-                logging.info(f"Updating {len(updates_to_perform)} existing HourClock records in {self.hourclock_table_name}.")
-                if updates_to_perform: # Debug sample
-                    logging.debug(f"Sample update record for HourClock table: {updates_to_perform[0]}")
+                logger.info(f"Updating {len(updates_to_perform)} existing HourClock records in {self.hourclock_table_name}.")
+                if updates_to_perform:
+                    logger.debug(f"Sample update record for HourClock table: {updates_to_perform[0]}")
 
                 try:
                     update_response = requests.patch(
@@ -345,49 +472,24 @@ class HourClockGristUpdater:
                         json={'records': updates_to_perform}
                     )
                     update_response.raise_for_status()
-                    logging.info(f"Successfully updated {len(updates_to_perform)} existing HourClock records.")
+                    logger.info(f"Successfully updated {len(updates_to_perform)} existing HourClock records.")
                     self._updated_records_count += len(updates_to_perform)
                 except requests.RequestException as e:
-                    logging.error(f"Error updating existing HourClock records: {e}")
-                    if hasattr(e.response, 'text'):
-                        logging.error(f"Response: {e.response.text}")
+                    logger.error(f"Error updating existing HourClock records: {e}")
+                    if hasattr(e, 'response') and e.response is not None:
+                        logger.error(f"Response: {e.response.text}")
 
         except requests.RequestException as e:
-            logging.error(f"A Grist API request failed during the HourClock process: {e}")
+            logger.error(f"A Grist API request failed during the HourClock process: {e}")
             if hasattr(e, 'response') and e.response is not None:
-                logging.error(f"Response: {e.response.text}")
+                logger.error(f"Response: {e.response.text}")
         except Exception as e:
             import traceback
-            logging.error(f"Unexpected error during HourClock update: {e}")
-            logging.error(traceback.format_exc())
+            logger.error(f"Unexpected error during HourClock update: {e}")
+            logger.error(traceback.format_exc())
 
         # Print summary of actions
-        logging.info("\n--- HourClock Update Summary ---")
-        logging.info(f"New HourClock records added: {self._new_records_count}")
-        logging.info(f"Existing HourClock records updated: {self._updated_records_count}")
-        logging.info("------------------------------\n")
-
-# Example usage (for testing purposes)
-if __name__ == "__main__":
-    # This requires a Grist document with a table named 'HC_Detail'
-    # and appropriate environment variables set (.env file)
-    # GRIST_API_KEY, GRIST_DOC_ID, GRIST_HOURCLOCK_TABLE_NAME=HC_Detail
-
-    # Create a dummy DataFrame for HourClock sheet data
-    data = {'Sr.No': [1, 2],
-            'EmpNo': ['E001', 'E002'],
-            'Name': ['User One', 'User Two']} # Name is not used in updater, but might be in Excel
-    for day in range(1, 32):
-        data[f'P{day}'] = [1, 0]
-        data[f'OT{day}'] = [2.5, 0] # Example float OT
-
-    dummy_hourclock_df = pd.DataFrame(data)
-
-    # Example month/year
-    dummy_month_year = 'May-25'
-
-    # Initialize the updater
-    updater = HourClockGristUpdater(month_year=dummy_month_year)
-
-    # Run the update process
-    updater.compare_and_update(dummy_hourclock_df)
+        logger.info("\n--- HourClock Update Summary ---")
+        logger.info(f"New HourClock records added: {self._new_records_count}")
+        logger.info(f"Existing HourClock records updated: {self._updated_records_count}")
+        logger.info("------------------------------\n")

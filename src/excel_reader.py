@@ -3,6 +3,10 @@ import pandas as pd
 from dotenv import load_dotenv
 import re
 from datetime import datetime
+import logging
+
+# Get logger for this module
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -35,12 +39,12 @@ class ExcelReader:
                 # Attempt to parse with DD-MM-YYYY
                 date_obj = datetime.strptime(date_str, '%d-%m-%Y')
             except ValueError:
-                print(f"Warning: Could not parse date from filename using DD-MM-YYYY format: {filename}")
+                logger.warning(f"Could not parse date from filename using DD-MM-YYYY format: {filename}")
                 return None # Return None if DD-MM-YYYY parsing fails
 
             return date_obj.strftime('%b-%y')
         else:
-            print(f"Warning: No date found in filename: {filename}")
+            logger.warning(f"No date found in filename: {filename}")
             return None
 
     def get_month_year(self):
@@ -62,7 +66,7 @@ class ExcelReader:
             
             # Check if file exists
             if not os.path.exists(self.file_path):
-                print(f"Error: Excel file not found at {self.file_path}")
+                logger.error(f"Excel file not found at {self.file_path}")
                 return None
                 
             # Read Excel file
@@ -96,11 +100,11 @@ class ExcelReader:
             
             missing_columns = [col for col in required_columns if col not in df.columns]
             if missing_columns:
-                print(f"Warning: Missing columns in Excel file: {missing_columns}")
+                logger.warning(f"Missing columns in Excel file: {missing_columns}")
             
             return df
         except Exception as e:
-            print(f"Error reading Excel file: {e}")
+            logger.error(f"Error reading Excel file: {e}")
             return None
 
     def list_sheets(self):
@@ -111,13 +115,13 @@ class ExcelReader:
         """
         try:
             if not os.path.exists(self.file_path):
-                print(f"Error: Excel file not found at {self.file_path}")
+                logger.error(f"Excel file not found at {self.file_path}")
                 return []
                 
             xls = pd.ExcelFile(self.file_path, engine='openpyxl')
             return xls.sheet_names
         except Exception as e:
-            print(f"Error listing sheets: {e}")
+            logger.error(f"Error listing sheets: {e}")
             return []
 
     def validate_master_sheet(self, df):
@@ -141,27 +145,39 @@ class ExcelReader:
         
         missing_columns = [col for col in required_columns if col not in df.columns]
         if missing_columns:
-            print(f"Error: Missing required columns: {missing_columns}")
+            logger.error(f"Missing required columns: {missing_columns}")
             return False
             
         # Check for empty employee numbers
         if df['Emp No.'].isnull().any():
-            print("Error: Some employee numbers are missing")
+            logger.error("Some employee numbers are missing")
             return False
             
         # Check for duplicate employee numbers
         duplicates = df['Emp No.'].duplicated()
         if duplicates.any():
-            print(f"Warning: Duplicate employee numbers found: {df.loc[duplicates, 'Emp No.'].tolist()}")
+            logger.warning(f"Duplicate employee numbers found: {df.loc[duplicates, 'Emp No.'].tolist()}")
             
         return True
 
 # Example usage
 if __name__ == "__main__":
+    # Example usage - this part might not be used when imported by main.py
+    # but it's good practice to update its logging as well.
+    # Note: In a real application, you might want a separate logging config
+    # for standalone script execution vs. when imported as a module.
+    # For this task, we'll assume main.py's config is sufficient.
+    
+    # Basic console logging for standalone execution if not configured by main
+    if not logging.getLogger().handlers:
+        logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        
+    logger.info("Running ExcelReader example.")
+    
     reader = ExcelReader()
     
     # List all sheets
-    print("Available sheets:", reader.list_sheets())
+    logger.info(f"Available sheets: {reader.list_sheets()}")
     
     # Read master salary sheet
     master_sheet_df = reader.read_sheet()
@@ -169,9 +185,12 @@ if __name__ == "__main__":
     if master_sheet_df is not None:
         # Validate the sheet
         if reader.validate_master_sheet(master_sheet_df):
-            print("Master salary sheet is valid.")
+            logger.info("Master salary sheet is valid.")
             
             # Print first few rows
-            print(master_sheet_df.head())
+            logger.info("First few rows:")
+            logger.info(master_sheet_df.head().to_string()) # Use to_string() for better formatting in logs
         else:
-            print("Master salary sheet validation failed.")
+            logger.error("Master salary sheet validation failed.")
+    else:
+        logger.error("Failed to read master salary sheet.")

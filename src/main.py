@@ -1,5 +1,7 @@
 import os
 import sys
+import logging
+from logging.handlers import RotatingFileHandler
 from dotenv import load_dotenv
 
 # Add the project root to the path
@@ -15,8 +17,45 @@ def main():
     # Load environment variables
     load_dotenv()
 
+    # Configure logging
+    log_file = os.getenv('LOG_FILE', 'application.log')
+    log_level = os.getenv('LOGGING_LEVEL', 'INFO').upper()
+    max_log_size_mb = int(os.getenv('MAX_LOG_SIZE_MB', 5))
+    log_backup_count = int(os.getenv('LOG_BACKUP_COUNT', 5))
+
+    # Convert max size to bytes
+    max_log_size_bytes = max_log_size_mb * 1024 * 1024
+
+    # Create logs directory if it doesn't exist
+    log_dir = os.path.dirname(log_file)
+    if log_dir and not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    # Set up root logger
+    root_logger = logging.getLogger()
+    root_logger.setLevel(log_level)
+
+    # Create a rotating file handler
+    file_handler = RotatingFileHandler(
+        log_file,
+        maxBytes=max_log_size_bytes,
+        backupCount=log_backup_count
+    )
+    file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+    # Create a console handler
+    console_handler = logging.StreamHandler(sys.stdout)
+    console_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+    # Add handlers to the root logger
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
+
+    # Get a logger for the main script
+    logger = logging.getLogger(__name__)
+
     try:
-        print("Starting salary update process...")
+        logger.info("Starting salary update process...")
         
         # Check if required environment variables are set
         required_env_vars = [
@@ -28,29 +67,29 @@ def main():
 
         missing_vars = [var for var in required_env_vars if not os.getenv(var)]
         if missing_vars:
-            print(f"Error: Missing required environment variables: {', '.join(missing_vars)}")
-            print("Please check your .env file")
+            logger.error(f"Missing required environment variables: {', '.join(missing_vars)}")
+            logger.error("Please check your .env file")
             return
 
         excel_files_dir = os.getenv('EXCEL_FILES_DIR')
 
         if not os.path.isdir(excel_files_dir):
-            print(f"Error: Excel files directory not found at {excel_files_dir}")
+            logger.error(f"Excel files directory not found at {excel_files_dir}")
             return
 
         # List all .xlsx files in the directory
         excel_files = [f for f in os.listdir(excel_files_dir) if f.endswith('.xlsx')]
 
         if not excel_files:
-            print(f"No .xlsx files found in {excel_files_dir}. Exiting.")
+            logger.info(f"No .xlsx files found in {excel_files_dir}. Exiting.")
             return
 
-        print(f"Found {len(excel_files)} Excel files to process in {excel_files_dir}")
+        logger.info(f"Found {len(excel_files)} Excel files to process in {excel_files_dir}")
 
         # Process each Excel file
         for excel_file in excel_files:
             file_path = os.path.join(excel_files_dir, excel_file)
-            print(f"\nProcessing file: {file_path}")
+            logger.info(f"\nProcessing file: {file_path}")
 
             # Initialize Excel Reader for the current file
             excel_reader = ExcelReader(file_path=file_path)
@@ -58,21 +97,21 @@ def main():
             # Get month-year from filename
             month_year = excel_reader.get_month_year()
             if not month_year:
-                print(f"Warning: Could not extract month and year from filename {excel_file}. Skipping this file.")
+                logger.warning(f"Could not extract month and year from filename {excel_file}. Skipping this file.")
                 continue # Skip to the next file
 
-            print(f"Extracted month-year from filename: {month_year}")
+            logger.info(f"Extracted month-year from filename: {month_year}")
 
             # Show available sheets for troubleshooting (optional, can be removed if not needed per file)
             # available_sheets = excel_reader.list_sheets()
-            # print(f"Available sheets in {excel_file}: {available_sheets}")
+            # logger.info(f"Available sheets in {excel_file}: {available_sheets}")
 
             # Read the master salary sheet
-            print("Reading master salary sheet...")
+            logger.info("Reading master salary sheet...")
             master_sheet_df = excel_reader.read_sheet()
 
             if master_sheet_df is not None:
-                print(f"Successfully read {len(master_sheet_df)} rows from {excel_file}")
+                logger.info(f"Successfully read {len(master_sheet_df)} rows from {excel_file}")
 
                 # Check if required columns exist in the Excel file
                 required_columns = [
@@ -86,55 +125,55 @@ def main():
                 missing_columns = [col for col in required_columns if col not in master_sheet_df.columns]
 
                 if missing_columns:
-                    print(f"Error: Missing required columns in Excel file {excel_file}: {missing_columns}")
-                    print(f"Available columns: {master_sheet_df.columns.tolist()}")
+                    logger.error(f"Missing required columns in Excel file {excel_file}: {missing_columns}")
+                    logger.error(f"Available columns: {master_sheet_df.columns.tolist()}")
                     continue # Skip to the next file
 
                 # Display a sample of the data for verification (optional)
-                # print(f"\nSample data from {excel_file}:")
-                # print(master_sheet_df.head(3))
+                # logger.info(f"\nSample data from {excel_file}:")
+                # logger.info(master_sheet_df.head(3))
 
                 # Initialize Grist Updater, passing the extracted month-year
-                print("\nInitializing Grist Updater...")
+                logger.info("\nInitializing Grist Updater...")
                 grist_updater = GristUpdater(month_year=month_year)
 
                 # Compare and update Grist tables
-                print("Starting Grist update process for this file...")
+                logger.info("Starting Grist update process for this file...")
                 grist_updater.compare_and_update(master_sheet_df)
 
-                print(f"Finished processing master sheet for file: {excel_file}")
+                logger.info(f"Finished processing master sheet for file: {excel_file}")
 
             # --- Process HourClock Sheet ---
-            print("\nProcessing HourClock sheet...")
+            logger.info("\nProcessing HourClock sheet...")
             hourclock_excel_reader = HourClockExcelReader(file_path=file_path)
 
             # Read the hour clock sheet
             hourclock_sheet_df = hourclock_excel_reader.read_sheet()
 
             if hourclock_sheet_df is not None:
-                print(f"Successfully read {len(hourclock_sheet_df)} rows from HourClock sheet in {excel_file}")
+                logger.info(f"Successfully read {len(hourclock_sheet_df)} rows from HourClock sheet in {excel_file}")
 
                 # Initialize HourClock Grist Updater, passing the extracted month-year
-                print("\nInitializing HourClock Grist Updater...")
+                logger.info("\nInitializing HourClock Grist Updater...")
                 hourclock_grist_updater = HourClockGristUpdater(month_year=month_year)
 
                 # Compare and update Grist HC_Detail table
-                print("Starting HourClock Grist update process for this file...")
+                logger.info("Starting HourClock Grist update process for this file...")
                 hourclock_grist_updater.compare_and_update(hourclock_sheet_df)
 
-                print(f"Finished processing HourClock sheet for file: {excel_file}")
+                logger.info(f"Finished processing HourClock sheet for file: {excel_file}")
             else:
-                print(f"Failed to read HourClock sheet from {excel_file}. Skipping HourClock processing for this file.")
+                logger.warning(f"Failed to read HourClock sheet from {excel_file}. Skipping HourClock processing for this file.")
             # --- End of HourClock Sheet Processing ---
 
-        print("\nAll Excel files processed.")
+        logger.info("\nAll Excel files processed.")
 
-        print("\nAll Excel files processed.")
+        logger.info("\nAll Excel files processed.")
     
     except Exception as e:
         import traceback
-        print(f"An error occurred during update process: {e}")
-        print(traceback.format_exc())
+        logger.error(f"An error occurred during update process: {e}")
+        logger.error(traceback.format_exc())
 
 if __name__ == "__main__":
     main()
