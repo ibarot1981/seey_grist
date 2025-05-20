@@ -146,24 +146,23 @@ class HourClockGristUpdater:
 
             logger.info(f"Fetched {len(records_data)} existing records for {self.month_year} from {self.hourclock_table_name}")
 
-            # If no records, return empty DataFrame but try to get columns
+            # If no records, return empty DataFrame.
+            # We rely on the schema fetched in __init__ for column validation.
             if not records_data:
-                # Try to get table columns by fetching table schema
-                try:
-                    schema_url = f"{self.base_url}/tables/{self.hourclock_table_name}"
-                    schema_response = requests.get(schema_url, headers=self.headers)
-                    schema_response.raise_for_status()
-                    fields = schema_response.json().get('fields', {})
-                    columns = list(fields.keys()) + ['id']  # Add id column
+                # If table_columns is empty, it means the initial schema fetch failed.
+                # In this case, we cannot determine the columns, so return empty DataFrame.
+                if not self.table_columns:
+                     logger.warning("Initial table schema fetch failed, and no existing records found. Cannot determine columns.")
+                     return pd.DataFrame()
 
-                    # Update our table_columns if we haven't already
-                    if not self.table_columns:
-                        self.table_columns = list(fields.keys())
+                # If table_columns is not empty, use those columns for the empty DataFrame
+                columns = self.table_columns + ['id'] # Add id column if not present
+                if 'id' not in self.table_columns:
+                     columns = self.table_columns + ['id']
+                else:
+                     columns = self.table_columns
 
-                    return pd.DataFrame(columns=columns)
-                except Exception as e:
-                    logger.warning(f"Could not fetch HourClock table schema: {e}")
-                    return pd.DataFrame()
+                return pd.DataFrame(columns=columns)
 
             # Convert to DataFrame
             records_df = pd.DataFrame([
