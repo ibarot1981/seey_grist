@@ -424,6 +424,15 @@ class HourClockGristUpdater:
             if records_to_add:
                 add_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
                 logger.info(f"Adding {len(records_to_add)} new HourClock records to {self.hourclock_table_name}.")
+
+                # Print the month_year value before adding records
+                # print(f"Month_Year value being inserted: {self.month_year}")
+
+                # Print the records to be added before sending the request
+                # print("\n--- Records to be added to HC_Detail ---")
+                # print(json.dumps(records_to_add, indent=2))
+                # print("---------------------------------------")
+
                 if records_to_add:
                     logger.debug(f"Sample add record for HourClock table: {records_to_add[0]}")
 
