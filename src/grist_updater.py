@@ -202,7 +202,12 @@ class GristUpdater:
             for field in date_fields:
                 if field in records_df.columns:
                     # Convert from Unix timestamp, handling potential errors
-                    records_df.loc[:, field] = pd.to_datetime(records_df[field], unit='s', errors='coerce').dt.strftime('%Y-%m-%d %H:%M:%S').fillna('')
+                    # First convert to datetime, then to string, handling NaT properly
+                    datetime_series = pd.to_datetime(records_df[field], unit='s', errors='coerce')
+                    
+                    # Convert to string format, replacing NaT with empty string
+                    records_df[field] = datetime_series.dt.strftime('%Y-%m-%d %H:%M:%S')
+                    records_df[field] = records_df[field].fillna('')
             # --- End of date conversion ---
 
             return records_df
