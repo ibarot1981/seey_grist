@@ -218,77 +218,72 @@ class GristUpdater:
                 logger.error(f"Response: {e.response.text}")
             return pd.DataFrame()
 
-    def add_rate_log_entry(self, emp_no, new_rate, is_initial=False):
+    def _prepare_rate_log_entry_payload(self, emp_no, new_rate, is_initial=False):
         """
-        Add entry to the rate log table when salary rate changes or for new employees
+        Prepares the payload for a single rate log entry.
+        This method does NOT make an API call.
 
         :param emp_no: Employee number
         :param new_rate: New salary rate per day
         :param is_initial: Whether this is the initial rate entry for a new employee
+        :return: Dictionary representing the 'fields' for a rate log record, or None if skipped
         """
+        if pd.isna(new_rate):
+            logger.warning(f"Skipping rate log entry preparation for employee {emp_no} due to missing/invalid rate")
+            return None
+
+        fields = {
+            'SFNo': str(emp_no),  # Ensure string type
+            'NewPerDayRate': float(new_rate),
+            'Remarks': 'Initial Rate' if is_initial else 'Rate Change - AutoCode'
+        }
+
+        # As confirmed by the user, RecordHistory column is always present.
+        fields['RecordHistory'] = self.month_year
+
+        # Only add the LogDate field if we know it's needed/supported
+        # fields['LogDate'] = datetime.now().strftime('%Y-%m-%d')
+
+        return {'fields': fields}
+
+    def bulk_add_rate_log_entries(self, records_payload_list):
+        """
+        Performs a bulk insert of rate log entries to the Grist table.
+
+        :param records_payload_list: A list of dictionaries, where each dictionary
+                                     represents a single rate log record's 'fields' payload.
+        """
+        if not records_payload_list:
+            logger.info("No rate log entries to bulk add.")
+            return
+
+        add_url = f"{self.base_url}/tables/{self.rate_log_table_name}/records"
+        payload = {'records': records_payload_list}
+
+        logger.info(f"Attempting to bulk add {len(records_payload_list)} rate log entries.")
+        logger.debug(f"Sample rate log bulk payload: {records_payload_list[0]}")
+
         try:
-            # Get the structure of the rate log table first to understand its columns
-            try:
-                rate_log_records = self.get_existing_records(self.rate_log_table_name)
-                logger.debug(f"Rate log table columns: {rate_log_records.columns.tolist() if not rate_log_records.empty else 'No records found'}")
-            except Exception as e:
-                logger.warning(f"Warning: Could not fetch rate log table structure: {e}")
-
-            # Skip if rate is NaN
-            if pd.isna(new_rate):
-                logger.warning(f"Skipping rate log entry for employee {emp_no} due to missing/invalid rate")
-                return
-
-            # Basic record with required fields
-            fields = {
-                'SFNo': str(emp_no),  # Ensure string type
-                'NewPerDayRate': float(new_rate),
-                'Remarks': 'Initial Rate' if is_initial else 'Rate Change - AutoCode'
-            }
-
-            # Add month-year to rate log entry if column exists
-            if 'RecordHistory' in (rate_log_records.columns.tolist() if not rate_log_records.empty else []):
-                 fields['RecordHistory'] = self.month_year
-            else:
-                 logger.warning(f"Column 'RecordHistory' not found in {self.rate_log_table_name}. Skipping adding month-year to rate log.")
-
-
-            # Only add the LogDate field if we know it's needed/supported
-            # Uncomment this if the table has a LogDate column
-            # fields['LogDate'] = datetime.now().strftime('%Y-%m-%d')
-
-            add_record = {'fields': fields}
-
-            # Add to rate log table
-            add_url = f"{self.base_url}/tables/{self.rate_log_table_name}/records"
-
-            # Print the payload for debugging
-            logger.debug(f"Rate log payload: {add_record}")
-
             add_response = requests.post(
                 add_url,
                 headers=self.headers,
-                json={'records': [add_record]}
+                json=payload
             )
-
-            # If request fails, print more detailed error info
-            if not add_response.ok:
-                logger.error(f"Rate log add failed with status {add_response.status_code}")
-                logger.error(f"Response: {add_response.text}")
-
             add_response.raise_for_status()
-            logger.info(f"Added rate log entry for employee {emp_no} {'(initial rate)' if is_initial else '(rate change)'}")
-            self._rate_log_count += 1 # Increment rate log counter here
-
+            logger.info(f"Successfully bulk added {len(records_payload_list)} rate log entries.")
+            self._rate_log_count += len(records_payload_list)
         except requests.RequestException as e:
-            logger.error(f"Error adding rate log entry: {e}")
+            logger.error(f"Error bulk adding rate log entries: {e}")
+            if hasattr(e.response, 'text'):
+                logger.error(f"Response: {e.response.text}")
             logger.error("Please check that:")
             logger.error("1. The Emp_RateLog table exists in your Grist document")
-            logger.error("2. It has the columns: SFNo, NewPerDayRate, and Remarks")
+            logger.error("2. It has the columns: SFNo, NewPerDayRate, Remarks, and RecordHistory")
             logger.error("3. The API key has write permissions to this table")
-        except ValueError as e:
-            logger.error(f"Error processing rate value for employee {emp_no}: {e}")
-            logger.warning("Skipping rate log entry for this employee")
+        except Exception as e:
+            logger.error(f"Unexpected error during bulk rate log add: {e}")
+            import traceback
+            logger.error(traceback.format_exc())
 
     def compare_and_update(self, excel_data):
         """
@@ -342,15 +337,6 @@ class GristUpdater:
 
             # Debug info
             logger.info(f"Processing {len(excel_data)} rows from Excel")
-
-            # First, check if the rate log table exists and is accessible
-            # This check is informational; actual rate log operations depend on main table success for new emps
-            try:
-                rate_log_schema_check = self.get_existing_records(self.rate_log_table_name) # Use a different var name
-                logger.debug(f"Rate log table is accessible with {len(rate_log_schema_check)} existing entries (schema check)")
-            except Exception as e:
-                logger.warning(f"Warning: Could not access rate log table for initial check: {e}")
-                # Continue, as individual operations will handle errors.
 
             # Process each row from Excel
             for _, excel_row in excel_data.iterrows():
@@ -614,18 +600,21 @@ class GristUpdater:
                     if hasattr(e.response, 'text'):
                         logger.error(f"Response: {e.response.text}")
 
-            # Process all queued rate log entries
+            # Prepare all queued rate log entries for bulk insert
+            rate_log_payloads_for_bulk = []
             if rate_log_entries_to_process:
-                logger.info(f"Processing {len(rate_log_entries_to_process)} rate log entries.")
+                logger.info(f"Preparing {len(rate_log_entries_to_process)} rate log entries for bulk insert.")
                 for entry_data in rate_log_entries_to_process:
-                    # self.add_rate_log_entry handles its own try-except for the API call
-                    self.add_rate_log_entry(
+                    payload = self._prepare_rate_log_entry_payload(
                         entry_data['emp_no'],
                         entry_data['new_rate'],
                         entry_data['is_initial']
                     )
-            else:
-                logger.info("No rate log entries to process.")
+                    if payload: # Only add if payload was successfully prepared (not skipped due to NaN rate)
+                        rate_log_payloads_for_bulk.append(payload)
+
+            # Perform bulk insert for rate log entries
+            self.bulk_add_rate_log_entries(rate_log_payloads_for_bulk)
 
             # --- Mark employees as left if not in Excel and MarkAsLeft is "YES" ---
             if self.mark_as_left == "YES" and not existing_records.empty and not excel_data.empty:
