@@ -40,7 +40,7 @@ class HourClockGristUpdater:
 
         # Initialize counters for summary
         self._new_records_count = 0
-        self._updated_records_count = 0
+        self._skipped_records_count = 0
 
         # Headers for API requests
         self.headers = {
@@ -57,13 +57,11 @@ class HourClockGristUpdater:
         Fetch the table schema to know which columns actually exist in Grist
         """
         try:
-            # Prioritize fetching column names from the /columns endpoint as suggested
             columns_url = f"{self.base_url}/tables/{self.hourclock_table_name}/columns"
             columns_response = requests.get(columns_url, headers=self.headers)
             columns_response.raise_for_status()
             columns_data = columns_response.json()
 
-            # Access the list of columns from the 'columns' key
             column_list = columns_data.get('columns', [])
 
             if isinstance(column_list, list):
@@ -77,427 +75,376 @@ class HourClockGristUpdater:
                 logger.info(f"Found {len(p_columns)} P_* columns: {', '.join(sorted(p_columns))}")
                 logger.info(f"Found {len(ot_columns)} OT_* columns: {', '.join(sorted(ot_columns))}")
 
-                # Look for case sensitivity issues and common naming variations
-                lowercase_columns = [col.lower() for col in self.table_columns]
-                if 'ot_1' in lowercase_columns and 'OT_1' not in self.table_columns:
-                    logger.warning("Case sensitivity issue detected: 'ot_1' exists but 'OT_1' does not")
-
-                variations = {
-                    'OT_': ['OT_', 'ot_', 'OT-', 'ot-'],
-                    'P_': ['P_', 'p_', 'P-', 'p-']
-                }
-                for base_prefix, prefixes in variations.items():
-                    for day in range(1, 32):  # Days 1-31
-                        variations_found = []
-                        for prefix in prefixes:
-                            col_name = f"{prefix}{day}"
-                            if col_name in self.table_columns:
-                                variations_found.append(col_name)
-
-                        if variations_found and len(variations_found) > 1:
-                            logger.warning(f"Multiple variations found for day {day}: {variations_found}")
-                        elif not any(f"{prefix}{day}" in self.table_columns for prefix in prefixes):
-                            if day <= 28:  # Only warn for expected days
-                                logger.warning(f"No column variation found for {base_prefix}{day}")
-
             else:
                 logger.warning("Unexpected response format from /columns endpoint.")
-                logger.warning(f"Raw response content: {columns_response.text}") # Log raw response
-                self.table_columns = [] # Ensure it's an empty list on unexpected format
+                logger.warning(f"Raw response content: {columns_response.text}")
+                self.table_columns = []
 
         except requests.exceptions.RequestException as e:
             logger.error(f"Error fetching table columns from /columns endpoint: {e}")
             if hasattr(e, 'response') and e.response is not None:
                 logger.error(f"Response: {e.response.text}")
-            self.table_columns = [] # Ensure it's an empty list on error
+            self.table_columns = []
 
         except Exception as e:
             import traceback
             logger.error(f"Unexpected error during table schema fetch: {e}")
             logger.error(traceback.format_exc())
-            self.table_columns = [] # Ensure it's an empty list on unexpected error
+            self.table_columns = []
 
-    def get_existing_records(self):
+    def check_month_year_exists(self):
         """
-        Fetch existing records from Grist HourClock table for the specific month/year
-
-        :return: DataFrame of existing records for the month/year
+        Check if any records exist for the given Month_Year
+        
+        :return: Boolean indicating if Month_Year exists in Grist
         """
         try:
-            # Construct the API endpoint for fetching records
-            # Filter by Month_Year
             filter_value_json = json.dumps({"Month_Year": [self.month_year]})
+            filter_params = {
+                "filter": filter_value_json,
+                "expand": "1"  # Expand reference columns for consistency
+            }
+            url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
 
+            logger.info(f"Checking if Month_Year {self.month_year} exists in Grist")
+            response = requests.get(url, headers=self.headers, params=filter_params)
+            response.raise_for_status()
+
+            records_data = response.json().get('records', [])
+            exists = len(records_data) > 0
+            
+            logger.info(f"Month_Year {self.month_year} {'exists' if exists else 'does not exist'} in Grist (found {len(records_data)} records)")
+            return exists
+
+        except requests.RequestException as e:
+            logger.error(f"Error checking if Month_Year exists: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                logger.error(f"Response: {e.response.text}")
+            return False
+
+    def get_existing_sfnos_for_month(self):
+        """
+        Get all existing SFNos for the given Month_Year
+        Since SFNo is a reference column, we need to fetch the actual values from Emp_Master
+        
+        :return: Set of existing SFNos
+        """
+        try:
+            # First, get the HC_Detail records with SFNo reference IDs
+            filter_value_json = json.dumps({"Month_Year": [self.month_year]})
             filter_params = {
                 "filter": filter_value_json
             }
             url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
 
-            logger.info(f"Fetching existing records from: {url} with filter Month_Year = {self.month_year}")
-
-            # Make the GET request with filter
+            logger.info(f"Fetching HC_Detail records for Month_Year {self.month_year}")
             response = requests.get(url, headers=self.headers, params=filter_params)
-
-            # Check if request was successful
             response.raise_for_status()
 
-            # Extract records
             records_data = response.json().get('records', [])
-
-            logger.info(f"Fetched {len(records_data)} existing records for {self.month_year} from {self.hourclock_table_name}")
-
-            # If no records, return empty DataFrame.
-            # We rely on the schema fetched in __init__ for column validation.
+            
             if not records_data:
-                # If table_columns is empty, it means the initial schema fetch failed.
-                # In this case, we cannot determine the columns, so return empty DataFrame.
-                if not self.table_columns:
-                     logger.warning("Initial table schema fetch failed, and no existing records found. Cannot determine columns.")
-                     return pd.DataFrame()
-
-                # If table_columns is not empty, use those columns for the empty DataFrame
-                columns = self.table_columns + ['id'] # Add id column if not present
-                if 'id' not in self.table_columns:
-                     columns = self.table_columns + ['id']
+                logger.info(f"No records found for {self.month_year}")
+                return set()
+            
+            # Debug: Print raw response structure for first record
+            logger.debug(f"Sample HC_Detail record structure: {json.dumps(records_data[0], indent=2)}")
+            
+            # Extract all SFNo reference IDs
+            sfno_ref_ids = set()
+            for record in records_data:
+                fields = record.get('fields', {})
+                
+                # Try multiple possible field names for SFNo
+                sfno_ref_id = None
+                possible_names = ['SFNo', 'SFno', 'sfno', 'SFNO', 'SF_No', 'sf_no']
+                
+                for field_name in possible_names:
+                    if field_name in fields:
+                        sfno_ref_id = fields[field_name]
+                        logger.debug(f"Found SFNo reference ID using field '{field_name}': {sfno_ref_id}")
+                        break
+                
+                if sfno_ref_id:
+                    sfno_ref_ids.add(sfno_ref_id)
                 else:
-                     columns = self.table_columns
-
-                return pd.DataFrame(columns=columns)
-
-            # Convert to DataFrame
-            records_df = pd.DataFrame([
-                {**record['fields'], 'id': record['id']}
-                for record in records_data
-            ])
-
-            # Ensure 'SFNo' is treated as string for comparison
-            if 'SFno' in records_df.columns:
-                records_df['SFno'] = records_df['sfno'].astype(str)
-
-            return records_df
+                    logger.warning(f"Could not find SFNo field in HC_Detail record. Available fields: {list(fields.keys())}")
+            
+            logger.info(f"Found {len(sfno_ref_ids)} unique SFNo reference IDs: {sorted(sfno_ref_ids)}")
+            
+            if not sfno_ref_ids:
+                return set()
+            
+            # Now fetch the actual SFNo values from Emp_Master table
+            return self._get_sfno_values_from_emp_master(sfno_ref_ids)
 
         except requests.RequestException as e:
-            logger.error(f"Error fetching existing records from {self.hourclock_table_name}: {e}")
+            logger.error(f"Error fetching HC_Detail records: {e}")
             if hasattr(e, 'response') and e.response is not None:
                 logger.error(f"Response: {e.response.text}")
-            return pd.DataFrame()
+            return set()
 
-    def compare_and_update(self, excel_data):
+    def _get_sfno_values_from_emp_master(self, sfno_ref_ids):
         """
-        Compares the provided Excel hour clock data with existing records in the Grist
-        HourClock detail table for the specified month and year. It identifies new
-        records to be added and existing records that need updating based on changes
-        in the Excel data. Finally, it performs bulk add and update operations
-        to synchronize the Grist table with the Excel data.
+        Fetch actual SFNo values from Emp_Master table using reference IDs
+        
+        :param sfno_ref_ids: Set of reference IDs to look up
+        :return: Set of actual SFNo values
+        """
+        try:
+            # Assume Emp_Master is the table name - you might need to adjust this
+            emp_master_table = "Emp_Master"
+            url = f"{self.base_url}/tables/{emp_master_table}/records"
+            
+            logger.info(f"Fetching SFNo values from {emp_master_table} table")
+            response = requests.get(url, headers=self.headers)
+            response.raise_for_status()
+            
+            emp_records = response.json().get('records', [])
+            
+            if emp_records:
+                logger.debug(f"Sample Emp_Master record structure: {json.dumps(emp_records[0], indent=2)}")
+            
+            # Create a mapping of record ID to SFNo value
+            existing_sfnos = set()
+            
+            for record in emp_records:
+                record_id = record.get('id')
+                fields = record.get('fields', {})
+                
+                # Only process records that are referenced in HC_Detail
+                if record_id in sfno_ref_ids:
+                    # Find the SFNo field in Emp_Master
+                    sfno_value = None
+                    possible_names = ['SFNo', 'SFno', 'sfno', 'SFNO', 'SF_No', 'sf_no']
+                    
+                    for field_name in possible_names:
+                        if field_name in fields:
+                            sfno_value = fields[field_name]
+                            logger.debug(f"Found SFNo value for ID {record_id}: {sfno_value}")
+                            break
+                    
+                    if sfno_value:
+                        existing_sfnos.add(str(sfno_value).strip())
+                    else:
+                        logger.warning(f"Could not find SFNo field in Emp_Master record ID {record_id}. Available fields: {list(fields.keys())}")
+            
+            logger.info(f"Successfully resolved {len(existing_sfnos)} SFNo values: {sorted(existing_sfnos)}")
+            return existing_sfnos
+            
+        except requests.RequestException as e:
+            logger.error(f"Error fetching from Emp_Master table: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                logger.error(f"Response: {e.response.text}")
+            return set()
 
-        :param excel_data: A pandas DataFrame containing the hour clock data read
-                           from the Excel file. Expected columns include 'SFNo',
-                           'No', and columns for each day of the month prefixed
-                           with 'P-' or 'P_' (for presence) and 'OT-' or 'OT_'
-                           (for overtime hours).
+    def process_excel_data(self, excel_data):
+        """
+        Process Excel data and insert only new records based on SFNo
+        
+        :param excel_data: DataFrame containing Excel hour clock data
         """
         if self.month_year is None:
             logger.error("Month-year is not set. Cannot process HourClock data.")
             return
 
         if not self.table_columns:
-            logger.error("Grist table schema not available. Cannot proceed with comparing and updating records.")
+            logger.error("Grist table schema not available. Cannot proceed with processing records.")
             return
 
-        logger.info("Excel data columns received by compare_and_update:")
-        logger.info(excel_data.columns)
-        logger.info("First 5 rows of excel_data received by compare_and_update:")
-        logger.info(excel_data.head().to_string())
+        logger.info("Excel data columns received:")
+        logger.info(excel_data.columns.tolist())
+        logger.info(f"Processing {len(excel_data)} rows from Excel")
 
-        # Print P and OT column patterns from Excel data to help diagnose issues
-        p_cols = [col for col in excel_data.columns if 'P-' in col or 'P_' in col]
-        ot_cols = [col for col in excel_data.columns if 'OT-' in col or 'OT_' in col]
-        logger.info(f"P columns in Excel: {', '.join(sorted(p_cols))}")
-        logger.info(f"OT columns in Excel: {', '.join(sorted(ot_cols))}")
+        # Clean the Excel data
+        excel_data = excel_data.copy()
 
-        try:
-            # Fetch existing HourClock records for the specific month/year
-            existing_records = self.get_existing_records()
+        # Remove rows with NaN or null in the 'SFNo' column
+        if 'SFNo' in excel_data.columns:
+            null_emp_nos = excel_data['SFNo'].isna()
+            if null_emp_nos.any():
+                logger.warning(f"Found {null_emp_nos.sum()} rows with empty employee numbers. These will be skipped.")
+                excel_data = excel_data.dropna(subset=['SFNo'])
 
-            if existing_records.empty and not excel_data.empty:
-                logger.info(f"No existing records found in Grist table {self.hourclock_table_name} for {self.month_year}. All records will be added as new.")
-
-            # Make a copy of the data to avoid modifying the original
-            excel_data = excel_data.copy()
-
-            # Remove rows with NaN or null in the 'SFNo' column
-            if 'SFNo' in excel_data.columns:
-                null_emp_nos = excel_data['SFNo'].isna()
-                if null_emp_nos.any():
-                    logger.warning(f"Warning: Found {null_emp_nos.sum()} rows with empty employee numbers in HourClock sheet. These will be skipped.")
-                    excel_data = excel_data.dropna(subset=['SFNo'])
-
-                # Also remove rows where 'SFNo' is 'nan' as a string
-                nan_emp_nos = excel_data['SFNo'] == 'nan'
-                if nan_emp_nos.any():
-                    logger.warning(f"Warning: Found {nan_emp_nos.sum()} rows with 'nan' as employee number in HourClock sheet. These will be skipped.")
-                    excel_data = excel_data[~nan_emp_nos]
+            # Remove rows where 'SFNo' is 'nan' as a string
+            nan_emp_nos = excel_data['SFNo'] == 'nan'
+            if nan_emp_nos.any():
+                logger.warning(f"Found {nan_emp_nos.sum()} rows with 'nan' as employee number. These will be skipped.")
+                excel_data = excel_data[~nan_emp_nos]
 
             # Ensure 'SFNo' is treated as string and strip whitespace
-            if 'SFNo' in excel_data.columns:
-                excel_data['SFNo'] = excel_data['SFNo'].astype(str).str.strip()
+            excel_data['SFNo'] = excel_data['SFNo'].astype(str).str.strip()
 
-            # If SFNo exists in existing_records, make sure it's a string for comparison
-            if not existing_records.empty and 'SFNo' in existing_records.columns:
-                existing_records['SFno'] = existing_records['SFno'].astype(str)
+            # Check for duplicates in Excel
+            duplicates = excel_data['SFNo'].duplicated()
+            if duplicates.any():
+                duplicate_emp_nos = excel_data.loc[duplicates, 'SFNo'].tolist()
+                logger.warning(f"Duplicate employee numbers found in Excel: {duplicate_emp_nos}")
+                logger.warning("Only the last occurrence of each duplicate will be processed.")
+                excel_data = excel_data.drop_duplicates(subset=['SFNo'], keep='last')
 
-            # Check for duplicate SFNo in Excel data
-            if 'SFNo' in excel_data.columns:
-                duplicates = excel_data['SFNo'].duplicated()
-                if duplicates.any():
-                    duplicate_emp_nos = excel_data.loc[duplicates, 'SFNo'].tolist()
-                    logger.warning(f"Warning: Duplicate employee numbers found in HourClock Excel sheet: {duplicate_emp_nos}")
-                    logger.warning("Only the last occurrence of each duplicate will be processed.")
-                    # Keep only the last occurrence of each duplicate
-                    excel_data = excel_data.drop_duplicates(subset=['SFNo'], keep='last')
+        # Check if Month_Year exists in Grist
+        month_year_exists = self.check_month_year_exists()
+        
+        if month_year_exists:
+            # Get existing SFNos for this month
+            existing_sfnos = self.get_existing_sfnos_for_month()
+        else:
+            # No records exist for this month, so all records are new
+            existing_sfnos = set()
+            logger.info(f"No existing records found for {self.month_year}. All Excel records will be inserted.")
 
-            # Prepare lists for operations
-            records_to_add = []
-            updates_to_perform = []
+        # Prepare records to insert
+        records_to_add = []
+        skipped_sfnos = []
 
-            logger.info(f"Processing {len(excel_data)} valid rows from HourClock Excel sheet")
+        for _, excel_row in excel_data.iterrows():
+            emp_no = str(excel_row['SFNo'])
+            
+            # Check if this SFNo already exists for this month
+            if emp_no in existing_sfnos:
+                logger.info(f"Skipping SFNo {emp_no} - already exists for {self.month_year}")
+                skipped_sfnos.append(emp_no)
+                continue
 
-            # Process each row from Excel
-            for _, excel_row in excel_data.iterrows():
-                emp_no = str(excel_row['SFNo'])
-                sr_no = excel_row.get('No')
+            # Prepare Grist fields for new record
+            grist_fields = {
+                'Month_Year': self.month_year,
+                'SFNo': emp_no,
+            }
 
-                # Prepare Grist fields for the HourClock table
-                grist_hourclock_fields = {
-                    'Month_Year': self.month_year,
-                    'SFNo': emp_no,
-                }
+            # Add Sr_No if available
+            sr_no = excel_row.get('No')
+            if 'Sr_No' in self.table_columns and pd.notna(sr_no):
+                grist_fields['Sr_No'] = sr_no
 
-                # Add Sr_No if the column exists in Grist
-                if 'Sr_No' in self.table_columns:
-                    grist_hourclock_fields['Sr_No'] = sr_no if pd.notna(sr_no) else None
+            # Process P columns (presence data)
+            p_cols = [col for col in excel_row.index if col.startswith('P-') or col.startswith('P_')]
+            for p_col in p_cols:
+                # Extract day number
+                if '-' in p_col:
+                    day = p_col.split('-')[1]
+                else:
+                    day = p_col.split('_')[1]
 
-                # Find all P and OT columns in the Excel data with both hyphen and underscore formats
-                p_cols = [col for col in excel_row.index if col.startswith('P-') or col.startswith('P_')]
-                ot_cols = [col for col in excel_row.index if col.startswith('OT-') or col.startswith('OT_')]
+                # Determine Grist column name (prefer underscore format)
+                grist_p_col = None
+                if f'P_{day}' in self.table_columns:
+                    grist_p_col = f'P_{day}'
+                elif f'P-{day}' in self.table_columns:
+                    grist_p_col = f'P-{day}'
 
-                # Map P columns considering both formats (hyphen and underscore)
-                for p_col in p_cols:
-                    # Extract day number handling both P-1 and P_1 formats
-                    if '-' in p_col:
-                        day = p_col.split('-')[1]
-                    else:
-                        day = p_col.split('_')[1]
-
-                    # Try both formats for Grist columns
-                    p_col_grist_underscore = f'P_{day}'
-                    p_col_grist_hyphen = f'P-{day}'
-
-                    # Check which format exists in Grist, prioritize underscore format
-                    if p_col_grist_underscore in self.table_columns:
-                        p_col_grist = p_col_grist_underscore
-                    elif p_col_grist_hyphen in self.table_columns:
-                        p_col_grist = p_col_grist_hyphen
-                    else:
-                        # Neither format exists, log and skip
-                        logger.debug(f"Neither P_{day} nor P-{day} found in Grist table, skipping")
-                        continue
-
+                if grist_p_col:
                     p_value = excel_row[p_col]
-
-                    # Convert P value to integer (0 or 1), handle NaN/errors
                     if pd.notna(p_value):
                         try:
-                            grist_hourclock_fields[p_col_grist] = int(p_value)
+                            grist_fields[grist_p_col] = int(p_value)
                         except (ValueError, TypeError):
-                            logger.warning(f"Warning: Could not convert P value '{p_value}' to integer for EmpNo {emp_no}, Day {day}. Setting to None.")
-                            grist_hourclock_fields[p_col_grist] = None
+                            logger.warning(f"Could not convert P value '{p_value}' to integer for EmpNo {emp_no}, Day {day}")
+                            grist_fields[grist_p_col] = None
                     else:
-                        grist_hourclock_fields[p_col_grist] = None
+                        grist_fields[grist_p_col] = None
 
-                # Map OT columns considering both formats (hyphen and underscore)
-                for ot_col in ot_cols:
-                    # Extract day number handling both OT-1 and OT_1 formats
-                    if '-' in ot_col:
-                        day = ot_col.split('-')[1]
-                    else:
-                        day = ot_col.split('_')[1]
+            # Process OT columns (overtime data)
+            ot_cols = [col for col in excel_row.index if col.startswith('OT-') or col.startswith('OT_')]
+            for ot_col in ot_cols:
+                # Extract day number
+                if '-' in ot_col:
+                    day = ot_col.split('-')[1]
+                else:
+                    day = ot_col.split('_')[1]
 
-                    # Try both formats for Grist columns
-                    ot_col_grist_underscore = f'OT_{day}'
-                    ot_col_grist_hyphen = f'OT-{day}'
+                # Determine Grist column name (prefer underscore format)
+                grist_ot_col = None
+                if f'OT_{day}' in self.table_columns:
+                    grist_ot_col = f'OT_{day}'
+                elif f'OT-{day}' in self.table_columns:
+                    grist_ot_col = f'OT-{day}'
 
-                    # Check which format exists in Grist, prioritize underscore format
-                    if ot_col_grist_underscore in self.table_columns:
-                        ot_col_grist = ot_col_grist_underscore
-                    elif ot_col_grist_hyphen in self.table_columns:
-                        ot_col_grist = ot_col_grist_hyphen
-                    else:
-                        # Check for case-insensitive match as fallback
-                        lowercase_columns = [col.lower() for col in self.table_columns]
-                        if ot_col_grist_underscore.lower() in lowercase_columns:
-                            # Find the correct case
-                            correct_case = next(col for col in self.table_columns if col.lower() == ot_col_grist_underscore.lower())
-                            ot_col_grist = correct_case
-                            logger.warning(f"Case mismatch: Using '{correct_case}' instead of '{ot_col_grist_underscore}'")
-                        else:
-                            # Neither format exists, log and skip
-                            logger.debug(f"Neither OT_{day} nor OT-{day} found in Grist table columns: {self.table_columns}, skipping")
-                            continue
-
+                if grist_ot_col:
                     ot_value = excel_row[ot_col]
-
-                    # Convert OT value to float, handle NaN/errors
                     if pd.notna(ot_value):
                         try:
-                            grist_hourclock_fields[ot_col_grist] = float(ot_value)
+                            grist_fields[grist_ot_col] = float(ot_value)
                         except (ValueError, TypeError):
-                            logger.warning(f"Warning: Could not convert OT value '{ot_value}' to float for EmpNo {emp_no}, Day {day}. Setting to None.")
-                            grist_hourclock_fields[ot_col_grist] = None
+                            logger.warning(f"Could not convert OT value '{ot_value}' to float for EmpNo {emp_no}, Day {day}")
+                            grist_fields[grist_ot_col] = None
                     else:
-                        grist_hourclock_fields[ot_col_grist] = None
+                        grist_fields[grist_ot_col] = None
 
-                # Find if record for this employee and month/year exists in Grist
-                matched_records = pd.DataFrame()
-                if not existing_records.empty and 'SFNo' in existing_records.columns and 'Month_Year' in existing_records.columns:
-                    matched_records = existing_records[
-                        (existing_records['SFNo'] == emp_no) &
-                        (existing_records['Month_Year'] == self.month_year)
-                    ]
+            records_to_add.append({'fields': grist_fields})
+            logger.info(f"Prepared record for insertion: SFNo {emp_no} for {self.month_year}")
 
-                if matched_records.empty:
-                    # Scenario: New record for this employee and month/year
-                    logger.info(f"Attempting to add new HourClock record for employee {emp_no} ({self.month_year}).")
-                    records_to_add.append({'fields': grist_hourclock_fields})
+        # Insert new records
+        if records_to_add:
+            self._insert_records(records_to_add)
+        else:
+            logger.info("No new records to insert.")
 
-                else:
-                    # Scenario: Existing record for this employee and month/year
-                    record_id = matched_records['id'].iloc[0]
-                    current_grist_record = matched_records.iloc[0]
+        # Update counters
+        self._skipped_records_count = len(skipped_sfnos)
 
-                    # Compare fields to see if an update is needed
-                    needs_update = False
-                    update_payload_fields = {}
+        # Print summary
+        self._print_summary(skipped_sfnos)
 
-                    # Compare SrNo field if it exists in both places
-                    if 'SrNo' in current_grist_record and 'SrNo' in grist_hourclock_fields:
-                        grist_value = current_grist_record['SrNo']
-                        excel_value = grist_hourclock_fields['SrNo']
+    def _insert_records(self, records_to_add):
+        """
+        Insert records into Grist
+        
+        :param records_to_add: List of records to insert
+        """
+        add_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
+        logger.info(f"Inserting {len(records_to_add)} new records into {self.hourclock_table_name}")
 
-                        # Handle None/NaN comparison
-                        if not pd.isna(excel_value) or not pd.isna(grist_value):
-                            excel_str = str(excel_value) if pd.notna(excel_value) else 'None'
-                            grist_str = str(grist_value) if pd.notna(grist_value) else 'None'
-
-                            if excel_str != grist_str:
-                                needs_update = True
-                                update_payload_fields['SrNo'] = excel_value
-                                logger.debug(f"Update needed for {emp_no} ({self.month_year}): SrNo differs (Excel: '{excel_str}', Grist: '{grist_str}')")
-
-                    # Compare all fields in grist_hourclock_fields (P and OT with correct format)
-                    for field_name, new_value in grist_hourclock_fields.items():
-                        # Skip Month_Year and SFno since they're our match criteria and Sr_No which was already checked
-                        if field_name in ['Month_Year', 'SFno', 'Sr_No']:
-                            continue
-
-                        if field_name in current_grist_record:
-                            current_value = current_grist_record[field_name]
-
-                            # Compare values (handle None/NaN and type comparison)
-                            if (pd.isna(current_value) and pd.notna(new_value)) or \
-                               (pd.notna(current_value) and pd.isna(new_value)) or \
-                               (pd.notna(current_value) and pd.notna(new_value) and current_value != new_value):
-                                needs_update = True
-                                update_payload_fields[field_name] = new_value
-                                logger.debug(f"Update needed for {emp_no} ({self.month_year}): {field_name} differs (Excel: {new_value}, Grist: {current_value})")
-
-                    if needs_update:
-                        updates_to_perform.append({
-                            'id': int(record_id),
-                            'fields': update_payload_fields
-                        })
-                        logger.info(f"HourClock record for employee {emp_no} ({self.month_year}) queued for update.")
-                    else:
-                        logger.info(f"HourClock record for employee {emp_no} ({self.month_year}): No update needed.")
-
-            # Perform bulk add operations
-            if records_to_add:
-                add_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
-                logger.info(f"Adding {len(records_to_add)} new HourClock records to {self.hourclock_table_name}.")
-
-                # Print the month_year value before adding records
-                # print(f"Month_Year value being inserted: {self.month_year}")
-
-                # Print the records to be added before sending the request
-                # print("\n--- Records to be added to HC_Detail ---")
-                # print(json.dumps(records_to_add, indent=2))
-                # print("---------------------------------------")
-
-                if records_to_add:
-                    logger.debug(f"Sample add record for HourClock table: {records_to_add[0]}")
-
-                try:
-                    add_response = requests.post(
-                        add_url,
-                        headers=self.headers,
-                        json={'records': records_to_add}
-                    )
-                    add_response.raise_for_status()
-                    logger.info(f"Successfully added {len(records_to_add)} new HourClock records.")
-                    self._new_records_count += len(records_to_add)
-                except requests.RequestException as e:
-                    logger.error(f"Error adding new HourClock records: {e}")
-                    if hasattr(e, 'response') and e.response is not None:
-                        logger.error(f"Response: {e.response.text}")
-                        # Get more details about which columns might be invalid
-                        response_text = e.response.text
-                        try:
-                            error_data = json.loads(response_text)
-                            error_message = error_data.get('error', '')
-                            if "Invalid column" in error_message:
-                                invalid_col = error_message.split('"')[1]
-                                logger.error(f"The column '{invalid_col}' doesn't exist in the Grist table.")
-                                logger.error(f"Available columns in Grist: {', '.join(self.table_columns)}")
-
-                                # For debugging: print a sample record to see what we're trying to send
-                                if records_to_add:
-                                    sample_record = records_to_add[0]['fields']
-                                    logger.error(f"Sample record fields: {list(sample_record.keys())}")
-                        except:
-                            pass
-
-            # Perform bulk update operations
-            if updates_to_perform:
-                update_url = f"{self.base_url}/tables/{self.hourclock_table_name}/records"
-                logger.info(f"Updating {len(updates_to_perform)} existing HourClock records in {self.hourclock_table_name}.")
-                if updates_to_perform:
-                    logger.debug(f"Sample update record for HourClock table: {updates_to_perform[0]}")
-
-                try:
-                    update_response = requests.patch(
-                        update_url,
-                        headers=self.headers,
-                        json={'records': updates_to_perform}
-                    )
-                    update_response.raise_for_status()
-                    logger.info(f"Successfully updated {len(updates_to_perform)} existing HourClock records.")
-                    self._updated_records_count += len(updates_to_perform)
-                except requests.RequestException as e:
-                    logger.error(f"Error updating existing HourClock records: {e}")
-                    if hasattr(e, 'response') and e.response is not None:
-                        logger.error(f"Response: {e.response.text}")
-
+        try:
+            add_response = requests.post(
+                add_url,
+                headers=self.headers,
+                json={'records': records_to_add}
+            )
+            add_response.raise_for_status()
+            logger.info(f"Successfully inserted {len(records_to_add)} new records.")
+            self._new_records_count = len(records_to_add)
+            
         except requests.RequestException as e:
-            logger.error(f"A Grist API request failed during the HourClock process: {e}")
+            logger.error(f"Error inserting new records: {e}")
             if hasattr(e, 'response') and e.response is not None:
                 logger.error(f"Response: {e.response.text}")
-        except Exception as e:
-            import traceback
-            logger.error(f"Unexpected error during HourClock update: {e}")
-            logger.error(traceback.format_exc())
+                
+                # Try to parse error details
+                try:
+                    error_data = json.loads(e.response.text)
+                    error_message = error_data.get('error', '')
+                    if "Invalid column" in error_message:
+                        invalid_col = error_message.split('"')[1] if '"' in error_message else "unknown"
+                        logger.error(f"The column '{invalid_col}' doesn't exist in the Grist table.")
+                        logger.error(f"Available columns: {', '.join(self.table_columns)}")
+                except:
+                    pass
 
-        # Print summary of actions
-        logger.info("\n--- HourClock Update Summary ---")
-        logger.info(f"New HourClock records added: {self._new_records_count}")
-        logger.info(f"Existing HourClock records updated: {self._updated_records_count}")
-        logger.info("------------------------------\n")
+    def _print_summary(self, skipped_sfnos):
+        """
+        Print summary of the operation
+        
+        :param skipped_sfnos: List of SFNos that were skipped
+        """
+        logger.info("\n" + "="*50)
+        logger.info("HOURCLOCK UPDATE SUMMARY")
+        logger.info("="*50)
+        logger.info(f"Month/Year processed: {self.month_year}")
+        logger.info(f"New records inserted: {self._new_records_count}")
+        logger.info(f"Records skipped (duplicates): {self._skipped_records_count}")
+        
+        if skipped_sfnos:
+            logger.info(f"Skipped SFNos: {', '.join(sorted(skipped_sfnos))}")
+        
+        logger.info("="*50 + "\n")
+
+    # Keep the original method name for backward compatibility
+    def compare_and_update(self, excel_data):
+        """
+        Main method to process Excel data (backward compatibility)
+        
+        :param excel_data: DataFrame containing Excel hour clock data
+        """
+        self.process_excel_data(excel_data)
