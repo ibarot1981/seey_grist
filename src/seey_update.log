@@ -2307,3 +2307,845 @@ Initializing PF-ESIC Grist Updater...
 2025-05-23 17:04:31,952 - __main__ - INFO - Finished processing PF-ESIC sheets for file: EmpClockingFormat - 12-5-2025.xlsx
 2025-05-23 17:04:31,952 - __main__ - INFO - 
 All Excel files processed.
+2025-05-23 17:08:45,608 - __main__ - INFO - Starting salary update process...
+2025-05-23 17:08:45,608 - __main__ - INFO - Found 1 Excel files to process in ../data/
+2025-05-23 17:08:45,624 - __main__ - INFO - 
+Processing file: ../data/EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:08:45,624 - __main__ - INFO - Extracted month-year from filename: May-25
+2025-05-23 17:08:45,624 - __main__ - INFO - Reading master salary sheet...
+2025-05-23 17:08:46,037 - __main__ - INFO - Successfully read 280 rows from EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:08:46,037 - __main__ - INFO - 
+Initializing Grist Updater...
+2025-05-23 17:08:46,037 - src.grist_updater - INFO - MarkAsLeft setting: NO
+2025-05-23 17:08:46,037 - src.grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-23 17:08:46,037 - __main__ - INFO - Starting Grist update process for this file...
+2025-05-23 17:08:46,037 - src.grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_Master/records
+2025-05-23 17:08:46,231 - src.grist_updater - INFO - Fetched 450 records from Emp_Master
+2025-05-23 17:08:46,246 - src.grist_updater - WARNING - Warning: Found 1 rows with 'nan' as employee number. These will be skipped.
+2025-05-23 17:08:46,246 - src.grist_updater - INFO - Processing 279 rows from Excel
+2025-05-23 17:08:46,246 - src.grist_updater - INFO - Employee SF007: No update needed for main table fields.
+2025-05-23 17:08:46,246 - src.grist_updater - INFO - Employee SF009: No update needed for main table fields.
+2025-05-23 17:08:46,246 - src.grist_updater - INFO - Employee SF010: No update needed for main table fields.
+2025-05-23 17:08:46,246 - src.grist_updater - INFO - Employee SF014: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF020: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF022: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF026: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF032: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF057: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF067: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF071: No update needed for main table fields.
+2025-05-23 17:08:46,262 - src.grist_updater - INFO - Employee SF086: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF089: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF094: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF097: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF098: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF106: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF110: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF115: No update needed for main table fields.
+2025-05-23 17:08:46,278 - src.grist_updater - INFO - Employee SF121: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF124: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF129: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF153: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF229: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF415: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF429: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF454: No update needed for main table fields.
+2025-05-23 17:08:46,294 - src.grist_updater - INFO - Employee SF478: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF535: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF547: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF566: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF576: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF578: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF591: No update needed for main table fields.
+2025-05-23 17:08:46,310 - src.grist_updater - INFO - Employee SF604: No update needed for main table fields.
+2025-05-23 17:08:46,326 - src.grist_updater - INFO - Employee SF620: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF663: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF715: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF726: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF769: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF801: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF820: No update needed for main table fields.
+2025-05-23 17:08:46,328 - src.grist_updater - INFO - Employee SF862: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF894: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF908: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF910: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF942: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF985: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF1002: No update needed for main table fields.
+2025-05-23 17:08:46,342 - src.grist_updater - INFO - Employee SF1050: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1103: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1152: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1210: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1256: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1260: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1275: No update needed for main table fields.
+2025-05-23 17:08:46,357 - src.grist_updater - INFO - Employee SF1303: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1334: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1337: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1353: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1378: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1389: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1391: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1394: No update needed for main table fields.
+2025-05-23 17:08:46,373 - src.grist_updater - INFO - Employee SF1439: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1459: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1469: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1477: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1512: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1570: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1614: No update needed for main table fields.
+2025-05-23 17:08:46,389 - src.grist_updater - INFO - Employee SF1617: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1641: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1653: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1683: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1686: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1690: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1713: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1715: No update needed for main table fields.
+2025-05-23 17:08:46,405 - src.grist_updater - INFO - Employee SF1809: No update needed for main table fields.
+2025-05-23 17:08:46,421 - src.grist_updater - INFO - Employee SF1829: No update needed for main table fields.
+2025-05-23 17:08:46,421 - src.grist_updater - INFO - Employee SF1830: No update needed for main table fields.
+2025-05-23 17:08:46,421 - src.grist_updater - INFO - Employee SF1839: No update needed for main table fields.
+2025-05-23 17:08:46,428 - src.grist_updater - INFO - Employee SF1843: No update needed for main table fields.
+2025-05-23 17:08:46,428 - src.grist_updater - INFO - Employee SF1845: No update needed for main table fields.
+2025-05-23 17:08:46,428 - src.grist_updater - INFO - Employee SF1853: No update needed for main table fields.
+2025-05-23 17:08:46,428 - src.grist_updater - INFO - Employee SF1855: No update needed for main table fields.
+2025-05-23 17:08:46,428 - src.grist_updater - INFO - Employee SF1889: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF1893: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF1961: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF1978: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF2020: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF2067: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF2077: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF2080: No update needed for main table fields.
+2025-05-23 17:08:46,437 - src.grist_updater - INFO - Employee SF2120: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2126: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2164: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2183: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2185: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2187: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2214: No update needed for main table fields.
+2025-05-23 17:08:46,453 - src.grist_updater - INFO - Employee SF2217: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2228: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2239: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2241: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2242: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2245: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2269: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2282: No update needed for main table fields.
+2025-05-23 17:08:46,469 - src.grist_updater - INFO - Employee SF2295: No update needed for main table fields.
+2025-05-23 17:08:46,485 - src.grist_updater - INFO - Employee SF2298: No update needed for main table fields.
+2025-05-23 17:08:46,485 - src.grist_updater - INFO - Employee SF2299: No update needed for main table fields.
+2025-05-23 17:08:46,485 - src.grist_updater - INFO - Employee SF2304: No update needed for main table fields.
+2025-05-23 17:08:46,485 - src.grist_updater - INFO - Employee SF2314: No update needed for main table fields.
+2025-05-23 17:08:46,485 - src.grist_updater - INFO - Employee SF2317: No update needed for main table fields.
+2025-05-23 17:08:46,496 - src.grist_updater - INFO - Employee SF2322: No update needed for main table fields.
+2025-05-23 17:08:46,496 - src.grist_updater - INFO - Employee SF2336: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2337: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2345: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2346: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2358: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2359: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2368: No update needed for main table fields.
+2025-05-23 17:08:46,502 - src.grist_updater - INFO - Employee SF2370: No update needed for main table fields.
+2025-05-23 17:08:46,517 - src.grist_updater - INFO - Employee SF2371: No update needed for main table fields.
+2025-05-23 17:08:46,517 - src.grist_updater - INFO - Employee SF2372: No update needed for main table fields.
+2025-05-23 17:08:46,517 - src.grist_updater - INFO - Employee SF2400: No update needed for main table fields.
+2025-05-23 17:08:46,517 - src.grist_updater - INFO - Employee SF2408: No update needed for main table fields.
+2025-05-23 17:08:46,528 - src.grist_updater - INFO - Employee SF2417: No update needed for main table fields.
+2025-05-23 17:08:46,528 - src.grist_updater - INFO - Employee SF2421: No update needed for main table fields.
+2025-05-23 17:08:46,528 - src.grist_updater - INFO - Employee SF2423: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2431: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2435: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2455: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2458: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2461: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2468: No update needed for main table fields.
+2025-05-23 17:08:46,533 - src.grist_updater - INFO - Employee SF2477: No update needed for main table fields.
+2025-05-23 17:08:46,549 - src.grist_updater - INFO - Employee SF2481: No update needed for main table fields.
+2025-05-23 17:08:46,549 - src.grist_updater - INFO - Employee SF2486: No update needed for main table fields.
+2025-05-23 17:08:46,549 - src.grist_updater - INFO - Employee SF2487: No update needed for main table fields.
+2025-05-23 17:08:46,549 - src.grist_updater - INFO - Employee SF2489: No update needed for main table fields.
+2025-05-23 17:08:46,556 - src.grist_updater - INFO - Employee SF2501: No update needed for main table fields.
+2025-05-23 17:08:46,556 - src.grist_updater - INFO - Employee SF2504: No update needed for main table fields.
+2025-05-23 17:08:46,556 - src.grist_updater - INFO - Employee SF2506: No update needed for main table fields.
+2025-05-23 17:08:46,556 - src.grist_updater - INFO - Employee SF2507: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2508: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2514: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2515: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2519: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2526: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2528: No update needed for main table fields.
+2025-05-23 17:08:46,566 - src.grist_updater - INFO - Employee SF2530: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2532: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2534: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2536: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2540: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2541: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2545: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2557: No update needed for main table fields.
+2025-05-23 17:08:46,581 - src.grist_updater - INFO - Employee SF2558: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2560: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2566: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2582: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2584: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2588: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2591: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2598: No update needed for main table fields.
+2025-05-23 17:08:46,597 - src.grist_updater - INFO - Employee SF2601: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2612: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2614: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2615: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2616: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2624: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2625: No update needed for main table fields.
+2025-05-23 17:08:46,612 - src.grist_updater - INFO - Employee SF2635: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2641: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2642: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2643: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2644: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2645: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2646: No update needed for main table fields.
+2025-05-23 17:08:46,628 - src.grist_updater - INFO - Employee SF2647: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2656: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2659: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2665: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2674: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2685: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2686: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2688: No update needed for main table fields.
+2025-05-23 17:08:46,644 - src.grist_updater - INFO - Employee SF2698: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2699: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2700: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2703: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2705: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2706: No update needed for main table fields.
+2025-05-23 17:08:46,660 - src.grist_updater - INFO - Employee SF2708: No update needed for main table fields.
+2025-05-23 17:08:46,674 - src.grist_updater - INFO - Employee SF2714: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2715: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2725: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2726: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2727: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2729: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2730: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2734: No update needed for main table fields.
+2025-05-23 17:08:46,676 - src.grist_updater - INFO - Employee SF2735: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2737: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2740: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2742: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2743: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2744: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2746: No update needed for main table fields.
+2025-05-23 17:08:46,692 - src.grist_updater - INFO - Employee SF2747: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2748: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2754: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2755: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2758: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2759: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2760: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2761: No update needed for main table fields.
+2025-05-23 17:08:46,707 - src.grist_updater - INFO - Employee SF2766: No update needed for main table fields.
+2025-05-23 17:08:46,723 - src.grist_updater - INFO - Employee SF2768: No update needed for main table fields.
+2025-05-23 17:08:46,723 - src.grist_updater - INFO - Employee SF2770: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2771: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2772: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2773: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2774: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2775: No update needed for main table fields.
+2025-05-23 17:08:46,728 - src.grist_updater - INFO - Employee SF2776: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2777: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2778: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2779: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2783: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2784: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2785: No update needed for main table fields.
+2025-05-23 17:08:46,739 - src.grist_updater - INFO - Employee SF2787: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2788: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2789: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2791: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2792: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2793: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2794: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2797: No update needed for main table fields.
+2025-05-23 17:08:46,755 - src.grist_updater - INFO - Employee SF2798: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2799: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2801: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2802: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2803: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2804: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2805: No update needed for main table fields.
+2025-05-23 17:08:46,771 - src.grist_updater - INFO - Employee SF2806: No update needed for main table fields.
+2025-05-23 17:08:46,787 - src.grist_updater - INFO - Employee SF2807: No update needed for main table fields.
+2025-05-23 17:08:46,787 - src.grist_updater - INFO - Employee SF2808: No update needed for main table fields.
+2025-05-23 17:08:46,794 - src.grist_updater - INFO - Employee SF2809: No update needed for main table fields.
+2025-05-23 17:08:46,794 - src.grist_updater - INFO - Employee SF2810: No update needed for main table fields.
+2025-05-23 17:08:46,794 - src.grist_updater - INFO - Employee SF2811: No update needed for main table fields.
+2025-05-23 17:08:46,794 - src.grist_updater - INFO - Employee SF2812: No update needed for main table fields.
+2025-05-23 17:08:46,794 - src.grist_updater - INFO - Employee SF2813: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2814: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2815: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2816: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2817: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2818: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2819: No update needed for main table fields.
+2025-05-23 17:08:46,803 - src.grist_updater - INFO - Employee SF2820: No update needed for main table fields.
+2025-05-23 17:08:46,819 - src.grist_updater - INFO - Employee SF2821: No update needed for main table fields.
+2025-05-23 17:08:46,819 - src.grist_updater - INFO - Employee SF2822: No update needed for main table fields.
+2025-05-23 17:08:46,819 - src.grist_updater - INFO - Employee SF2823: No update needed for main table fields.
+2025-05-23 17:08:46,819 - src.grist_updater - INFO - Employee SF2824: No update needed for main table fields.
+2025-05-23 17:08:46,819 - src.grist_updater - INFO - Employee SF2825: No update needed for main table fields.
+2025-05-23 17:08:46,828 - src.grist_updater - INFO - Employee SF2826: No update needed for main table fields.
+2025-05-23 17:08:46,828 - src.grist_updater - INFO - Employee SF2827: No update needed for main table fields.
+2025-05-23 17:08:46,828 - src.grist_updater - INFO - Employee SF2828: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employee SF2829: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employee SF2830: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employee SF2832: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employee SF2833: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employee SF2834: No update needed for main table fields.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - No rate log entries to bulk add.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - MarkAsLeft is not YES. Skipping marking employees as left.
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - 
+--- Update Summary ---
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - New employees added to Emp_Master: 0
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Existing employees updated in Emp_Master: 0
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Rate log entries added to Emp_RateLog: 0
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - Employees marked as left in Emp_Master: 0
+2025-05-23 17:08:46,835 - src.grist_updater - INFO - ----------------------
+
+2025-05-23 17:08:46,835 - __main__ - INFO - Finished processing master sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:08:46,835 - __main__ - INFO - 
+Processing HourClock sheet...
+2025-05-23 17:08:55,840 - src.hourclock_excel_reader - INFO - Total columns in Excel sheet: 74
+2025-05-23 17:08:55,906 - src.hourclock_excel_reader - INFO - Generated column names: 74
+2025-05-23 17:09:05,303 - src.hourclock_excel_reader - INFO - Before assigning columns: len(new_columns)=74, df.shape[1]=74
+2025-05-23 17:09:05,303 - src.hourclock_excel_reader - INFO - DataFrame immediately after reading Excel:
+2025-05-23 17:09:05,304 - src.hourclock_excel_reader - INFO - Index(['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3',
+       'P-4', 'OT-4', 'P-5', 'OT-5', 'P-6', 'OT-6', 'P-7', 'OT-7', 'P-8',
+       'OT-8', 'P-9', 'OT-9', 'P-10', 'OT-10', 'P-11', 'OT-11', 'P-12',
+       'OT-12', 'P-13', 'OT-13', 'P-14', 'OT-14', 'P-15', 'OT-15', 'P-16',
+       'OT-16', 'P-17', 'OT-17', 'P-18', 'OT-18', 'P-19', 'OT-19', 'P-20',
+       'OT-20', 'P-21', 'OT-21', 'P-22', 'OT-22', 'P-23', 'OT-23', 'P-24',
+       'OT-24', 'P-25', 'OT-25', 'P-26', 'OT-26', 'P-27', 'OT-27', 'P-28',
+       'OT-28', 'P-29', 'OT-29', 'P-30', 'OT-30', 'P-31', 'OT-31', 'P-32',
+       'OT-32', 'P-33', 'OT-33', 'P-34', 'OT-34', 'P-35', 'OT-35', 'P-36'],
+      dtype='object')
+2025-05-23 17:09:05,318 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
+0  1  SF007    ARJUNSINH  TAKHATSINH RAJ.   1    2   1    2   1    2   0    0   1    2   0    0   0    0   1    2   1    2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    1     2    1     2    0     5    0     0    0     0    0     0    1     2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+1  2  SF009   ASHOK PARSHOTAMBHAI  VASAVA   1    0   1    0   1    0   1    0   0    0   1    0   1    0   1    0   1    0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     4    1     0    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+2  3  SF010  ASHOKBHAI RANCHODBHAI VASAVA   1  5.5   1  5.5   1    2   0    0   1    0   1  0.5   1    2   0    0   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1     2    1   5.5    0     0    0     0    1     2    1     2    1   5.5    0     0    1   5.5    1     2    0     0    1   5.5    0     0    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+3  4  SF014    BHAILAL MAHIJIBHAI  VASAVA   1  5.5   1  5.5   1    2   0    0   1  5.5   1  0.5   1  5.5   1  1.5   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1   1.5    1   5.5    1     2    0     0    1     2    1     2    1   5.5    1     2    1     2    1   1.5    0     0    1   5.5    1     2    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+4  6  SF020    DAYABHAI RAMANBHAI  VASAVA   1  5.5   1  5.5   1  5.5   0    0   1  5.5   1  0.5   1    2   1    2   1  5.5    1     2    1     2    0     5    0     0    1     1    1   5.5    1   5.5    1   5.5    1     2    1     2    0     0    1   5.5    1     2    1   5.5    1   5.5    1     2    1     2    0     0    1     2    1   5.5    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+2025-05-23 17:09:05,349 - src.hourclock_excel_reader - INFO - DataFrame before SFNo filtering:
+2025-05-23 17:09:05,361 - src.hourclock_excel_reader - INFO -   No   SFNo                          Name P-1 OT-1 P-2 OT-2 P-3 OT-3 P-4 OT-4 P-5 OT-5 P-6 OT-6 P-7 OT-7 P-8 OT-8 P-9 OT-9 P-10 OT-10 P-11 OT-11 P-12 OT-12 P-13 OT-13 P-14 OT-14 P-15 OT-15 P-16 OT-16 P-17 OT-17 P-18 OT-18 P-19 OT-19 P-20 OT-20 P-21 OT-21 P-22 OT-22 P-23 OT-23 P-24 OT-24 P-25 OT-25 P-26 OT-26 P-27 OT-27 P-28 OT-28 P-29 OT-29 P-30 OT-30 P-31 OT-31 P-32 OT-32 P-33 OT-33 P-34 OT-34 P-35 OT-35 P-36
+0  1  SF007    ARJUNSINH  TAKHATSINH RAJ.   1    2   1    2   1    2   0    0   1    2   0    0   0    0   1    2   1    2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    1     2    1     2    0     5    0     0    0     0    0     0    1     2    1     2    1     2    1     2    0     0    1     2    1     2    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+1  2  SF009   ASHOK PARSHOTAMBHAI  VASAVA   1    0   1    0   1    0   1    0   0    0   1    0   1    0   1    0   1    0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    1     0    0     4    1     0    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+2  3  SF010  ASHOKBHAI RANCHODBHAI VASAVA   1  5.5   1  5.5   1    2   0    0   1    0   1  0.5   1    2   0    0   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1     2    1   5.5    0     0    0     0    1     2    1     2    1   5.5    0     0    1   5.5    1     2    0     0    1   5.5    0     0    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+3  4  SF014    BHAILAL MAHIJIBHAI  VASAVA   1  5.5   1  5.5   1    2   0    0   1  5.5   1  0.5   1  5.5   1  1.5   1  5.5    1     2    1   5.5    1     2    0     0    1   5.5    1     2    1   5.5    1   1.5    1   5.5    1     2    0     0    1     2    1     2    1   5.5    1     2    1     2    1   1.5    0     0    1   5.5    1     2    1   5.5    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+4  6  SF020    DAYABHAI RAMANBHAI  VASAVA   1  5.5   1  5.5   1  5.5   0    0   1  5.5   1  0.5   1    2   1    2   1  5.5    1     2    1     2    0     5    0     0    1     1    1   5.5    1   5.5    1   5.5    1     2    1     2    0     0    1   5.5    1     2    1   5.5    1   5.5    1     2    1     2    0     0    1     2    1   5.5    1     2    0     0  NaN   NaN  NaN   NaN  NaN   NaN  NaN   NaN  NaN
+2025-05-23 17:09:05,364 - src.hourclock_excel_reader - INFO - Filtered out 1 rows where SFNo did not start with 'SF'.
+2025-05-23 17:09:05,364 - __main__ - INFO - Successfully read 279 rows from HourClock sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:05,365 - __main__ - INFO - 
+Initializing HourClock Grist Updater...
+2025-05-23 17:09:05,365 - src.hourclock_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-23 17:09:05,367 - src.hourclock_grist_updater - INFO - Targeting HourClock table: HC_Detail
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Fetched table columns from /columns endpoint: 70 columns
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Available columns: Month, Month_Year, Name, OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9, P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9, SFNo, Sr_No, Total_OT, Total_P, Year
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Found 31 P_* columns: P_1, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_2, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_3, P_30, P_31, P_4, P_5, P_6, P_7, P_8, P_9
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Found 31 OT_* columns: OT_1, OT_10, OT_11, OT_12, OT_13, OT_14, OT_15, OT_16, OT_17, OT_18, OT_19, OT_2, OT_20, OT_21, OT_22, OT_23, OT_24, OT_25, OT_26, OT_27, OT_28, OT_29, OT_3, OT_30, OT_31, OT_4, OT_5, OT_6, OT_7, OT_8, OT_9
+2025-05-23 17:09:06,027 - __main__ - INFO - Starting HourClock Grist update process for this file...
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Excel data columns received:
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - ['No', 'SFNo', 'Name', 'P-1', 'OT-1', 'P-2', 'OT-2', 'P-3', 'OT-3', 'P-4', 'OT-4', 'P-5', 'OT-5', 'P-6', 'OT-6', 'P-7', 'OT-7', 'P-8', 'OT-8', 'P-9', 'OT-9', 'P-10', 'OT-10', 'P-11', 'OT-11', 'P-12', 'OT-12', 'P-13', 'OT-13', 'P-14', 'OT-14', 'P-15', 'OT-15', 'P-16', 'OT-16', 'P-17', 'OT-17', 'P-18', 'OT-18', 'P-19', 'OT-19', 'P-20', 'OT-20', 'P-21', 'OT-21', 'P-22', 'OT-22', 'P-23', 'OT-23', 'P-24', 'OT-24', 'P-25', 'OT-25', 'P-26', 'OT-26', 'P-27', 'OT-27', 'P-28', 'OT-28', 'P-29', 'OT-29', 'P-30', 'OT-30', 'P-31', 'OT-31', 'P-32', 'OT-32', 'P-33', 'OT-33', 'P-34', 'OT-34', 'P-35', 'OT-35', 'P-36']
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Processing 279 rows from Excel
+2025-05-23 17:09:06,027 - src.hourclock_grist_updater - INFO - Checking if Month_Year May-25 exists in Grist
+2025-05-23 17:09:06,147 - src.hourclock_grist_updater - INFO - Month_Year May-25 exists in Grist (found 279 records)
+2025-05-23 17:09:06,147 - src.hourclock_grist_updater - INFO - Fetching HC_Detail records for Month_Year May-25
+2025-05-23 17:09:06,249 - src.hourclock_grist_updater - INFO - Found 279 unique SFNo reference IDs: [1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 14, 15, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 75, 76, 78, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 108, 109, 110, 111, 113, 114, 115, 117, 118, 119, 120, 122, 123, 124, 125, 126, 127, 128, 129, 130, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 143, 144, 145, 146, 147, 148, 149, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 164, 165, 166, 168, 169, 170, 171, 172, 174, 176, 178, 179, 180, 181, 184, 191, 192, 193, 197, 204, 205, 208, 210, 216, 219, 229, 231, 232, 233, 241, 242, 252, 258, 259, 260, 261, 262, 263, 264, 273, 276, 282, 291, 302, 303, 305, 315, 316, 317, 320, 322, 323, 325, 331, 332, 342, 343, 344, 346, 347, 351, 352, 354, 357, 359, 360, 361, 363, 364, 365, 371, 372, 375, 376, 377, 378, 383, 385, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 399, 400, 401, 403, 404, 405, 407, 408, 409, 410, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482]
+2025-05-23 17:09:06,249 - src.hourclock_grist_updater - INFO - Fetching SFNo values from Emp_Master table
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Successfully resolved 279 SFNo values: ['SF007', 'SF009', 'SF010', 'SF014', 'SF020', 'SF022', 'SF026', 'SF032', 'SF057', 'SF067', 'SF071', 'SF086', 'SF089', 'SF094', 'SF097', 'SF098', 'SF1002', 'SF1050', 'SF106', 'SF110', 'SF1103', 'SF115', 'SF1152', 'SF121', 'SF1210', 'SF124', 'SF1256', 'SF1260', 'SF1275', 'SF129', 'SF1303', 'SF1334', 'SF1337', 'SF1353', 'SF1378', 'SF1389', 'SF1391', 'SF1394', 'SF1439', 'SF1459', 'SF1469', 'SF1477', 'SF1512', 'SF153', 'SF1570', 'SF1614', 'SF1617', 'SF1641', 'SF1653', 'SF1683', 'SF1686', 'SF1690', 'SF1713', 'SF1715', 'SF1809', 'SF1829', 'SF1830', 'SF1839', 'SF1843', 'SF1845', 'SF1853', 'SF1855', 'SF1889', 'SF1893', 'SF1961', 'SF1978', 'SF2020', 'SF2067', 'SF2077', 'SF2080', 'SF2120', 'SF2126', 'SF2164', 'SF2183', 'SF2185', 'SF2187', 'SF2214', 'SF2217', 'SF2228', 'SF2239', 'SF2241', 'SF2242', 'SF2245', 'SF2269', 'SF2282', 'SF229', 'SF2295', 'SF2298', 'SF2299', 'SF2304', 'SF2314', 'SF2317', 'SF2322', 'SF2336', 'SF2337', 'SF2345', 'SF2346', 'SF2358', 'SF2359', 'SF2368', 'SF2370', 'SF2371', 'SF2372', 'SF2400', 'SF2408', 'SF2417', 'SF2421', 'SF2423', 'SF2431', 'SF2435', 'SF2455', 'SF2458', 'SF2461', 'SF2468', 'SF2477', 'SF2481', 'SF2486', 'SF2487', 'SF2489', 'SF2501', 'SF2504', 'SF2506', 'SF2507', 'SF2508', 'SF2514', 'SF2515', 'SF2519', 'SF2526', 'SF2528', 'SF2530', 'SF2532', 'SF2534', 'SF2536', 'SF2540', 'SF2541', 'SF2545', 'SF2557', 'SF2558', 'SF2560', 'SF2566', 'SF2582', 'SF2584', 'SF2588', 'SF2591', 'SF2598', 'SF2601', 'SF2612', 'SF2614', 'SF2615', 'SF2616', 'SF2624', 'SF2625', 'SF2635', 'SF2641', 'SF2642', 'SF2643', 'SF2644', 'SF2645', 'SF2646', 'SF2647', 'SF2656', 'SF2659', 'SF2665', 'SF2674', 'SF2685', 'SF2686', 'SF2688', 'SF2698', 'SF2699', 'SF2700', 'SF2703', 'SF2705', 'SF2706', 'SF2708', 'SF2714', 'SF2715', 'SF2725', 'SF2726', 'SF2727', 'SF2729', 'SF2730', 'SF2734', 'SF2735', 'SF2737', 'SF2740', 'SF2742', 'SF2743', 'SF2744', 'SF2746', 'SF2747', 'SF2748', 'SF2754', 'SF2755', 'SF2758', 'SF2759', 'SF2760', 'SF2761', 'SF2766', 'SF2768', 'SF2770', 'SF2771', 'SF2772', 'SF2773', 'SF2774', 'SF2775', 'SF2776', 'SF2777', 'SF2778', 'SF2779', 'SF2783', 'SF2784', 'SF2785', 'SF2787', 'SF2788', 'SF2789', 'SF2791', 'SF2792', 'SF2793', 'SF2794', 'SF2797', 'SF2798', 'SF2799', 'SF2801', 'SF2802', 'SF2803', 'SF2804', 'SF2805', 'SF2806', 'SF2807', 'SF2808', 'SF2809', 'SF2810', 'SF2811', 'SF2812', 'SF2813', 'SF2814', 'SF2815', 'SF2816', 'SF2817', 'SF2818', 'SF2819', 'SF2820', 'SF2821', 'SF2822', 'SF2823', 'SF2824', 'SF2825', 'SF2826', 'SF2827', 'SF2828', 'SF2829', 'SF2830', 'SF2832', 'SF2833', 'SF2834', 'SF415', 'SF429', 'SF454', 'SF478', 'SF535', 'SF547', 'SF566', 'SF576', 'SF578', 'SF591', 'SF604', 'SF620', 'SF663', 'SF715', 'SF726', 'SF769', 'SF801', 'SF820', 'SF862', 'SF894', 'SF908', 'SF910', 'SF942', 'SF985']
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF007 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF009 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF010 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF014 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF020 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF022 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF026 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF032 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF057 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF067 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF071 - already exists for May-25
+2025-05-23 17:09:06,377 - src.hourclock_grist_updater - INFO - Skipping SFNo SF086 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF089 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF094 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF097 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF098 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF106 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF110 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF115 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF121 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF124 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF129 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF153 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF229 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF415 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF429 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF454 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF478 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF535 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF547 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF566 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF576 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF578 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF591 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF604 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF620 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF663 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF715 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF726 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF769 - already exists for May-25
+2025-05-23 17:09:06,393 - src.hourclock_grist_updater - INFO - Skipping SFNo SF801 - already exists for May-25
+2025-05-23 17:09:06,408 - src.hourclock_grist_updater - INFO - Skipping SFNo SF820 - already exists for May-25
+2025-05-23 17:09:06,408 - src.hourclock_grist_updater - INFO - Skipping SFNo SF862 - already exists for May-25
+2025-05-23 17:09:06,408 - src.hourclock_grist_updater - INFO - Skipping SFNo SF894 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF908 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF910 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF942 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF985 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1002 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1050 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1103 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1152 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1210 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1256 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1260 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1275 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1303 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1334 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1337 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1353 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1378 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1389 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1391 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1394 - already exists for May-25
+2025-05-23 17:09:06,410 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1439 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1459 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1469 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1477 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1512 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1570 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1614 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1617 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1641 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1653 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1683 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1686 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1690 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1713 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1715 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1809 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1829 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1830 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1839 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1843 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1845 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1853 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1855 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1889 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1893 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1961 - already exists for May-25
+2025-05-23 17:09:06,424 - src.hourclock_grist_updater - INFO - Skipping SFNo SF1978 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2020 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2067 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2077 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2080 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2120 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2126 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2164 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2183 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2185 - already exists for May-25
+2025-05-23 17:09:06,440 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2187 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2214 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2217 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2228 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2239 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2241 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2242 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2245 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2269 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2282 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2295 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2298 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2299 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2304 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2314 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2317 - already exists for May-25
+2025-05-23 17:09:06,447 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2322 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2336 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2337 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2345 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2346 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2358 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2359 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2368 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2370 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2371 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2372 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2400 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2408 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2417 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2421 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2423 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2431 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2435 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2455 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2458 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2461 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2468 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2477 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2481 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2486 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2487 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2489 - already exists for May-25
+2025-05-23 17:09:06,456 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2501 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2504 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2506 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2507 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2508 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2514 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2515 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2519 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2526 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2528 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2530 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2532 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2534 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2536 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2540 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2541 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2545 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2557 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2558 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2560 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2566 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2582 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2584 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2588 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2591 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2598 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2601 - already exists for May-25
+2025-05-23 17:09:06,472 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2612 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2614 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2615 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2616 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2624 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2625 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2635 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2641 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2642 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2643 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2644 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2645 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2646 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2647 - already exists for May-25
+2025-05-23 17:09:06,488 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2656 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2659 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2665 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2674 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2685 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2686 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2688 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2698 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2699 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2700 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2703 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2705 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2706 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2708 - already exists for May-25
+2025-05-23 17:09:06,496 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2714 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2715 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2725 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2726 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2727 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2729 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2730 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2734 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2735 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2737 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2740 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2742 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2743 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2744 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2746 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2747 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2748 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2754 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2755 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2758 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2759 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2760 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2761 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2766 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2768 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2770 - already exists for May-25
+2025-05-23 17:09:06,504 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2771 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2772 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2773 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2774 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2775 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2776 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2777 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2778 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2779 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2783 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2784 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2785 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2787 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2788 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2789 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2791 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2792 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2793 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2794 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2797 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2798 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2799 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2801 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2802 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2803 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2804 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2805 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2806 - already exists for May-25
+2025-05-23 17:09:06,519 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2807 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2808 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2809 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2810 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2811 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2812 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2813 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2814 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2815 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2816 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2817 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2818 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2819 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2820 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2821 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2822 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2823 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2824 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2825 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2826 - already exists for May-25
+2025-05-23 17:09:06,535 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2827 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2828 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2829 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2830 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2832 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2833 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - Skipping SFNo SF2834 - already exists for May-25
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - No new records to insert.
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - 
+==================================================
+2025-05-23 17:09:06,547 - src.hourclock_grist_updater - INFO - HOURCLOCK UPDATE SUMMARY
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - ==================================================
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - Month/Year processed: May-25
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - New records inserted: 0
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - Records skipped (duplicates): 279
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - Skipped SFNos: SF007, SF009, SF010, SF014, SF020, SF022, SF026, SF032, SF057, SF067, SF071, SF086, SF089, SF094, SF097, SF098, SF1002, SF1050, SF106, SF110, SF1103, SF115, SF1152, SF121, SF1210, SF124, SF1256, SF1260, SF1275, SF129, SF1303, SF1334, SF1337, SF1353, SF1378, SF1389, SF1391, SF1394, SF1439, SF1459, SF1469, SF1477, SF1512, SF153, SF1570, SF1614, SF1617, SF1641, SF1653, SF1683, SF1686, SF1690, SF1713, SF1715, SF1809, SF1829, SF1830, SF1839, SF1843, SF1845, SF1853, SF1855, SF1889, SF1893, SF1961, SF1978, SF2020, SF2067, SF2077, SF2080, SF2120, SF2126, SF2164, SF2183, SF2185, SF2187, SF2214, SF2217, SF2228, SF2239, SF2241, SF2242, SF2245, SF2269, SF2282, SF229, SF2295, SF2298, SF2299, SF2304, SF2314, SF2317, SF2322, SF2336, SF2337, SF2345, SF2346, SF2358, SF2359, SF2368, SF2370, SF2371, SF2372, SF2400, SF2408, SF2417, SF2421, SF2423, SF2431, SF2435, SF2455, SF2458, SF2461, SF2468, SF2477, SF2481, SF2486, SF2487, SF2489, SF2501, SF2504, SF2506, SF2507, SF2508, SF2514, SF2515, SF2519, SF2526, SF2528, SF2530, SF2532, SF2534, SF2536, SF2540, SF2541, SF2545, SF2557, SF2558, SF2560, SF2566, SF2582, SF2584, SF2588, SF2591, SF2598, SF2601, SF2612, SF2614, SF2615, SF2616, SF2624, SF2625, SF2635, SF2641, SF2642, SF2643, SF2644, SF2645, SF2646, SF2647, SF2656, SF2659, SF2665, SF2674, SF2685, SF2686, SF2688, SF2698, SF2699, SF2700, SF2703, SF2705, SF2706, SF2708, SF2714, SF2715, SF2725, SF2726, SF2727, SF2729, SF2730, SF2734, SF2735, SF2737, SF2740, SF2742, SF2743, SF2744, SF2746, SF2747, SF2748, SF2754, SF2755, SF2758, SF2759, SF2760, SF2761, SF2766, SF2768, SF2770, SF2771, SF2772, SF2773, SF2774, SF2775, SF2776, SF2777, SF2778, SF2779, SF2783, SF2784, SF2785, SF2787, SF2788, SF2789, SF2791, SF2792, SF2793, SF2794, SF2797, SF2798, SF2799, SF2801, SF2802, SF2803, SF2804, SF2805, SF2806, SF2807, SF2808, SF2809, SF2810, SF2811, SF2812, SF2813, SF2814, SF2815, SF2816, SF2817, SF2818, SF2819, SF2820, SF2821, SF2822, SF2823, SF2824, SF2825, SF2826, SF2827, SF2828, SF2829, SF2830, SF2832, SF2833, SF2834, SF415, SF429, SF454, SF478, SF535, SF547, SF566, SF576, SF578, SF591, SF604, SF620, SF663, SF715, SF726, SF769, SF801, SF820, SF862, SF894, SF908, SF910, SF942, SF985
+2025-05-23 17:09:06,551 - src.hourclock_grist_updater - INFO - ==================================================
+
+2025-05-23 17:09:06,551 - __main__ - INFO - Finished processing HourClock sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:06,551 - __main__ - INFO - 
+Processing Advances sheet...
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO - DataFrame immediately after reading Excel:
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO - Index([                  'No.',               'Emp No.',
+                        'Name',              'Unit No.',
+              'Advance Amount', 'Salary Rate (Per Day)',
+           'Monthly Potential',      'Current Earnings',
+                    'Loan Amt',            'Unnamed: 9',
+               'Total Advance',                  307500,
+                  'Total Loan',                   40500],
+      dtype='object')
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO -    No. Emp No.                          Name Unit No.  Advance Amount  Salary Rate (Per Day)  Monthly Potential  Current Earnings  Loan Amt  Unnamed: 9  Total Advance  307500  Total Loan  40500
+0  1.0   SF007    ARJUNSINH  TAKHATSINH RAJ.   SAFARI          5000.0             685.000000            20550.0      18409.375000       NaN         NaN            NaN     NaN         NaN    NaN
+1  2.0   SF009   ASHOK PARSHOTAMBHAI  VASAVA   OFFICE             NaN             866.666667            26000.0      23833.333333       NaN         NaN            NaN     NaN         NaN    NaN
+2  3.0   SF010  ASHOKBHAI RANCHODBHAI VASAVA     J.K.          5000.0             590.000000            17700.0      18806.250000       NaN         NaN            NaN     NaN         NaN    NaN
+3  4.0   SF014    BHAILAL MAHIJIBHAI  VASAVA     J.K.             NaN            1450.000000            43500.0      54193.750000       NaN         NaN            NaN     NaN         NaN    NaN
+4  6.0   SF020    DAYABHAI RAMANBHAI  VASAVA   SAFARI             NaN             625.000000            18750.0      23007.812500       NaN         NaN            NaN     NaN         NaN    NaN
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO - Added 'Month_Year' column with value: May-25
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO - DataFrame before SFNo filtering:
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO -    SrNo   SFNo                          Name    Unit  Advance_Amt  Salary Rate (Per Day)  Monthly Potential  Current Earnings  Loan_Amt  Unnamed: 9  Total Advance  307500  Total Loan  40500 Month_Year
+0   1.0  SF007    ARJUNSINH  TAKHATSINH RAJ.  SAFARI       5000.0             685.000000            20550.0      18409.375000       NaN         NaN            NaN     NaN         NaN    NaN     May-25
+1   2.0  SF009   ASHOK PARSHOTAMBHAI  VASAVA  OFFICE          NaN             866.666667            26000.0      23833.333333       NaN         NaN            NaN     NaN         NaN    NaN     May-25
+2   3.0  SF010  ASHOKBHAI RANCHODBHAI VASAVA    J.K.       5000.0             590.000000            17700.0      18806.250000       NaN         NaN            NaN     NaN         NaN    NaN     May-25
+3   4.0  SF014    BHAILAL MAHIJIBHAI  VASAVA    J.K.          NaN            1450.000000            43500.0      54193.750000       NaN         NaN            NaN     NaN         NaN    NaN     May-25
+4   6.0  SF020    DAYABHAI RAMANBHAI  VASAVA  SAFARI          NaN             625.000000            18750.0      23007.812500       NaN         NaN            NaN     NaN         NaN    NaN     May-25
+2025-05-23 17:09:07,329 - src.advances_excel_reader - INFO - Filtered out 1 rows where SFNo did not start with 'SF'.
+2025-05-23 17:09:07,329 - __main__ - INFO - Successfully read 279 rows from Advances sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,329 - __main__ - INFO - 
+Initializing Advances Grist Updater...
+2025-05-23 17:09:07,329 - src.advances_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-23 17:09:07,345 - src.advances_grist_updater - INFO - Targeting Advances table: Emp_Advances
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - Fetched table columns from /columns endpoint: 7 columns
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - Available columns: Advance_Amt, Loan_Amt, Month_Year, Name, SFNo, SrNo, Unit
+2025-05-23 17:09:07,381 - __main__ - INFO - Starting Advances Grist update process for this file...
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - Excel data columns received:
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - ['SrNo', 'SFNo', 'Name', 'Unit', 'Advance_Amt', 'Salary Rate (Per Day)', 'Monthly Potential', 'Current Earnings', 'Loan_Amt', 'Unnamed: 9', 'Total Advance', 307500, 'Total Loan', 40500, 'Month_Year']
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - Processing 279 rows from Excel
+2025-05-23 17:09:07,381 - src.advances_grist_updater - INFO - Checking if Month_Year May-25 exists in Grist
+2025-05-23 17:09:07,410 - src.advances_grist_updater - INFO - Month_Year May-25 exists in Grist (found 104 records)
+2025-05-23 17:09:07,425 - src.advances_grist_updater - ERROR - Error: Records for Month_Year 'May-25' already exist in Grist table 'Emp_Advances'. Skipping insertion of all records for this month.
+2025-05-23 17:09:07,425 - __main__ - INFO - Finished processing Advances sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,425 - __main__ - INFO - 
+Processing PF-ESIC sheets...
+2025-05-23 17:09:07,425 - src.pfesic_excel_reader - INFO - Attempting to read sheet: PF-ESIC Sheet
+2025-05-23 17:09:07,547 - src.pfesic_excel_reader - INFO - Processing sheet: PF-ESIC Sheet
+2025-05-23 17:09:07,547 - src.pfesic_excel_reader - INFO - Original columns for PF-ESIC Sheet: ['Sr. No.', 'Emp No', 'Name', 'Emp Type', 'Hourly/Fixed', 'PRESENT DAY', 'BASIC WITH D.A', 'BASIC', 'ACTUAL BASIC', 'HRA    P DAY', 'CONV P DAY', 'W A   P DAY', 'H.R A AMOUNT', 'CONV   AMOUNT', 'W. A     AMOUNT', 'GROSS AMOUNT', 'PF', 'ESIC', 'P TAX', 'TOTAL DED', 'NET PAYABLE', 'Column1', 'New Alloted Basic', 'New HRA', 'New Conv', 'New WA', 'Total New', 'Diff From Master', 'Unnamed: 28', 'Current Total', 'Difference from Master', 'Unnamed: 31', 'New PF Calulation', 'Unnamed: 33', 'Diff']
+2025-05-23 17:09:07,552 - src.pfesic_excel_reader - INFO - Columns after renaming for PF-ESIC Sheet: ['SrNo', 'SFNo', 'Name', 'Emp Type', 'Hourly/Fixed', 'PresentDay', 'Basic_DA_PerDay', 'Basic_Amt', 'ActualBasic_Amt', 'HRA_PerDay', 'Conv_PerDay', 'WA_PerDay', 'HRA_Amt', 'Conv_Amt', 'WA_Amt', 'GrossAmt', 'PF_Amt', 'ESIC_Amt', 'PTax_Amt', 'TotalDed_Amt', 'NetPayable_Amt', 'Column1', 'New Alloted Basic', 'New HRA', 'New Conv', 'New WA', 'Total New', 'Diff From Master', 'Unnamed: 28', 'Current Total', 'Difference from Master', 'Unnamed: 31', 'New PF Calulation', 'Unnamed: 33', 'Diff']
+2025-05-23 17:09:07,552 - src.pfesic_excel_reader - INFO - Added 'Month_Year' column with value: May-25 to PF-ESIC Sheet
+2025-05-23 17:09:07,552 - src.pfesic_excel_reader - INFO - Filtered 189 rows from PF-ESIC Sheet where 'Emp Type' was not 'Perm'.
+2025-05-23 17:09:07,552 - src.pfesic_excel_reader - INFO - Processed 91 records for sheet: PF-ESIC Sheet
+2025-05-23 17:09:07,552 - src.pfesic_excel_reader - INFO - Attempting to read sheet: NEW PF ESIC
+2025-05-23 17:09:07,663 - src.pfesic_excel_reader - INFO - Processing sheet: NEW PF ESIC
+2025-05-23 17:09:07,663 - src.pfesic_excel_reader - INFO - Original columns for NEW PF ESIC: ['Sr. No.', 'Emp No', 'Name', 'Emp Type', 'Hourly/Fixed', 'PRESENT DAY', 'BASIC WITH D.A', 'BASIC', 'ACTUAL BASIC', 'HRA    P DAY', 'CONV P DAY', 'W A   P DAY', 'H.R A AMOUNT', 'CONV   AMOUNT', 'W. A     AMOUNT', 'GROSS AMOUNT', 'PF', 'ESIC', 'P TAX', 'TOTAL DED', 'NET PAYABLE']
+2025-05-23 17:09:07,663 - src.pfesic_excel_reader - INFO - Columns after renaming for NEW PF ESIC: ['SrNo', 'SFNo', 'Name', 'Emp Type', 'Hourly/Fixed', 'PresentDay', 'Basic_DA_PerDay', 'Basic_Amt', 'ActualBasic_Amt', 'HRA_PerDay', 'Conv_PerDay', 'WA_PerDay', 'HRA_Amt', 'Conv_Amt', 'WA_Amt', 'GrossAmt', 'PF_Amt', 'ESIC_Amt', 'PTax_Amt', 'TotalDed_Amt', 'NetPayable_Amt']
+2025-05-23 17:09:07,663 - src.pfesic_excel_reader - INFO - Added 'Month_Year' column with value: May-25 to NEW PF ESIC
+2025-05-23 17:09:07,679 - src.pfesic_excel_reader - INFO - Filtered 189 rows from NEW PF ESIC where 'Emp Type' was not 'Perm'.
+2025-05-23 17:09:07,679 - src.pfesic_excel_reader - INFO - Processed 91 records for sheet: NEW PF ESIC
+2025-05-23 17:09:07,679 - __main__ - INFO - Successfully read 91 rows from PF-ESIC Sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,679 - __main__ - INFO - Successfully read 91 rows from NEW PF ESIC Sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,679 - __main__ - INFO - 
+Initializing PF-ESIC Grist Updater...
+2025-05-23 17:09:07,679 - src.pfescic_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-23 17:09:07,679 - src.pfescic_grist_updater - INFO - PF-ESIC Table: Emp_Dump_PFESIC
+2025-05-23 17:09:07,679 - src.pfescic_grist_updater - INFO - NEW PF-ESIC Table: Emp_Dump_NW_PFESIC
+2025-05-23 17:09:07,679 - __main__ - INFO - Starting PF-ESIC Grist update process for this file...
+2025-05-23 17:09:07,679 - src.pfescic_grist_updater - INFO - Checking for existing records for Month_Year 'May-25' in table 'Emp_Dump_PFESIC'...
+2025-05-23 17:09:07,679 - src.pfescic_grist_updater - INFO - Fetching records from: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR/tables/Emp_Dump_PFESIC/records
+2025-05-23 17:09:07,743 - src.pfescic_grist_updater - INFO - Fetched 91 records from Emp_Dump_PFESIC
+2025-05-23 17:09:07,743 - src.pfescic_grist_updater - WARNING - Records for Month_Year 'May-25' already exist in 'Emp_Dump_PFESIC'. Skipping further insertion.
+2025-05-23 17:09:07,743 - src.pfescic_grist_updater - INFO - Skipping Grist update due to existing records for the current month_year.
+2025-05-23 17:09:07,747 - __main__ - INFO - Finished processing PF-ESIC sheets for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,747 - __main__ - INFO - 
+Processing OT sheet...
+2025-05-23 17:09:07,839 - src.ot_excel_reader - INFO - DataFrame immediately after reading Excel:
+2025-05-23 17:09:07,839 - src.ot_excel_reader - INFO - Index(['Emp No.', 'Name', 'Designation', 'ESIC  Rate',
+       'Emp Type : Temp / Perm', 'Salary Calculation on Fixed / Hourly',
+       'Unit Working', 'OT Hours', 'OT Hours Calculated', 'OT Rate',
+       'OT Amount', 'ESIC on OT (4%)', 'ESIC on OT (0.75%)', 'Unnamed: 13',
+       'OT Hours Calculated Weight', 'Unnamed: 15', 'OT Hours.1',
+       'Difference'],
+      dtype='object')
+2025-05-23 17:09:07,847 - src.ot_excel_reader - INFO -   Emp No.                          Name            Designation   ESIC  Rate Emp Type : Temp / Perm Salary Calculation on Fixed / Hourly Unit Working  OT Hours  OT Hours Calculated     OT Rate     OT Amount  ESIC on OT (4%)  ESIC on OT (0.75%)  Unnamed: 13  OT Hours Calculated Weight  Unnamed: 15  OT Hours.1  Difference
+0   SF007    ARJUNSINH  TAKHATSINH RAJ.             Technician     0.000000                   Temp                               Hourly       SAFARI      47.0                23.50    0.000000      0.000000           0.0000            0.000000          NaN                         2.0          NaN        47.0         0.0
+1   SF009   ASHOK PARSHOTAMBHAI  VASAVA   Sr.Account Assistant   866.666667                   Perm                                Fixed       OFFICE       4.0                 2.00  216.666667    433.333333           0.0000            0.000000          NaN                         2.0          NaN         4.0         0.0
+2   SF010  ASHOKBHAI RANCHODBHAI VASAVA                 Welder     0.000000                   Temp                               Hourly         J.K.      79.0                39.50    0.000000      0.000000           0.0000            0.000000          NaN                         2.0          NaN        79.0         0.0
+3   SF014    BHAILAL MAHIJIBHAI  VASAVA  Production Supervisor  1450.000000                   Perm                               Hourly         J.K.      91.0                45.50  362.500000  16493.750000           0.0000            0.000000          NaN                         2.0          NaN        91.0         0.0
+4   SF020    DAYABHAI RAMANBHAI  VASAVA             Technician   625.000000                   Perm                               Hourly       SAFARI      94.5                47.25  156.250000   7382.812500         295.3125           55.371094          NaN                         2.0          NaN        94.5         0.0
+2025-05-23 17:09:07,847 - src.ot_excel_reader - INFO - Added 'Month_Year' column with value: May-25
+2025-05-23 17:09:07,847 - src.ot_excel_reader - INFO - DataFrame before filtering:
+2025-05-23 17:09:07,855 - src.ot_excel_reader - INFO -     SFNo                          Name            Designation    ESIC_Rate Emp_Type Salary Calculation on Fixed / Hourly Unit Working  OT_Hours  OT_Hours_Calc     OT_Rate        OT_Amt  ESIC_4pct_Amt  ESIC_075pct_Amt  Unnamed: 13  OT Hours Calculated Weight  Unnamed: 15  OT Hours.1  Difference Month_Year
+0  SF007    ARJUNSINH  TAKHATSINH RAJ.             Technician     0.000000     Temp                               Hourly       SAFARI      47.0          23.50    0.000000      0.000000         0.0000         0.000000          NaN                         2.0          NaN        47.0         0.0     May-25
+1  SF009   ASHOK PARSHOTAMBHAI  VASAVA   Sr.Account Assistant   866.666667     Perm                                Fixed       OFFICE       4.0           2.00  216.666667    433.333333         0.0000         0.000000          NaN                         2.0          NaN         4.0         0.0     May-25
+2  SF010  ASHOKBHAI RANCHODBHAI VASAVA                 Welder     0.000000     Temp                               Hourly         J.K.      79.0          39.50    0.000000      0.000000         0.0000         0.000000          NaN                         2.0          NaN        79.0         0.0     May-25
+3  SF014    BHAILAL MAHIJIBHAI  VASAVA  Production Supervisor  1450.000000     Perm                               Hourly         J.K.      91.0          45.50  362.500000  16493.750000         0.0000         0.000000          NaN                         2.0          NaN        91.0         0.0     May-25
+4  SF020    DAYABHAI RAMANBHAI  VASAVA             Technician   625.000000     Perm                               Hourly       SAFARI      94.5          47.25  156.250000   7382.812500       295.3125        55.371094          NaN                         2.0          NaN        94.5         0.0     May-25
+2025-05-23 17:09:07,855 - __main__ - INFO - Successfully read 280 rows from OT sheet in EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:07,855 - __main__ - INFO - 
+Initializing OT Grist Updater...
+2025-05-23 17:09:07,855 - src.ot_grist_updater - INFO - Using Grist API at: http://safcost.duckdns.org:8484/o/docs/api/docs/wbBN8XZfFRL46umc9Y6yzR
+2025-05-23 17:09:07,855 - src.ot_grist_updater - INFO - Targeting OT table: Emp_Dump_OT2
+2025-05-23 17:09:07,903 - src.ot_grist_updater - INFO - Fetched table columns from /columns endpoint: 10 columns
+2025-05-23 17:09:07,903 - src.ot_grist_updater - INFO - Available columns: ESIC_075pct_Amt, ESIC_4pct_Amt, ESIC_Rate, Month_Year, Name, OT_Amt, OT_Hours, OT_Hours_Calc, OT_Rate, SFNo
+2025-05-23 17:09:07,903 - __main__ - INFO - Starting OT Grist update process for this file...
+2025-05-23 17:09:07,903 - src.ot_grist_updater - INFO - Excel data columns received:
+2025-05-23 17:09:07,918 - src.ot_grist_updater - INFO - ['SFNo', 'Name', 'Designation', 'ESIC_Rate', 'Emp_Type', 'Salary Calculation on Fixed / Hourly', 'Unit Working', 'OT_Hours', 'OT_Hours_Calc', 'OT_Rate', 'OT_Amt', 'ESIC_4pct_Amt', 'ESIC_075pct_Amt', 'Unnamed: 13', 'OT Hours Calculated Weight', 'Unnamed: 15', 'OT Hours.1', 'Difference', 'Month_Year']
+2025-05-23 17:09:07,918 - src.ot_grist_updater - INFO - Processing 280 rows from Excel
+2025-05-23 17:09:07,918 - src.ot_grist_updater - INFO - Checking if Month_Year May-25 exists in Grist table 'Emp_Dump_OT2'
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Month_Year May-25 does not exist in Grist (found 0 records)
+2025-05-23 17:09:07,967 - src.ot_grist_updater - WARNING - Found 1 rows with 'nan' as employee number. These will be skipped.
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Filtered out 208 records not meeting 'Perm' and 'OT Hours > 0' criteria.
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF009 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF014 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF020 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF022 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF026 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF057 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF067 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF071 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF086 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF089 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF094 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF098 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF106 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF110 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF115 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF124 for May-25
+2025-05-23 17:09:07,967 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF129 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF229 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF429 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF478 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF535 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF566 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF620 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF715 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF726 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF769 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF908 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF910 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1256 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1303 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1394 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1459 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1653 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1686 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1690 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1713 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1830 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1839 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1843 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1845 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1855 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1893 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1961 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF1978 for May-25
+2025-05-23 17:09:07,983 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2067 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2183 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2185 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2217 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2245 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2282 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2295 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2298 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2299 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2337 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2359 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2368 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2370 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2417 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2431 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2458 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2477 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2526 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2532 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2536 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2540 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2541 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2557 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2584 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2598 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2656 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Prepared record for insertion: SFNo SF2686 for May-25
+2025-05-23 17:09:07,999 - src.ot_grist_updater - INFO - Inserting 71 new records into Emp_Dump_OT2
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - Successfully inserted 71 new records.
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - 
+==================================================
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - OT DUMP UPDATE SUMMARY
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - ==================================================
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - Month/Year processed: May-25
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - Total records from Excel: 279
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - Records inserted into Grist: 71
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - Records skipped (due to existing Month_Year or filtering criteria): 208
+2025-05-23 17:09:08,113 - src.ot_grist_updater - INFO - ==================================================
+
+2025-05-23 17:09:08,113 - __main__ - INFO - Finished processing OT sheet for file: EmpClockingFormat - 12-5-2025.xlsx
+2025-05-23 17:09:08,113 - __main__ - INFO - 
+All Excel files processed.

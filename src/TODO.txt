@@ -11,4 +11,5 @@ Table column mappings are as follows (excel to grist) :
 
 
 360986.1249999999
+360986.1249999999
 360986.125
