@@ -14,6 +14,8 @@ from src.hourclock_excel_reader import HourClockExcelReader
 from src.hourclock_grist_updater import HourClockGristUpdater
 from src.advances_excel_reader import AdvancesExcelReader
 from src.advances_grist_updater import AdvancesGristUpdater
+from src.pfesic_excel_reader import PFESICExcelReader
+from src.pfescic_grist_updater import PFESICGristUpdater
 
 def main():
     # Load environment variables
@@ -190,6 +192,32 @@ def main():
             else:
                 logger.warning(f"Failed to read Advances sheet from {excel_file}. Skipping Advances processing for this file.")
             # --- End of Advances Sheet Processing ---
+
+            # --- Process PF-ESIC Sheets ---
+            logger.info("\nProcessing PF-ESIC sheets...")
+            pfesic_excel_reader = PFESICExcelReader(file_path=file_path)
+
+            # Read both PF-ESIC sheets
+            pfesic_sheet_df, new_pfesic_sheet_df = pfesic_excel_reader.read_sheets()
+
+            if pfesic_sheet_df is not None or new_pfesic_sheet_df is not None:
+                if pfesic_sheet_df is not None:
+                    logger.info(f"Successfully read {len(pfesic_sheet_df)} rows from PF-ESIC Sheet in {excel_file}")
+                if new_pfesic_sheet_df is not None:
+                    logger.info(f"Successfully read {len(new_pfesic_sheet_df)} rows from NEW PF ESIC Sheet in {excel_file}")
+
+                # Initialize PFESIC Grist Updater, passing the extracted month-year
+                logger.info("\nInitializing PF-ESIC Grist Updater...")
+                pfesic_grist_updater = PFESICGristUpdater(month_year=month_year)
+
+                # Update Grist tables
+                logger.info("Starting PF-ESIC Grist update process for this file...")
+                pfesic_grist_updater.update_grist_tables(pfesic_sheet_df, new_pfesic_sheet_df)
+
+                logger.info(f"Finished processing PF-ESIC sheets for file: {excel_file}")
+            else:
+                logger.warning(f"Failed to read any PF-ESIC sheets from {excel_file}. Skipping PF-ESIC processing for this file.")
+            # --- End of PF-ESIC Sheets Processing ---
 
         logger.info("\nAll Excel files processed.")
     
