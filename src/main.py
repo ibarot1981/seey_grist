@@ -12,6 +12,8 @@ from src.excel_reader import ExcelReader
 from src.grist_updater import GristUpdater
 from src.hourclock_excel_reader import HourClockExcelReader
 from src.hourclock_grist_updater import HourClockGristUpdater
+from src.advances_excel_reader import AdvancesExcelReader
+from src.advances_grist_updater import AdvancesGristUpdater
 
 def main():
     # Load environment variables
@@ -166,7 +168,28 @@ def main():
                 logger.warning(f"Failed to read HourClock sheet from {excel_file}. Skipping HourClock processing for this file.")
             # --- End of HourClock Sheet Processing ---
 
-        logger.info("\nAll Excel files processed.")
+            # --- Process Advances Sheet ---
+            logger.info("\nProcessing Advances sheet...")
+            advances_excel_reader = AdvancesExcelReader(file_path=file_path)
+
+            # Read the advances sheet
+            advances_sheet_df = advances_excel_reader.read_sheet()
+
+            if advances_sheet_df is not None:
+                logger.info(f"Successfully read {len(advances_sheet_df)} rows from Advances sheet in {excel_file}")
+
+                # Initialize Advances Grist Updater, passing the extracted month-year
+                logger.info("\nInitializing Advances Grist Updater...")
+                advances_grist_updater = AdvancesGristUpdater(month_year=month_year)
+
+                # Compare and update Grist Emp_Advances table
+                logger.info("Starting Advances Grist update process for this file...")
+                advances_grist_updater.compare_and_update(advances_sheet_df)
+
+                logger.info(f"Finished processing Advances sheet for file: {excel_file}")
+            else:
+                logger.warning(f"Failed to read Advances sheet from {excel_file}. Skipping Advances processing for this file.")
+            # --- End of Advances Sheet Processing ---
 
         logger.info("\nAll Excel files processed.")
     
