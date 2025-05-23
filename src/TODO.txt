@@ -1,0 +1,14 @@
+similar to advances_excel_reader and advaces_grist_updater scripts, create two scripts for reading and inserting data from excel into grist.
+Excel sheet for reading is "OT"
+Grist table to insert this data is already entered in .env file : GRIST_DUMP_OT_TABLE_NAME=Emp_Dump_OT2
+
+Table column mappings are as follows (excel to grist) :
+"Emp No." to "SFNo"
+"ESIC  Rate" to "ESIC_Rate"
+"OT Hours" to "OT_Hours"
+"OT Hours Calculated" to "OT_Hours_Calc"
+
+
+
+360986.1249999999
+360986.125

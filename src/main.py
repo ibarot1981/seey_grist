@@ -16,6 +16,8 @@ from src.advances_excel_reader import AdvancesExcelReader
 from src.advances_grist_updater import AdvancesGristUpdater
 from src.pfesic_excel_reader import PFESICExcelReader
 from src.pfescic_grist_updater import PFESICGristUpdater
+from src.ot_excel_reader import OTExcelReader
+from src.ot_grist_updater import OTGristUpdater
 
 def main():
     # Load environment variables
@@ -192,6 +194,29 @@ def main():
             else:
                 logger.warning(f"Failed to read Advances sheet from {excel_file}. Skipping Advances processing for this file.")
             # --- End of Advances Sheet Processing ---
+
+            # --- Process OT Sheet ---
+            logger.info("\nProcessing OT sheet...")
+            ot_excel_reader = OTExcelReader(file_path=file_path)
+
+            # Read the OT sheet
+            ot_sheet_df = ot_excel_reader.read_sheet()
+
+            if ot_sheet_df is not None:
+                logger.info(f"Successfully read {len(ot_sheet_df)} rows from OT sheet in {excel_file}")
+
+                # Initialize OT Grist Updater, passing the extracted month-year
+                logger.info("\nInitializing OT Grist Updater...")
+                ot_grist_updater = OTGristUpdater(month_year=month_year)
+
+                # Compare and update Grist Emp_Dump_OT2 table
+                logger.info("Starting OT Grist update process for this file...")
+                ot_grist_updater.compare_and_update(ot_sheet_df)
+
+                logger.info(f"Finished processing OT sheet for file: {excel_file}")
+            else:
+                logger.warning(f"Failed to read OT sheet from {excel_file}. Skipping OT processing for this file.")
+            # --- End of OT Sheet Processing ---
 
             # --- Process PF-ESIC Sheets ---
             logger.info("\nProcessing PF-ESIC sheets...")
