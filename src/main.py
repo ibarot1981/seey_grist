@@ -18,6 +18,8 @@ from src.pfesic_excel_reader import PFESICExcelReader
 from src.pfescic_grist_updater import PFESICGristUpdater
 from src.ot_excel_reader import OTExcelReader
 from src.ot_grist_updater import OTGristUpdater
+from src.salary_statement_excel_reader import SalaryStatementExcelReader
+from src.salary_statement_grist_updater import SalaryStatementGristUpdater
 
 def main():
     # Load environment variables
@@ -243,6 +245,29 @@ def main():
             else:
                 logger.warning(f"Failed to read OT sheet from {excel_file}. Skipping OT processing for this file.")
             # --- End of OT Sheet Processing ---
+
+            # --- Process Salary Statement Sheet ---
+            logger.info("\nProcessing Salary Statement sheet...")
+            salary_statement_excel_reader = SalaryStatementExcelReader(file_path=file_path)
+
+            # Read the Salary Statement sheet
+            salary_statement_sheet_df = salary_statement_excel_reader.read_sheet()
+
+            if salary_statement_sheet_df is not None:
+                logger.info(f"Successfully read {len(salary_statement_sheet_df)} rows from Salary Statement sheet in {excel_file}")
+
+                # Initialize Salary Statement Grist Updater, passing the extracted month-year
+                logger.info("\nInitializing Salary Statement Grist Updater...")
+                salary_statement_grist_updater = SalaryStatementGristUpdater(month_year=month_year)
+
+                # Process and update Grist Emp_Dump_SS table
+                logger.info("Starting Salary Statement Grist update process for this file...")
+                salary_statement_grist_updater.process_excel_data(salary_statement_sheet_df)
+
+                logger.info(f"Finished processing Salary Statement sheet for file: {excel_file}")
+            else:
+                logger.warning(f"Failed to read Salary Statement sheet from {excel_file}. Skipping Salary Statement processing for this file.")
+            # --- End of Salary Statement Sheet Processing ---
 
         logger.info("\nAll Excel files processed.")
     
