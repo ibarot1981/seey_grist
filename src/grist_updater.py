@@ -1,6 +1,7 @@
 import os
 import requests
 import pandas as pd
+import time
 from dotenv import load_dotenv
 from datetime import datetime
 import logging
@@ -168,7 +169,26 @@ class GristUpdater:
             logger.info(f"Fetching records from: {url}")
 
             # Make the GET request
-            response = requests.get(url, headers=self.headers)
+            # Make retries with delay
+            max_retries = 3
+            retry_delay = 5
+            for attempt in range(max_retries):
+                try:
+                    response = requests.get(url, headers=self.headers, timeout=30)
+                    break
+                except (requests.ConnectionError, requests.Timeout) as e:
+                    if attempt < max_retries - 1:
+                        logger.warning(f"Network error on attempt {attempt + 1}: {e}")
+                        logger.info(f"Retrying in {retry_delay} seconds...")
+                        time.sleep(retry_delay)
+                        retry_delay *= 2
+                    else:
+                        logger.error(f"Failed to connect after {max_retries} attempts")
+                        raise
+                except requests.RequestException as e:
+                    # For other HTTP errors (4xx, 5xx), don't retry
+                    logger.error(f"HTTP error (not retrying): {e}")
+                    raise
 
             # Check if request was successful
             response.raise_for_status()
@@ -216,7 +236,7 @@ class GristUpdater:
             logger.error(f"Error fetching existing records from {table}: {e}")
             if hasattr(e.response, 'text'):
                 logger.error(f"Response: {e.response.text}")
-            return pd.DataFrame()
+            raise Exception(f"Failed to fetch existing records: {e}")
 
     def _prepare_rate_log_entry_payload(self, emp_no, new_rate, is_initial=False):
         """
@@ -293,7 +313,12 @@ class GristUpdater:
         """
         try:
             # Fetch existing employee records
-            existing_records = self.get_existing_records()
+            try:
+                existing_records = self.get_existing_records()
+            except Exception as e:
+                logger.error(f"Cannot proceed: Failed to fetch existing records. {e}")
+                logger.error("Stopping execution to prevent duplicate entries.")
+                return
 
             if existing_records.empty and not excel_data.empty:
                 logger.info("No existing records found in Grist table. All records will be added as new.")
